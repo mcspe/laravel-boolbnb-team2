@@ -15,9 +15,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-          UsersTableSeeder::class,
-          ServicesTableSeeder::class,
-          SponsorshipsTableSeeder::class
+            ApartmentsTableSeeder::class,
+            UsersTableSeeder::class,
+            ServicesTableSeeder::class,
+            MessagesTableSeeder::class,
+            SponsorshipsTableSeeder::class,
         ]);
     }
 }
