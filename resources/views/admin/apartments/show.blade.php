@@ -1,4 +1,10 @@
+@extends('layouts.admin')
 
+@section('title')
+  | Show
+@endsection
+
+@section('content')
 <div class="card" style="width: 25rem;">
     {{-- <img src="..." class="card-img-top" alt="..."> --}}
     <div class="card-body">
@@ -15,4 +21,5 @@
       <a href="{{route('admin.apartments.index')}}" class="btn btn-primary">Torna ad Appartamenti</a>
     </div>
   </div>
+@endsection
 

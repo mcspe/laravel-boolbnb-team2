@@ -1,3 +1,10 @@
+@extends('layouts.admin')
+
+@section('title')
+  | Index
+@endsection
+
+@section('content')
 <div class="container py-5">
     <h1>Appartamenti</h1>
         <table class="table my-3">
@@ -34,5 +41,6 @@
             </tbody>
         </table>
 </div>
+@endsection
 
 

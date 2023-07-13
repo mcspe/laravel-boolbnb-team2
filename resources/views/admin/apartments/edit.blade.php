@@ -1,5 +1,10 @@
+@extends('layouts.admin')
 
+@section('title')
+  | Edit
+@endsection
 
+@section('content')
 <div class="p-4">
     <h2 class="fs-4 text-secondary my-4">
         Edit
@@ -78,3 +83,4 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+@endsection

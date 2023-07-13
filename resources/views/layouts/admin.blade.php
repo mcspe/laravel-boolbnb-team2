@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>BoolBnb @yield('title')</title>
 
 
     <!-- Fonts -->
@@ -29,7 +29,7 @@
     @endauth
 
     <main>
-      @yield("content")
+      @yield('content')
     </main>
 
   </div>

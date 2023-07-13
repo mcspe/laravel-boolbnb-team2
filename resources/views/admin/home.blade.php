@@ -1,8 +1,10 @@
 @extends('layouts.admin')
 
+@section('title')
+  | Dashboard
+@endsection
+
 @section('content')
-
-
 
 <div class="bg-home">
   <div class="welcome">
