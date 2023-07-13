@@ -17,16 +17,15 @@ class UsersTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for($i=0; $i<15; $i++) {
+        $users = config('users');
+
+        foreach ($users as $user) {
             $new_user = new User();
-            $new_user->name = $faker->firstname();
-            $new_user->lastname = $faker->lastname();
-            $new_user->date_of_birth = $faker->date('Y-m-d');
-            // $new_user->email = $faker->email();
-            $new_user->email = strtolower($new_user->lastname) . '@gmail.com';
-            $new_user->password = Hash::make('12345678');
-            // dump($new_user);
-            $new_user->save();
+            $new_user->name = $user['name'];
+            $new_user->lastname = $user['lastname'];
+            $new_user->date_of_birth = $user['date_of_birth'];
+            $new_user->email = $user['email'];
+            $new_user->password = Hash::make($user['password']);            $new_user->save();
         }
     }
 }
