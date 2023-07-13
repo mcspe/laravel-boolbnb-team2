@@ -11,6 +11,7 @@
       <p><strong>Numero bagni:</strong> {{$apartment->n_bathrooms}}</p>
       <p><strong>Metri quadrati:</strong> {{$apartment->square_meters}}m²</p>
       <p>{{$apartment->cover_image}}</p>
+      <a href="{{route('apartments.edit', $apartment)}}" class="btn btn-primary">Modifica Appartamento</a>
       <a href="{{route('apartments.index')}}" class="btn btn-primary">Torna ad Appartamenti</a>
     </div>
   </div>
