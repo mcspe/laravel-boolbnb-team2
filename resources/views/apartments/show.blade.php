@@ -1,4 +1,7 @@
+@extends('admin.home')
 
+
+@section('content')
 <div class="card" style="width: 25rem;">
     {{-- <img src="..." class="card-img-top" alt="..."> --}}
     <div class="card-body">
@@ -14,5 +17,24 @@
       <a href="{{route('apartments.edit', $apartment)}}" class="btn btn-primary">Modifica Appartamento</a>
       <a href="{{route('apartments.index')}}" class="btn btn-primary">Torna ad Appartamenti</a>
     </div>
+
+    <div id="map" style="width: 500px; height:500px"></div>
+
   </div>
+  @endsection
+
+
+
+  <script type="text/javascript">
+    let center= [4,44.4]
+    const map = tt.map({
+      key:"D2uJigXaa5sTIMlRGUwMoZ5dmwOA1HlB",
+      container: "map",
+      center: center,
+      zoom: 10
+    })
+    map.on('load', () =>{
+      new tt.Marker().setLngLat(center).addTo(map)
+    })
+  </script>
 
