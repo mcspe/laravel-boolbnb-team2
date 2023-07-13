@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Visit extends Model
 {
     use HasFactory;
+
+    public function apartment() {
+        return $this->belongsTo(Apartment::class);
+    }
 }
