@@ -26,11 +26,11 @@
                         <td>{{$apartment->square_meters}}</td>
                         <td>{{$apartment->price}}</td>
                         <td>
-                            <a href="{{route('apartments.show', $apartment)}}" class="btn btn-primary">Vai</a>
+                            <a href="{{route('admin.apartments.show', $apartment)}}" class="btn btn-primary">Vai</a>
                         </td>
                     </tr>
                     @endforeach
-                    <a href="{{route('apartments.create')}}" class="btn btn-primary">Crea appartamento</a>
+                    <a href="{{route('admin.apartments.create')}}" class="btn btn-primary">Crea appartamento</a>
             </tbody>
         </table>
 </div>
