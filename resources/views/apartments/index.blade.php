@@ -30,7 +30,7 @@
                         </td>
                     </tr>
                     @endforeach
-                    {{-- <a href="{{route('apartments.show')}}" class="btn btn-primary">Vai</a> --}}
+                    <a href="{{route('apartments.create')}}" class="btn btn-primary">Crea appartamento</a>
             </tbody>
         </table>
 </div>
