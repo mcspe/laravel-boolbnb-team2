@@ -71,5 +71,5 @@
         name="n_bathrooms">
     </div>
 
-
+    <button type="submit" class="btn btn-primary">Invia</button>
 </form>
