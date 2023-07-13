@@ -21,12 +21,12 @@
       <a href="{{route('admin.apartments.index')}}" class="btn btn-primary">Torna ad Appartamenti</a>
     </div>
     <div id="map" style="width: 500px; height: 500px"></div>
-  </div>
-@endsection
 
+  </div>
 
 
   <script type="text/javascript">
+
     let center= [4,44.4]
     const map = tt.map({
       key:"D2uJigXaa5sTIMlRGUwMoZ5dmwOA1HlB",
@@ -37,5 +37,11 @@
     map.on('load', () =>{
       new tt.Marker().setLngLat(center).addTo(map)
     })
+
   </script>
+@endsection
+
+
+
+
 
