@@ -1,5 +1,10 @@
+@extends('layouts.admin')
 
+@section('title')
+  | Create
+@endsection
 
+@section('content')
 <form action="{{route('admin.apartments.store')}}" method="POST">
     @csrf
 
@@ -73,3 +78,4 @@
 
     <button type="submit" class="btn btn-primary">Invia</button>
 </form>
+@endsection

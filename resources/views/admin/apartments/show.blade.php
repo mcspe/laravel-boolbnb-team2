@@ -1,4 +1,10 @@
+@extends('layouts.admin')
 
+@section('title')
+  | Show
+@endsection
+
+@section('content')
 <div class="card" style="width: 25rem;">
     {{-- <img src="..." class="card-img-top" alt="..."> --}}
     <div class="card-body">
@@ -16,6 +22,7 @@
     </div>
     <div id="map" style="width: 500px; height: 500px"></div>
   </div>
+@endsection
 
 
 
