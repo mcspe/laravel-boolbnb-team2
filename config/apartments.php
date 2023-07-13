@@ -10,7 +10,7 @@ return [
         "n_bathrooms" => 2,
         "n_beds" => 2,
         "square_meters" => 80,
-        "latitude_longitude" => "43.55222, -87.9617585",
+        "latitude_longitude" => 43.55222 -87.9617585,
         "price" => 400.00,
         "cover_image" => "https://picture.com/house-pool",
         "is_visible" => "1"
@@ -24,7 +24,7 @@ return [
         "n_bathrooms" => 2,
         "n_beds" => 2,
         "square_meters" => 100,
-        "latitude_longitude" => "44.52592, -96.9665785",
+        "latitude_longitude" => 44.52592 -96.9665785,
         "price" => 650.00,
         "cover_image" => "https://picture.com/apartments-view",
         "is_visible" => "0"
@@ -38,7 +38,7 @@ return [
         "n_bathrooms" => 2,
         "n_beds" => 2,
         "square_meters" => 70,
-        "latitude_longitude" => "89.53622, -65.2587585",
+        "latitude_longitude" => 89.53622 -65.2587585,
         "price" => 800.00,
         "cover_image" => "https://picture.com/bnb-luxury",
         "is_visible" => "1"

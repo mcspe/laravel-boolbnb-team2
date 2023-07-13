@@ -33,6 +33,7 @@ class ApartmentsTableSeeder extends Seeder
             $new_apartment->cover_image = $apartment['cover_image'];
             $new_apartment->is_visible = $apartment['is_visible'];
             $new_apartment->save();
+            // dd($new_apartment);
         }
     }
 }
