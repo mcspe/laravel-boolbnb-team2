@@ -27,8 +27,8 @@ Route::middleware(['auth','verified'])
     ->prefix('admin')
     ->group(function(){
         Route::get('/', [DashboardController::class, 'index'])->name('home');
+        Route::resource('apartments', ApartmentController::class);
 });
 
-Route::resource('apartments', ApartmentController::class);
 
 require __DIR__.'/auth.php';
