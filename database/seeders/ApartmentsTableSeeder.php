@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Apartment;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 
 class ApartmentsTableSeeder extends Seeder
@@ -29,7 +30,7 @@ class ApartmentsTableSeeder extends Seeder
             $new_apartment->n_bathrooms = $apartment['n_bathrooms'];
             $new_apartment->n_beds = $apartment['n_beds'];
             $new_apartment->square_meters = $apartment['square_meters'];
-            // $new_apartment->latitude_longitude = $apartment['latitude_longitude'];
+            $new_apartment->latitude_longitude = DB::raw($apartment['latitude_longitude']);
             $new_apartment->price = $apartment['price'];
             $new_apartment->cover_image = $apartment['cover_image'];
             $new_apartment->is_visible = $apartment['is_visible'];
