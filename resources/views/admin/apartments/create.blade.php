@@ -1,14 +1,10 @@
 
 
-<div class="p-4">
-    <h2 class="fs-4 text-secondary my-4">
-        Edit
-    </h2>
-    <form action="{{route('apartments.update', $apartment)}}" method="POST">
-        @csrf
-        @method('PUT')
+<form action="{{route('admin.apartments.store')}}" method="POST">
+    @csrf
 
-         {{-- Title --}}
+
+    {{-- Title --}}
     <div class="mb-3">
         <label class="form-label">Titolo</label>
         <input type="text"
@@ -75,6 +71,5 @@
         name="n_bathrooms">
     </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
+    <button type="submit" class="btn btn-primary">Invia</button>
+</form>
