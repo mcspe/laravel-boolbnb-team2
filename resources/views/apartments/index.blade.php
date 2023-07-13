@@ -33,6 +33,6 @@
                     {{-- <a href="{{route('apartments.show')}}" class="btn btn-primary">Vai</a> --}}
             </tbody>
         </table>
-        </div>
+</div>
 
 
