@@ -1,0 +1,22 @@
+aside{
+  width: 300px;
+  height: calc(100vh - 60px);
+  background-color: #0f2145;
+  ul{
+    padding-top: 20px;
+    list-style: none;
+    li{
+      i{
+        margin: 10px;
+        font-size: 25px;
+      }
+      a{
+        text-decoration: none;
+        color: gray;
+        &:hover{
+          color: #35a7ff;
+        }
+      }
+    }
+  }
+}

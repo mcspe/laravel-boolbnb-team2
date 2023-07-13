@@ -1,0 +1,65 @@
+main{
+  width: calc(100vw - 180px);
+  overflow-y: auto;
+}
+
+.main-wrapper{
+  height: calc(100vh - 60px);
+}
+
+.bg-home{
+  height: 300px;
+  width: calc(100vw - 300px);
+  background-image: url("https://img.freepik.com/free-vector/abstract-blue-circle-background_331749-335.jpg?w=1380&t=st=1689253256~exp=1689253856~hmac=348c019748dfd76e479d85f9117ab3f6f2141d7d516157f37f6a3c3ef970dff4");
+  background-size: cover;
+  position: relative;
+  z-index: -1;
+  .welcome{
+    padding-top: 100px;
+    padding-left: 40px;
+  }
+  .d-flex{
+    .box-card{
+      width: 250px;
+      background-color: white;
+      margin: 0px 40px;
+      padding: 15px;
+      box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
+      position: relative;
+      top: 80px;
+
+      .circle-img{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+        i{
+          font-size: 20px;
+          line-height: 50px;
+
+        }
+      }
+      .card-md-description{
+        .bold{
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+
+.green-circle{
+  color: #66b192;
+  background-color: #ddf7ec;
+}
+
+.red-circle{
+  color: #ffb897;
+  background-color: #fcebe4;
+}
+
+.blue-circle{
+  color: #91baf4;
+  background-color: #e8e8ff;
+}
