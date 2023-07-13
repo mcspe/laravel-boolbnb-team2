@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('visits', function (Blueprint $table) {
             $table->id();
-            $table->integer('ip_address')->unsigned()->unique();
+            $table->integer('ip_address')->unsigned();
             $table->dateTime('visit_date');
             $table->timestamps();
         });

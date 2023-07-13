@@ -23,7 +23,7 @@ return new class extends Migration
             $table->tinyInteger('n_bathrooms')->unsigned()->nullable();
             $table->tinyInteger('n_beds')->unsigned()->nullable();
             $table->integer('square_meters')->unsigned()->nullable();
-            $table->point('latitude_longitude');
+            $table->point('latitude_longitude')->nullable();
             $table->decimal('price', $precision = 6, $scale = 2)->nullable();
             $table->text('cover_image')->nullable();
             $table->boolean('is_visible')->default(0);
