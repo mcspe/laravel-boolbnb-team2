@@ -37,10 +37,8 @@
     map.on('load', () =>{
       new tt.Marker().setLngLat(center).addTo(map)
     })
-
   </script>
 @endsection
-
 
 
 
