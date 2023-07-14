@@ -27,6 +27,7 @@ return new class extends Migration
             $table->decimal('price', $precision = 6, $scale = 2)->nullable();
             $table->text('cover_image')->nullable();
             $table->boolean('is_visible')->default(0);
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }
