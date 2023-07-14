@@ -1,6 +1,6 @@
 aside{
   width: 300px;
-  height: calc(100vh - 60px);
+  height: 100vh;
   background-color: #0f2145;
   ul{
     padding-top: 20px;
@@ -15,6 +15,9 @@ aside{
         color: gray;
         &:hover{
           color: #35a7ff;
+        }
+        img{
+          width: 150px;
         }
       }
     }
