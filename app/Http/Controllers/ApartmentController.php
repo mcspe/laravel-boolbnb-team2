@@ -8,6 +8,7 @@ use App\Models\Message;
 use App\Models\Service;
 use App\Models\Sponsorship;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ApartmentRequest;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,7 +22,8 @@ class ApartmentController extends Controller
     public function index()
     {
         $apartments = Apartment::all();
-        return view('admin.apartments.index', compact('apartments'));
+        $n_apartments = Apartment::where("user_id", Auth::id())->count();
+        return view('admin.apartments.index', compact('apartments', "n_apartments"));
     }
 
     /**
