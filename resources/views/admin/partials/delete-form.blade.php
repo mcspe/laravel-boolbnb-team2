@@ -1,5 +1,5 @@
 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal">
-  <i class="fa-solid fa-trash-can fa-lg"></i>
+  Elimina
 </button>
 
 <!-- Modal -->
@@ -7,14 +7,14 @@
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <h2 class="modal-title fs-5 text-danger fw-bold" id="exampleModalLabel">Wait a Minute!</h2>
+              <h2 class="modal-title fs-5 text-danger fw-bold" id="exampleModalLabel">Attenzione!</h2>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-              The apartment "<span class="fw-bold text-primary">{{ $apartment->title }}</span>" will be <span class="text-danger">deleted</span>, are you sure?
+            L'immobile "<span class="fw-bold text-primary">{{ $apartment->title }}</span>" verrà <span class="text-danger">eliminato</span>, sei sicuro?
           </div>
           <div class="modal-footer">
-              <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">Back</button>
+              <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">Annulla</button>
               <form
                   action="{{ route('admin.apartments.destroy', $apartment) }}"
                   method="POST"
@@ -24,7 +24,7 @@
                   @method('DELETE')
 
                   <button type="submit" class="btn btn-danger fw-bold">
-                      Delete
+                      Elimina
                   </button>
 
               </form>
