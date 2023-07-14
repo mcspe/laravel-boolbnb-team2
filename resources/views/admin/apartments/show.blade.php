@@ -33,7 +33,7 @@ Qui sono presenti i dettagli dell'immobile selezionato.
 
     <div class="left-side">
       <div class="box-image">
-        <img src="https://a0.muscache.com/im/pictures/28563144/2ac12cf9_original.jpg?im_w=1200" alt="">
+        <img src="{{$apartment->cover_image}}" alt="">
       </div>
       <div class="description-box">
         <div class="price">
