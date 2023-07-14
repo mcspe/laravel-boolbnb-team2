@@ -18,7 +18,7 @@ Qui sono presenti i tuoi immobili in vendita.
 
   <div class="box-card-long mb-5">
     <div class="card-md-description d-flex justify-content-between">
-      <span>Immobili {count appartaments}</span>
+      <span>Immobili {{$n_apartments}}</span>
       <div>
         <a href="{{route('admin.apartments.create')}}" class="btn btn-primary">Aggiungi appartamento</a>
       </div>

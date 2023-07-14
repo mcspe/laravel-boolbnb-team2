@@ -30,7 +30,7 @@ Qui sono presenti tutte le statistiche della tua attività.
       <div class="card-md-description">
         <span>Appartamenti</span>
         <div class="bold">
-          <span>110</span>
+          <span>{{$n_apartments}}</span>
         </div>
       </div>
     </div>
