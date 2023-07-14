@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('apartment_sponsorship', function (Blueprint $table) {
 
-            $table->unsignedBigInteger('apartment_id')->nullable();
+          $table->unsignedBigInteger('apartment_id')->nullable();
 	        $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('set null');
 
-            $table->unsignedBigInteger('sponsorship_id')->nullable();
+          $table->unsignedBigInteger('sponsorship_id')->nullable();
 	        $table->foreign('sponsorship_id')->references('id')->on('sponsorships')->onDelete('set null');
 
-            $table->dateTime('payment_date');
-            $table->dateTime('expiration_date');
+          $table->dateTime('payment_date');
+          $table->dateTime('expiration_date');
 
         });
     }
