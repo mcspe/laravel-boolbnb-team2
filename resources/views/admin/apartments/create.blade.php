@@ -27,15 +27,15 @@ Puoi inserire un nuovo immobile in vendita.
 </div>
 
 <div class="box-card-long">
-  <form action="{{route('admin.apartments.store')}}" method="POST">
-    @csrf
+  <form action="{{route('admin.apartments.store')}}" method="POST" enctype="multipart/form-data">
 
+    @csrf
 
     {{-- Title --}}
     <div class="mb-3">
         <label class="form-label">Titolo</label>
         <input type="text"
-        class="form-control w-75
+        class="form-control w-75"
         id="title"
         name="title"
         placeholder="Inserisci un titolo">
@@ -45,7 +45,7 @@ Puoi inserire un nuovo immobile in vendita.
     <div class="mb-3">
         <label class="form-label">Prezzo</label>
         <input type="number"
-        class="form-control w-75
+        class="form-control w-75"
         id="price"
         name="price"
         placeholder="Inserisci un titolo">
@@ -55,7 +55,7 @@ Puoi inserire un nuovo immobile in vendita.
     <div class="mb-3">
         <label class="form-label">Categoria</label>
         <input type="text"
-        class="form-control w-75
+        class="form-control w-75"
         id="title"
         name="category"
         placeholder="Inserisci categoria">
@@ -65,7 +65,7 @@ Puoi inserire un nuovo immobile in vendita.
     <div class="mb-3">
         <label class="form-label">Indirizzo</label>
         <input type="text"
-        class="form-control w-75
+        class="form-control w-75"
         id="address"
         name="address"
         placeholder="Inserisci l'indirizzo">
@@ -75,7 +75,7 @@ Puoi inserire un nuovo immobile in vendita.
     <div class="mb-3">
         <label class="form-label">Numero stanze</label>
         <input type="number"
-        class="form-control w-75
+        class="form-control w-75"
         id="n_rooms"
         name="n_rooms">
     </div>
@@ -84,7 +84,7 @@ Puoi inserire un nuovo immobile in vendita.
     <div class="mb-3">
         <label class="form-label">Numero letti</label>
         <input type="number"
-        class="form-control w-75
+        class="form-control w-75"
         id="n_beds"
         name="n_beds">
     </div>
@@ -93,7 +93,7 @@ Puoi inserire un nuovo immobile in vendita.
     <div class="mb-3">
         <label class="form-label">Numero bagni</label>
         <input type="number"
-        class="form-control w-75
+        class="form-control w-75"
         id="n_bathrooms"
         name="n_bathrooms">
     </div>

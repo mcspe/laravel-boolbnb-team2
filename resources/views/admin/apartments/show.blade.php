@@ -22,7 +22,8 @@ Qui sono presenti i dettagli dell'immobile selezionato.
       <span>{{$apartment->category}}: {{$apartment->title}}</span>
       <div>
         <a href="{{route('admin.apartments.edit', $apartment)}}" class="btn btn-warning">Modifica</a>
-        <a href="{{route('admin.apartments.create')}}" class="btn btn-danger">Elimina</a>
+        {{-- <a href="{{route('admin.apartments.destroy', $apartment)}}" class="btn btn-danger">Elimina</a> --}}
+        @include('admin.partials.delete-form')
         <a href="{{route('admin.apartments.index')}}" class="btn btn-primary">Torna alla dashboard</a>
       </div>
     </div>

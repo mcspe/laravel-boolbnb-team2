@@ -45,11 +45,11 @@ class ApartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ApartmentRequest $request)
+    public function store(Request $request)
     {
         $form_data = $request->all();
 
-        $form_data['slug'] = Apartment::generateSlug($form_data['title']);
+        $form_data['slug'] = CustomHelper::generateSlug($form_data['title']);
 
         if ($request->hasFile('coverImagePreview')) {
 
@@ -113,22 +113,23 @@ class ApartmentController extends Controller
       $form_data = $request->all();
 
       if($form_data['title'] !== $apartment->title){
-          $form_data['slug'] = Apartment::generateSlug($form_data['title']);
+          $form_data['slug'] = CustomHelper::generateSlug($form_data['title']);
       }else{
           $form_data['slug'] = $apartment->slug;
       }
 
       if ($request->hasFile('coverImagePreview')) {
 
+        if($apartment->cover_image) {
+
+          Storage::disk('public')->delete($apartment->cover_image);
+
+        }
+
         $form_data = CustomHelper::saveCoverImage('coverImagePreview', $request, $form_data, new Apartment());
 
       }
 
-      if($apartment->cover_image) {
-
-        Storage::disk('public')->delete($apartment->cover_image);
-
-      }
 
       if (array_key_exists('services', $form_data)) {
           $apartment->services()->sync($form_data['services']);

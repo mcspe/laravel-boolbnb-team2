@@ -9,15 +9,18 @@
     <h2 class="fs-4 text-secondary my-4">
         Edit
     </h2>
-    <form action="{{route('admin.apartments.update', $apartment)}}" method="POST">
+    <form action="{{route('admin.apartments.update', $apartment)}}" method="POST" enctype="multipart/form-data">
+
         @csrf
+
         @method('PUT')
 
-         {{-- Title --}}
+        {{-- Title --}}
     <div class="mb-3">
         <label class="form-label">Titolo</label>
         <input type="text"
-        class="form-control w-75
+        class="form-control w-75"
+        value="{{ old('title', $apartment->title) }}"
         id="title"
         name="title"
         placeholder="Inserisci un titolo">
@@ -27,7 +30,8 @@
     <div class="mb-3">
         <label class="form-label">Prezzo</label>
         <input type="number"
-        class="form-control w-75
+        class="form-control w-75"
+        value="{{ old('title', $apartment->price) }}"
         id="price"
         name="price"
         placeholder="Inserisci un titolo">
@@ -37,7 +41,8 @@
     <div class="mb-3">
         <label class="form-label">Categoria</label>
         <input type="text"
-        class="form-control w-75
+        class="form-control w-75"
+        value="{{ old('title', $apartment->category) }}"
         id="title"
         name="category"
         placeholder="Inserisci categoria">
@@ -47,7 +52,8 @@
     <div class="mb-3">
         <label class="form-label">Indirizzo</label>
         <input type="text"
-        class="form-control w-75
+        class="form-control w-75"
+        value="{{ old('title', $apartment->address) }}"
         id="address"
         name="address"
         placeholder="Inserisci l'indirizzo">
@@ -57,7 +63,8 @@
     <div class="mb-3">
         <label class="form-label">Numero stanze</label>
         <input type="number"
-        class="form-control w-75
+        class="form-control w-75"
+        value="{{ old('title', $apartment->n_rooms) }}"
         id="n_rooms"
         name="n_rooms">
     </div>
@@ -66,7 +73,8 @@
     <div class="mb-3">
         <label class="form-label">Numero letti</label>
         <input type="number"
-        class="form-control w-75
+        class="form-control w-75"
+        value="{{ old('title', $apartment->n_beds) }}"
         id="n_beds"
         name="n_beds">
     </div>
@@ -75,7 +83,8 @@
     <div class="mb-3">
         <label class="form-label">Numero bagni</label>
         <input type="number"
-        class="form-control w-75
+        class="form-control w-75"
+        value="{{ old('title', $apartment->n_bathrooms) }}"
         id="n_bathrooms"
         name="n_bathrooms">
     </div>
