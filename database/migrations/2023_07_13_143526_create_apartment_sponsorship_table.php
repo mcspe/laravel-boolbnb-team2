@@ -24,6 +24,9 @@ return new class extends Migration
           $table->dateTime('payment_date');
           $table->dateTime('expiration_date');
 
+          $table->timestamps();
+
+
         });
     }
 
