@@ -24,19 +24,24 @@
 </head>
 
 <body>
-    @include("admin.partials.header")
 
   <div class="main-wrapper @auth d-flex @endauth">
 
     @auth
       @include("admin.partials.aside")
-    @endauth
 
-    <main>
-      @yield('content')
-    </main>
+      <main>
+        <div class="bg-home">
+          <div class="welcome white">
+            <h1>@yield("bg-title")</h1>
+            <h4>@yield("bg-subtitle")</h4>
+          </div>
+        </div>
+        @endauth
+        @yield('content')
+      </main>
 
-  </div>
+    </div>
 
 </body>
 

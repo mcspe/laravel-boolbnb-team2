@@ -1,0 +1,42 @@
+.left-side{
+  margin-right: 50px;
+  .box-image{
+    background-color: red;
+    width: 600px;
+    img{
+      max-width: 100%;
+    }
+  }
+}
+
+
+.box-card-long-show{
+  width: 1300px;
+  background-color: white;
+  padding: 20px 30px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
+  position: relative;
+  top: -40px;
+  .card-md-description{
+    span{
+      font-size: 1.5rem;
+      color: #00162f;
+      font-weight: 600;
+    }
+  }
+}
+
+.price{
+  h4{
+    display: inline-block;
+    margin-right: 40px;
+  }
+}
+
+.house-specifications{
+  span{
+    font-size: 30px;
+    font-weight: bold;
+    margin-right: 40px;
+  }
+}

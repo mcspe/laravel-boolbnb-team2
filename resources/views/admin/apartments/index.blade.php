@@ -5,9 +5,39 @@
 @endsection
 
 @section('content')
+
+@section("bg-title")
+Appartamenti!
+@endsection
+
+@section("bg-subtitle")
+Qui sono presenti i tuoi immobili in vendita.
+@endsection
+
 <div class="container py-5">
-    <h1>Appartamenti</h1>
-        <table class="table my-3">
+
+  <div class="box-card-long mb-5">
+    <div class="card-md-description d-flex justify-content-between">
+      <span>Immobili {count appartaments}</span>
+      <div>
+        <a href="{{route('admin.apartments.create')}}" class="btn btn-primary">Aggiungi appartamento</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="box-card-long">
+
+    <form id="standard-3" method="get" action="" id="form2">
+      <input type="text" class="search-txt-input search-input" name="q" maxlength="100" placeholder="Inserisci il titolo...">
+      <button type="submit" form="form2"  class="search-button">
+        <i class="fa fa-search"></i>
+      </button>
+    </form>
+
+
+          <div class="scroll">
+        <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Titolo</th>
@@ -37,9 +67,10 @@
                         </td>
                     </tr>
                     @endforeach
-                    <a href="{{route('admin.apartments.create')}}" class="btn btn-primary">Crea appartamento</a>
             </tbody>
         </table>
+      </div>
+    </div>
 </div>
 @endsection
 

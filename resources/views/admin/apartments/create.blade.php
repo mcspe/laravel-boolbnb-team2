@@ -5,7 +5,29 @@
 @endsection
 
 @section('content')
-<form action="{{route('admin.apartments.store')}}" method="POST">
+
+@section("bg-title")
+Aggiungi immobile!
+@endsection
+
+@section("bg-subtitle")
+Puoi inserire un nuovo immobile in vendita.
+@endsection
+
+<div class="container py-5">
+
+<div class="box-card-long mb-5">
+  <div class="card-md-description d-flex justify-content-between">
+    <span>Aggiungi un nuovo immobile</span>
+    <div>
+      <button type="submit" class="btn btn-primary">Invia</button>
+      <a href="{{route('admin.home')}}" class="btn heavenly">Torna alla dashboard</a>
+    </div>
+  </div>
+</div>
+
+<div class="box-card-long">
+  <form action="{{route('admin.apartments.store')}}" method="POST">
     @csrf
 
 
@@ -78,4 +100,6 @@
 
     <button type="submit" class="btn btn-primary">Invia</button>
 </form>
+</div>
+</div>
 @endsection
