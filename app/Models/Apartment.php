@@ -14,6 +14,21 @@ class Apartment extends Model
 
     protected $dates = ['deleted_at'];
 
+    protected $fillable = [
+      'user_id',
+      'title',
+      'slug',
+      'category',
+      'address',
+      'n_rooms',
+      'n_bathrooms',
+      'n_beds',
+      'square_meters',
+      'price',
+      'cover_image',
+      'is_visible',
+  ];
+
     public function user() {
         return $this->belongsTo(User::class);
     }
