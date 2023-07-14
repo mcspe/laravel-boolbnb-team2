@@ -10,7 +10,7 @@ main{
 .bg-home{
   height: 300px;
   width: calc(100vw - 300px);
-  background-image: url("https://img.freepik.com/free-vector/abstract-blue-circle-background_331749-335.jpg?w=1380&t=st=1689253256~exp=1689253856~hmac=348c019748dfd76e479d85f9117ab3f6f2141d7d516157f37f6a3c3ef970dff4");
+  background-image: url("https://assets-global.website-files.com/6009ec8cda7f305645c9d91b/61fd339749c2ab12e3480155_CSS%20Padding%20vs%20Margin%20(February%202022)-p-2000.jpeg");
   background-size: cover;
   position: relative;
   z-index: -1;
@@ -18,31 +18,32 @@ main{
     padding-top: 100px;
     padding-left: 40px;
   }
-  .d-flex{
-    .box-card{
-      width: 250px;
-      background-color: white;
-      margin: 0px 40px;
-      padding: 15px;
-      box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
-      position: relative;
-      top: 80px;
+}
 
-      .circle-img{
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        margin-right: 10px;
-        i{
-          font-size: 20px;
-          line-height: 50px;
+.d-flex{
+  .box-card{
+    width: 250px;
+    background-color: white;
+    margin: 0px 40px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
+    position: relative;
+    top: -30px;
 
-        }
+    .circle-img{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+      i{
+        font-size: 20px;
+        line-height: 50px;
+
       }
-      .card-md-description{
-        .bold{
-          font-weight: bold;
-        }
+    }
+    .card-md-description{
+      .bold{
+        font-weight: bold;
       }
     }
   }
@@ -62,4 +63,21 @@ main{
 .blue-circle{
   color: #91baf4;
   background-color: #e8e8ff;
+}
+
+.white{
+  color: white;
+}
+
+// ATTIVA IL LINK CORRENTE
+.active{
+  color: #35a7ff;
+}
+
+a{
+  text-decoration: none;
+}
+
+.blue{
+  color: #00162f;
 }
