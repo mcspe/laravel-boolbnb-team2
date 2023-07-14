@@ -3,9 +3,12 @@ aside{
   height: 100vh;
   background-color: #0f2145;
   ul{
-    padding-top: 20px;
+    padding: 20px 20px 20px 32px;
     list-style: none;
     li{
+      span{
+        color: gray;
+      }
       i{
         margin: 10px;
         font-size: 25px;
@@ -21,5 +24,23 @@ aside{
         }
       }
     }
+    .line{
+      width: 100%;
+      height: 1px;
+      background-color: gray;
+      margin: 40px 0px 40px 0px;
+    }
+
+    form{
+      .btn{
+        margin-left: 10px;
+        padding: 6px 10px;
+        i{
+          margin: 0px;
+        }
+      }
+    }
+
+
   }
 }

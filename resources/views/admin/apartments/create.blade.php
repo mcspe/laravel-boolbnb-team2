@@ -14,7 +14,7 @@ Aggiungi immobile!
 Puoi inserire un nuovo immobile in vendita.
 @endsection
 
-<div class="container py-5">
+<div class="container ">
 
 <div class="box-card-long mb-5">
   <div class="card-md-description d-flex justify-content-between">
@@ -69,6 +69,15 @@ Puoi inserire un nuovo immobile in vendita.
         id="address"
         name="address"
         placeholder="Inserisci l'indirizzo">
+    </div>
+
+    {{-- square_meters --}}
+    <div class="mb-3">
+      <label class="form-label">Metri quadri</label>
+      <input type="number"
+      class="form-control w-75"
+      id="square_meters"
+      name="square_meters"
     </div>
 
     {{-- Number of rooms --}}

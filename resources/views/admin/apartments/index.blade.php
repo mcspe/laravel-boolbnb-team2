@@ -14,7 +14,7 @@ Appartamenti!
 Qui sono presenti i tuoi immobili in vendita.
 @endsection
 
-<div class="container py-5">
+<div class="container">
 
   <div class="box-card-long mb-5">
     <div class="card-md-description d-flex justify-content-between">

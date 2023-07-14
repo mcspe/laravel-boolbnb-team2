@@ -59,6 +59,16 @@
         placeholder="Inserisci l'indirizzo">
     </div>
 
+    {{-- square_meters --}}
+    <div class="mb-3">
+      <label class="form-label">Metri quadri</label>
+      <input type="number"
+      class="form-control w-75"
+      value="{{ old('square_meters', $apartment->square_meters) }}"
+      id="square_meters"
+      name="square_meters"
+    </div>
+
     {{-- Number of rooms --}}
     <div class="mb-3">
         <label class="form-label">Numero stanze</label>
