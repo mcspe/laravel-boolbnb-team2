@@ -1,3 +1,4 @@
+// CARD
 .box-card-long{
   width: 1300px;
   background-color: white;
@@ -5,7 +6,6 @@
   box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
   position: relative;
   top: -40px;
-
   .card-md-description{
     span{
       font-size: 1.5rem;
@@ -15,10 +15,7 @@
   }
 }
 
-
-
-
-.scroll{
+.size{
   overflow-y: auto;
   height: 400px;
   .table{
@@ -33,8 +30,7 @@
   }
 }
 
-
-
+// SEARCH INPUT
 .search-input{
   width: 180px;
   -webkit-transition: width 0.5s ease-out;
@@ -46,35 +42,36 @@
   }
 }
 
-  .search-txt-input{
-    padding: 8px 20px;
-    font-size:14px;
-    border:1px solid #c8c8c8;
-    border-right:0px;
-    border-top-left-radius: 4px 4px;
-    border-bottom-left-radius: 4px 4px;
-    width: 200px;
-  }
-  .search-button {
-    padding: 8px 15px;
-    font-size: 16px;
-    outline: none;
-    text-align: center;
+.search-txt-input{
+  padding: 8px 20px;
+  font-size:14px;
+  border:1px solid #c8c8c8;
+  border-right:0px;
+  border-top-left-radius: 4px 4px;
+  border-bottom-left-radius: 4px 4px;
+  width: 200px;
+}
+.search-button {
+  padding: 8px 15px;
+  font-size: 16px;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+  border: solid 1px #c8c8c8;
+  border-right: 0px;
+  background: #6c757d;
+  border-top-right-radius: 4px 4px;
+  border-bottom-right-radius: 4px 4px;
+  position: relative;
+  left:-5px;
+  &:hover{
     text-decoration: none;
-    color: #ffffff;
-    border: solid 1px #c8c8c8;
-    border-right: 0px;
-    background: #6c757d;
-    border-top-right-radius: 4px 4px;
-    border-bottom-right-radius: 4px 4px;
-    position: relative;
-    left:-5px;
-    &:hover{
-      text-decoration: none;
-      background: #5c636a;
-    }
+    background: #5c636a;
   }
+}
 
+// SEARCH OUTLINE
 :focus-visible{
   outline:#6c757d auto 1px;
 }
