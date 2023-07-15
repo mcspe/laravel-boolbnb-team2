@@ -31,11 +31,9 @@
       @include("admin.partials.aside")
 
       <main>
-        <div class="bg-home">
-          <div class="welcome white">
-            <h1>@yield("bg-title")</h1>
-            <h4>@yield("bg-subtitle")</h4>
-          </div>
+        <div class="jumbotron text-white">
+            <h1>@yield("jumbotron-title")</h1>
+            <h4>@yield("jumbotron-subtitle")</h4>
         </div>
         @endauth
         @yield('content')

@@ -6,66 +6,57 @@
 
 @section('content')
 
-{{-- <div class="bg-home">
-  <div class="welcome">
-    <h1>ciao {{ Auth::user()->name }}! <i class="fa-solid fa-hand fa-shake" style="color: #ffd500;"></i></h1>
-    <h4>Qui sono presenti tutte le statistiche della tua attività</h4>
-  </div>
-</div> --}}
-@section("bg-title")
+
+@section("jumbotron-title")
 ciao {{ Auth::user()->name }}! <i class="fa-solid fa-hand fa-shake" style="color: #ffd500;"></i>
 @endsection
 
-@section("bg-subtitle")
+@section("jumbotron-subtitle")
 Qui sono presenti tutte le statistiche della tua attività.
 @endsection
 
-  <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center gap-5">
 
-    <a href="{{route("admin.apartments.index")}}" class="blue">
-    <div class="box-card d-flex">
-      <div class="circle-img text-center green-circle">
-        <i class="fa-solid fa-house-user"></i>
+    {{-- 1 --}}
+    <a href="{{route("admin.apartments.index")}}">
+      <div class="box-card d-flex">
+          <div class="circle-img text-center green">
+            <i class="fa-solid fa-house-user"></i>
+          </div>
+          <div class="card-md-description d-flex flex-column">
+            <span>Appartamenti</span>
+            <span>{{$n_apartments}}</span>
+          </div>
       </div>
-      <div class="card-md-description">
-        <span>Appartamenti</span>
-        <div class="bold">
-          <span>{{$n_apartments}}</span>
-        </div>
-      </div>
-    </div>
     </a>
 
-
-    <div class="box-card d-flex ">
-      <div class="circle-img text-center blue-circle ">
-        <i class="fa-solid fa-list-ol"></i>
-      </div>
-      <div class="card-md-description ">
-        <span>Elenco Appartamenti</span>
-        <div class="bold">
-          <span>1</span>
+    {{-- 2 --}}
+    <a href="#">
+      <div class="box-card d-flex">
+        <div class="circle-img text-center blue">
+          <i class="fa-solid fa-list-ol"></i>
+        </div>
+        <div class="card-md-description d-flex flex-column">
+          <span>Elenco Appartamenti</span>
+          <span>99</span>
         </div>
       </div>
-    </div>
+    </a>
 
-
-
-
-    <div class="box-card d-flex">
-      <div class="circle-img text-center red-circle">
-        <i class="fa-solid fa-signal"></i>
-      </div>
-      <div class="card-md-description">
-        <span>Visite</span>
-        <div class="bold">
-          <span>333</span>
+    {{-- 3 --}}
+    <a href="#">
+      <div class="box-card d-flex">
+        <div class="circle-img text-center orange">
+          <i class="fa-solid fa-signal"></i>
+        </div>
+        <div class="card-md-description d-flex flex-column">
+          <span>Visite</span>
+          <span>126,000</span>
         </div>
       </div>
-    </div>
+    </a>
+
   </div>
-
-
 
 
   @endsection
