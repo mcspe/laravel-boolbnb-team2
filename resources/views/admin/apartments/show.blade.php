@@ -60,6 +60,8 @@ Qui sono presenti i dettagli dell'immobile selezionato.
         <i class="fa-solid fa-location-dot"></i>
         <span>{{$apartment->address}}</span>
       </div>
+      <span id="lat" hidden>{{ $lat }}</span>
+      <span id="lng" hidden>{{ $lng }}</span>
       <div id="map" style="width: 400px; height: 300px"></div>
     </div>
 
@@ -72,8 +74,11 @@ Qui sono presenti i dettagli dell'immobile selezionato.
 
   <script type="text/javascript">
 
+    const lat = document.getElementById('lat').innerHTML;
+    const lng = document.getElementById('lng').innerHTML;
+
     // INSERT LONGITUDE AND LATITUDE
-    let center= [14.293223,40.907766]
+    let center= [lng, lat]
     const map = tt.map({
       key:"D2uJigXaa5sTIMlRGUwMoZ5dmwOA1HlB",
       container: "map",

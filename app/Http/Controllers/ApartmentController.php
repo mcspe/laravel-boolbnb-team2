@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ApartmentRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+
 
 class ApartmentController extends Controller
 {
@@ -37,7 +39,8 @@ class ApartmentController extends Controller
       $apartment_service = Service::all();
       $apartment_sponsorship = Sponsorship::all();
 
-        return view('admin.apartments.create', compact('apartment_service', 'apartment_sponsorship'));
+      return view('admin.apartments.create', compact('apartment_service', 'apartment_sponsorship'));
+
     }
 
     /**
@@ -53,6 +56,8 @@ class ApartmentController extends Controller
         $form_data['slug'] = CustomHelper::generateSlug($form_data['title']);
 
         $form_data['user_id']  = Auth::id();
+
+        $form_data['latitude_longitude'] = DB::raw(Apartment::getCoordinates($form_data['address']));
 
         if ($request->hasFile('coverImagePreview')) {
 
@@ -85,7 +90,15 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        return view('admin.apartments.show', compact('apartment'));
+        $latitude = DB::select(DB::raw("SELECT ST_X(`latitude_longitude`) FROM `apartments` WHERE (`id` = $apartment->id)"));
+        $longitude = DB::select(DB::raw("SELECT ST_Y(`latitude_longitude`) FROM `apartments` WHERE (`id` = $apartment->id)"));
+        $lat = json_decode(json_encode($latitude), true);
+        $lat = $lat[0]['ST_X(`latitude_longitude`)'];
+        $lng = json_decode(json_encode($longitude), true);
+        $lng = $lng[0]['ST_Y(`latitude_longitude`)'];
+
+        dump($lat, $lng);
+        return view('admin.apartments.show', compact('apartment', 'lat', 'lng'));
     }
 
     /**
@@ -120,6 +133,9 @@ class ApartmentController extends Controller
       }else{
           $form_data['slug'] = $apartment->slug;
       }
+
+      $form_data['latitude_longitude'] = DB::raw(Apartment::getCoordinates($form_data['address']));
+
 
       if ($request->hasFile('coverImagePreview')) {
 
