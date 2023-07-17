@@ -146,7 +146,7 @@ class ApartmentController extends Controller
           $apartment->sponsorships()->detach();
       }
 
-      $apartment->update(($form_data));
+      $apartment->update($form_data);
 
       return redirect()->route('admin.apartments.show', $apartment);
 

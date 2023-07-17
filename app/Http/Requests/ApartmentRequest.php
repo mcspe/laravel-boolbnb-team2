@@ -55,7 +55,6 @@ class ApartmentRequest extends FormRequest
           'square_meters.min' => 'Il numero di metri quadri dev\'essere un valore superiore o uguale a 1',
           'square_meters.integer' => 'Il numero di metri quadri dev\'essere un valore intero',
           'price.min' => 'Il prezzo dev\'essere un valore superiore o uguale a 1',
-          'price.numeric' => 'Il numero di metri quadri dev\'essere un valore decimale',
           'cover_image.min' => 'L\'immagine deve avere minimo :min caratteri',
       ];
   }

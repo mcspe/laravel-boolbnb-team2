@@ -47,7 +47,7 @@ Qui sono presenti i dettagli dell'immobile selezionato.
         <div class="house-specifications">
           <span><i  class="fa-solid fa-door-open"></i>     {{$apartment->n_rooms}}</span>
           <span><i class="fa-solid fa-bed"></i>     {{$apartment->n_beds}}</span>
-          <span><i class="fa-solid fa-toilet-paper"></i>     {{$apartment->n_bathrooms}}</span>
+          <span><i class="fa-solid fa-bath"></i>     {{$apartment->n_bathrooms}}</span>
         </div>
       </div>
 
