@@ -22,33 +22,34 @@ Controlla i messaggi ricevuti
       </div>
     </div>
 
-    <div class="size">
-      <table class="table">
+    <div class="box-card-long mb-5">
+      <div class="size">
+        <table class="table">
 
-        <thead>
-          <tr>
-            <th scope="col">Mittente</th>
-            <th scope="col">Email</th>
-            <th scope="col">Messaggio</th>
-            <th scope="col">Azioni</th>
-          </tr>
-        </thead>
+          <thead>
+            <tr>
+              <th scope="col">Mittente</th>
+              <th scope="col">Email</th>
+              <th scope="col">Messaggio</th>
+              <th scope="col">Azioni</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          @foreach ($messages as $message)
-              <tr>
-                <td>{{$message->sender_name . ' ' . $message->sender_lastname}}</td>
-                <td>{{$message->sender_email}}</td>
-                <td>{{$message->text}}</td>
-                <td>
-                  <a href="{{route('admin.messages.show', $message)}}" class="btn btn-primary">Vai</a>
-                  <a href="{{route('admin.messages.destroy', $message)}}" class="btn btn-danger">Elimina</a>
-                </td>
-              </tr>
-          @endforeach
-        </tbody>
+          <tbody>
+            @foreach ($messages as $message)
+                <tr>
+                  <td>{{$message->sender_name . ' ' . $message->sender_lastname}}</td>
+                  <td>{{$message->sender_email}}</td>
+                  <td>{{$message->text}}</td>
+                  <td>
+                    <a href="{{route('admin.messages.show', $message)}}" class="btn btn-primary">Vai</a>
+                  </td>
+                </tr>
+            @endforeach
+          </tbody>
 
-      </table>
+        </table>
+      </div>
     </div>
 
   </div>
