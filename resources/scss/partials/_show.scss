@@ -1,5 +1,6 @@
 .left-side{
   margin-right: 50px;
+  width: 60%;
   .box-image{
     width: 600px;
     img{
@@ -40,6 +41,11 @@
   }
 }
 
+.right-side{
+  width: 40%;
+  width: 100%;
+}
+
 
 // MEEDIA QUERIES
 
@@ -47,6 +53,6 @@
 @media (min-width: 1200px ) and (max-width: 1399px){
   #map{
     width: 100% !important;
-    height: 100% !important;
+    height: 60% !important;
   }
   }
