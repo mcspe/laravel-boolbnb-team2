@@ -10,7 +10,7 @@
 
 
 .box-card-long-show{
-  width: 1300px;
+  width: 100%;
   background-color: white;
   padding: 20px 30px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
@@ -39,3 +39,14 @@
     margin-right: 40px;
   }
 }
+
+
+// MEEDIA QUERIES
+
+// MEDIA XL
+@media (min-width: 1200px ) and (max-width: 1399px){
+  #map{
+    width: 100% !important;
+    height: 100% !important;
+  }
+  }
