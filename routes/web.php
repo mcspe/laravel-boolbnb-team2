@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApartmentController;
-
+use App\Http\Controllers\SponsorshipController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -28,6 +28,7 @@ Route::middleware(['auth','verified'])
     ->group(function(){
         Route::get('/', [DashboardController::class, 'index'])->name('home');
         Route::resource('apartments', ApartmentController::class);
+        Route::resource('sponsorships', SponsorshipController::class);
 });
 
 
