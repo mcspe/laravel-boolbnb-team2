@@ -22,7 +22,7 @@ Puoi modificare i dettagli del tuo immobile.
     <div class="card-md-description d-flex justify-content-between">
       <span>Modifica: {{$apartment->title}}</span>
       <div>
-        <button type="submit" class="btn btn-primary">Conferma modifica</button>
+        <a href="{{route('admin.apartments.index')}}" class="btn btn-primary">Torna all'elenco appartamenti</button>
         <a href="{{route('admin.home')}}" class="btn heavenly">Torna alla dashboard</a>
       </div>
     </div>
@@ -52,7 +52,7 @@ Puoi modificare i dettagli del tuo immobile.
           <label class="form-label">Prezzo</label>
           <input type="number"
           class="form-control w-75"
-          value="{{ old('title', $apartment->price) }}"
+          value="{{ old('price', $apartment->price) }}"
           id="price"
           name="price"
           placeholder="Inserisci un titolo">
@@ -63,7 +63,7 @@ Puoi modificare i dettagli del tuo immobile.
           <label class="form-label">Categoria</label>
           <input type="text"
           class="form-control w-75"
-          value="{{ old('title', $apartment->category) }}"
+          value="{{ old('category', $apartment->category) }}"
           id="title"
           name="category"
           placeholder="Inserisci categoria">
@@ -74,7 +74,7 @@ Puoi modificare i dettagli del tuo immobile.
           <label class="form-label">Indirizzo</label>
           <input type="text"
           class="form-control w-75"
-          value="{{ old('title', $apartment->address) }}"
+          value="{{ old('address', $apartment->address) }}"
           id="address"
           name="address"
           placeholder="Inserisci l'indirizzo">
@@ -87,7 +87,7 @@ Puoi modificare i dettagli del tuo immobile.
         class="form-control w-75"
         value="{{ old('square_meters', $apartment->square_meters) }}"
         id="square_meters"
-        name="square_meters"
+        name="square_meters">
       </div>
 
       {{-- Number of rooms --}}
@@ -95,7 +95,7 @@ Puoi modificare i dettagli del tuo immobile.
           <label class="form-label">Numero stanze</label>
           <input type="number"
           class="form-control w-75"
-          value="{{ old('title', $apartment->n_rooms) }}"
+          value="{{ old('n_rooms', $apartment->n_rooms) }}"
           id="n_rooms"
           name="n_rooms">
       </div>
@@ -105,7 +105,7 @@ Puoi modificare i dettagli del tuo immobile.
           <label class="form-label">Numero letti</label>
           <input type="number"
           class="form-control w-75"
-          value="{{ old('title', $apartment->n_beds) }}"
+          value="{{ old('n_beds', $apartment->n_beds) }}"
           id="n_beds"
           name="n_beds">
       </div>
@@ -115,7 +115,7 @@ Puoi modificare i dettagli del tuo immobile.
           <label class="form-label">Numero bagni</label>
           <input type="number"
           class="form-control w-75"
-          value="{{ old('title', $apartment->n_bathrooms) }}"
+          value="{{ old('n_bathrooms', $apartment->n_bathrooms) }}"
           id="n_bathrooms"
           name="n_bathrooms">
       </div>
