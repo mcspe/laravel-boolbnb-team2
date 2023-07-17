@@ -21,3 +21,13 @@
 .form-control{
   background-color: #f5f7fa;
 }
+
+
+// MEEDIA QUERIES
+
+// MEDIA XL
+@media (min-width: 1200px ) and (max-width: 1399px){
+.box-card-long{
+  width: 100%;
+}
+}
