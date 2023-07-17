@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Message;
+use App\Models\Apartment;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -14,9 +16,10 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::all();
 
-        return view('admin.messages.index', compact('messages'));
+        $apartments = Apartment::where("user_id", Auth::id())->get();
+        $messages = Message::orderBy("apartment_id")->get();
+        return view('admin.messages.index', compact('apartments', 'messages'));
 
     }
 
