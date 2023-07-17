@@ -31,10 +31,32 @@ class ApartmentRequest extends FormRequest
           'n_bathrooms'    => 'nullable|min:1|integer',
           'n_beds'         => 'nullable|min:1|integer',
           'square_meters'  => 'nullable|min:1|integer',
-          'price'          => 'nullable|min:3|numeric',
-          'cover_image'    => 'nullable|min:5|',
-          'is_visible'     => 'required|boolean',
-          'user_id'        => 'required',
+          'price'          => 'nullable|min:3',
+          'cover_image'    => 'nullable|min:5'
         ];
     }
+
+    public function messages(){
+      return [
+          'title.required' => 'Il titolo è un campo obbligatorio',
+          'title.min' => 'Il titolo deve avere minimo :min caratteri',
+          'title.max' => 'Il titolo può avere al massimo :max caratteri',
+          'category.min' => 'La categoria deve avere minimo :min caratteri',
+          'category.max' => 'La categoria può avere al massimo :max caratteri',
+          'address.required' => 'L\'indirizzo è un campo obbligatorio',
+          'address.min' => 'L\' indirizzo deve avere minimo :min caratteri',
+          'address.max' => 'L\' indirizzo può avere al massimo :max caratteri',
+          'n_rooms.min' => 'Il numero di stanze dev\'essere un valore superiore o uguale a 1',
+          'n_rooms.integer' => 'Il numero di stanze dev\'essere un valore intero',
+          'n_bathrooms.min' => 'Il numero di bagni dev\'essere un valore superiore o uguale a 1',
+          'n_bathrooms.integer' => 'Il numero di bagni dev\'essere un valore intero',
+          'n_beds.min' => 'Il numero di letti dev\'essere un valore superiore o uguale a 1',
+          'n_beds.integer' => 'Il numero di letti dev\'essere un valore intero',
+          'square_meters.min' => 'Il numero di metri quadri dev\'essere un valore superiore o uguale a 1',
+          'square_meters.integer' => 'Il numero di metri quadri dev\'essere un valore intero',
+          'price.min' => 'Il prezzo dev\'essere un valore superiore o uguale a 1',
+          'price.numeric' => 'Il numero di metri quadri dev\'essere un valore decimale',
+          'cover_image.min' => 'L\'immagine deve avere minimo :min caratteri',
+      ];
+  }
 }
