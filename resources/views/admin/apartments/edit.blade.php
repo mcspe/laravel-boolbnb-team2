@@ -45,6 +45,10 @@ Puoi modificare i dettagli del tuo immobile.
           id="title"
           name="title"
           placeholder="Inserisci un titolo">
+          @error('title')
+            <p class="text-danger">{{ $message }}</p>
+          @enderror
+
       </div>
 
       {{-- Price --}}
@@ -53,9 +57,14 @@ Puoi modificare i dettagli del tuo immobile.
           <input type="number"
           class="form-control w-75"
           value="{{ old('price', $apartment->price) }}"
+          step='0.01'
           id="price"
           name="price"
           placeholder="Inserisci un titolo">
+          @error('price')
+            <p class="text-danger">{{ $message }}</p>
+          @enderror
+
       </div>
 
       {{-- Category --}}
@@ -67,6 +76,10 @@ Puoi modificare i dettagli del tuo immobile.
           id="title"
           name="category"
           placeholder="Inserisci categoria">
+          @error('category')
+            <p class="text-danger">{{ $message }}</p>
+          @enderror
+
       </div>
 
       {{-- Address --}}
@@ -78,6 +91,9 @@ Puoi modificare i dettagli del tuo immobile.
           id="address"
           name="address"
           placeholder="Inserisci l'indirizzo">
+          @error('address')
+            <p class="text-danger">{{ $message }}</p>
+          @enderror
       </div>
 
       {{-- square_meters --}}
@@ -88,6 +104,9 @@ Puoi modificare i dettagli del tuo immobile.
         value="{{ old('square_meters', $apartment->square_meters) }}"
         id="square_meters"
         name="square_meters">
+        @error('square_meters')
+            <p class="text-danger">{{ $message }}</p>
+        @enderror
       </div>
 
       {{-- Number of rooms --}}
@@ -98,6 +117,9 @@ Puoi modificare i dettagli del tuo immobile.
           value="{{ old('n_rooms', $apartment->n_rooms) }}"
           id="n_rooms"
           name="n_rooms">
+          @error('n_rooms')
+            <p class="text-danger">{{ $message }}</p>
+          @enderror
       </div>
 
       {{-- Number of beds --}}
@@ -108,6 +130,9 @@ Puoi modificare i dettagli del tuo immobile.
           value="{{ old('n_beds', $apartment->n_beds) }}"
           id="n_beds"
           name="n_beds">
+          @error('n_beds')
+            <p class="text-danger">{{ $message }}</p>
+          @enderror
       </div>
 
       {{-- Number of bathrooms --}}
@@ -118,6 +143,9 @@ Puoi modificare i dettagli del tuo immobile.
           value="{{ old('n_bathrooms', $apartment->n_bathrooms) }}"
           id="n_bathrooms"
           name="n_bathrooms">
+          @error('n_bathrooms')
+            <p class="text-danger">{{ $message }}</p>
+          @enderror
       </div>
 
       <button type="submit" class="btn btn-primary">Conferma modifica</button>
