@@ -21,7 +21,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
+        $apartments = Apartment::where("user_id", Auth::id())->get();
         $n_apartments = Apartment::where("user_id", Auth::id())->count();
         return view('admin.apartments.index', compact('apartments', "n_apartments"));
     }
@@ -35,10 +35,9 @@ class ApartmentController extends Controller
     {
 
       $apartment_service = Service::all();
-      $apartment_message = Message::all();
       $apartment_sponsorship = Sponsorship::all();
 
-        return view('admin.apartments.create', compact('apartment_service', 'apartment_message', 'apartment_sponsorship'));
+        return view('admin.apartments.create', compact('apartment_service', 'apartment_sponsorship'));
     }
 
     /**
@@ -47,11 +46,13 @@ class ApartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ApartmentRequest $request)
     {
         $form_data = $request->all();
 
         $form_data['slug'] = CustomHelper::generateSlug($form_data['title']);
+
+        $form_data['user_id']  = Auth::id();
 
         if ($request->hasFile('coverImagePreview')) {
 
