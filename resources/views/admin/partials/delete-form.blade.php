@@ -11,7 +11,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            L'immobile "<span class="fw-bold text-primary">{{ $apartment->title }}</span>" verrà <span class="text-danger">eliminato</span>, sei sicuro?
+            L'immobile "<span class="text-primary">{{ $apartment->title }}</span>" verrà <span class="text-danger">eliminato</span>, sei sicuro?
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">Annulla</button>
