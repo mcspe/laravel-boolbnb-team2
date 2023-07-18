@@ -22,7 +22,7 @@ class VisitsTableSeeder extends Seeder
         $new_visit = new Visit();
         $new_visit->apartment_id = Apartment::inRandomOrder()->first()->id;
         $new_visit->ip_address = long2ip(mt_rand()+mt_rand()+mt_rand(0,1));
-        $new_visit->visit_date = $faker->dateTime()->format('Y-m-d H:i:s');
+        $new_visit->visit_date = $faker->dateTimeBetween('-3 weeks', 'now')->format('Y-m-d H:i:s');
         $new_visit->save();
       }
     }
