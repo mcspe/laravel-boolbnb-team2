@@ -22,14 +22,14 @@ class CustomHelper {
     return $slug;
   }
 
-  public static function saveCoverImage($image, $request, $form_data, $model) {
+  public static function saveImage($image, $request, $form_data, $model) {
 
     $original_name = $request->file($image)->getClientOriginalName();
     $nameonly = preg_replace('/\..+$/', '', $original_name);
     $ext = $request->file($image)->getClientOriginalExtension();
 
     $file_name = Str::slug($nameonly, '-') . '.' . $ext;
-    $path = 'uploads/';
+    $path = 'uploads';
 
     if($model::where('cover_image', $path . '/' . $file_name)->first()) {
       $nameonly .= '-' . rand(1000,9999);

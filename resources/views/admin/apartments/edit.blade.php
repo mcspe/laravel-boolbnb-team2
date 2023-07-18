@@ -96,6 +96,26 @@ Puoi modificare i dettagli del tuo immobile.
           @enderror
       </div>
 
+      {{-- Cover Image --}}
+      <div class="mb-3">
+        <label class="form-label">Immagine di Copertina</label>
+        <input type="file"
+        class="form-control w-75 @error('cover_image') is-invalid @enderror"
+        id="cover_image"
+        name="cover_image"
+        value="{{ old('cover_image', $apartment->cover_image) }}"
+        placeholder="Inserisci l'indirizzo"
+        onchange="showImg(event)">
+        @error('cover_image')
+          <p class="text-danger">{{ $message }}</p>
+        @enderror
+
+        <div class="img-preview m-5 position-relative">
+          <img id="img-preview" src="{{ $src }}" alt="" width="100">
+          <div class="position-absolute" id="img-clear" onclick="clearImg()"><span>X</span></div>
+        </div>
+      </div>
+
       {{-- square_meters --}}
       <div class="mb-3">
         <label class="form-label">Metri quadri</label>
@@ -148,10 +168,58 @@ Puoi modificare i dettagli del tuo immobile.
           @enderror
       </div>
 
+      <div class="mb-3">
+        <h5 class="form-label">Servizi</h5>
+        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+
+          <div class="d-flex flex-wrap gap-1" role="group" aria-label="Basic checkbox toggle button group">
+
+            @foreach ($services as $service)
+                <input
+                  id="service{{ $loop->iteration }}"
+                  class="btn-check"
+                  autocomplete="off"
+                  type="checkbox"
+                  value="{{ $service->id }}"
+                  name="services[]"
+
+                  @if (!$errors->any() && $apartment?->services->contains($service))
+                    checked
+                  @elseif ($errors->any() && in_array($service->id, old('services',[])))
+                    checked
+                  @endif
+                >
+                <label class="btn btn-outline-secondary" for="service{{ $loop->iteration }}">{{ $service->name }}</label>
+            @endforeach
+
+          </div>
+
+        </div>
+
+      </div>
+
+
       <button type="submit" class="btn btn-primary">Conferma modifica</button>
     </form>
   </div>
 
 </div>
+
+  <script>
+    const imgPreview = document.getElementById('img-preview');
+    const imgTag = document.getElementById('cover_image');
+    const imgClear = document.getElementById('img-clear');
+
+    function showImg(e) {
+      imgPreview.src = URL.createObjectURL(e.target.files[0]);
+      imgClear.classList.remove('d-none');
+    }
+
+    function clearImg() {
+      imgPreview.src = "http://127.0.0.1:8000/storage/uploads/img-placeholder.png";
+      imgTag.value = '';
+      imgClear.classList.add('d-none');
+    }
+  </script>
 
 @endsection
