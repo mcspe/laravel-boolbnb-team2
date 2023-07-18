@@ -77,14 +77,16 @@ Puoi inserire un nuovo immobile in vendita.
       </div>
 
       {{-- Address --}}
-      <div class="mb-3">
+      <div class="mb-3" id="searchbox">
           <label class="form-label">Indirizzo</label>
-          <input type="text"
-          class="form-control w-75 @error('address') is-invalid @enderror"
+          {{-- <input type="text"
+          class="form-control tt-search-box-input w-75 @error('address') is-invalid @enderror"
           id="address"
           name="address"
+          type="text"
+          autocomplete="off"
           value="{{ old('address') }}"
-          placeholder="Inserisci l'indirizzo">
+          placeholder="Inserisci l'indirizzo"> --}}
           @error('address')
             <p class="text-danger">{{ $message }}</p>
           @enderror
@@ -198,6 +200,9 @@ Puoi inserire un nuovo immobile in vendita.
 </div>
 
 <script>
+
+  // cover_image upload
+
   const imgPreview = document.getElementById('img-preview');
   const imgTag = document.getElementById('cover_image');
   const imgClear = document.getElementById('img-clear');
@@ -213,6 +218,39 @@ Puoi inserire un nuovo immobile in vendita.
     imgTag.value = '';
     imgClear.classList.add('d-none');
   }
+
+  // autocomplete searchbox
+
+  const options = {
+
+	autocompleteOptions : {
+	key: 'jMP7C6DHaaq8PNVgJUg740ueeMPlH0xY',
+	language: 'it-IT',
+	},
+
+	searchOptions : {
+	key: 'jMP7C6DHaaq8PNVgJUg740ueeMPlH0xY',
+	language: 'it-IT',
+	limit: 10,
+	// idxSet: 'Str'
+	}
+
+}
+
+  const ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
+  const searchBoxHTML = ttSearchBox.getSearchBoxHTML()
+
+  const searchBoxContainer = document.getElementById('searchbox');
+
+  searchBoxContainer.append(searchBoxHTML)
+
+  const inputBox = searchBoxHTML.firstChild.children[2]
+
+  inputBox.setAttribute('name', 'address')
+  inputBox.setAttribute('autocomplete', 'off')
+  inputBox.setAttribute('placeholder', 'Inserisci l\'indirizzo')
+  inputBox.setAttribute('value', '{{ old("address") }}')
+
 </script>
 
 @endsection

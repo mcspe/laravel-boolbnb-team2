@@ -83,14 +83,14 @@ Puoi modificare i dettagli del tuo immobile.
       </div>
 
       {{-- Address --}}
-      <div class="mb-3">
+      <div class="mb-3" id="searchbox">
           <label class="form-label">Indirizzo</label>
-          <input type="text"
+          {{-- <input type="text"
           class="form-control w-75"
           value="{{ old('address', $apartment->address) }}"
           id="address"
           name="address"
-          placeholder="Inserisci l'indirizzo">
+          placeholder="Inserisci l'indirizzo"> --}}
           @error('address')
             <p class="text-danger">{{ $message }}</p>
           @enderror
@@ -220,6 +220,38 @@ Puoi modificare i dettagli del tuo immobile.
       imgTag.value = '';
       imgClear.classList.add('d-none');
     }
+    // autocomplete searchbox
+
+    const options = {
+
+  autocompleteOptions : {
+  key: 'jMP7C6DHaaq8PNVgJUg740ueeMPlH0xY',
+  language: 'it-IT',
+  },
+
+  searchOptions : {
+  key: 'jMP7C6DHaaq8PNVgJUg740ueeMPlH0xY',
+  language: 'it-IT',
+  limit: 10,
+  // idxSet: 'Str'
+  }
+
+  }
+
+  const ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
+  const searchBoxHTML = ttSearchBox.getSearchBoxHTML()
+
+  const searchBoxContainer = document.getElementById('searchbox');
+
+  searchBoxContainer.append(searchBoxHTML)
+
+  const inputBox = searchBoxHTML.firstChild.children[2]
+
+  inputBox.setAttribute('name', 'address')
+  inputBox.setAttribute('autocomplete', 'off')
+  inputBox.setAttribute('placeholder', 'Inserisci l\'indirizzo')
+  inputBox.setAttribute('value', '{{ old("address", $apartment->address) }}')
+
   </script>
 
 @endsection
