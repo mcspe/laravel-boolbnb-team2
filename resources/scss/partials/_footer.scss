@@ -1,0 +1,46 @@
+footer{
+  display: none;
+  height: 60px;
+  background-color: #0f2145;
+  .links{
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+    align-items: center;
+    .link{
+      display: flex;
+      text-align: center;
+      a{
+        font-size: 0.6rem;
+        color: gray;
+      }
+      i{
+        font-size: 34px;
+        color: gray;
+        display: block;
+      }
+    }
+  }
+}
+
+.logout{
+  position: absolute;
+  top: 20px;
+  right: 5%;
+  display: none;
+}
+
+// MEDIA QUERIES
+
+// MEDIA X-SMALL
+@media (min-width: 0 ) and (max-width: 575px){
+
+  footer{
+    display: block;
+  }
+
+  .logout{
+    display: block;
+  }
+
+}

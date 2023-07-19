@@ -41,13 +41,13 @@ Qui sono presenti i tuoi immobili in vendita.
         <thead>
           <tr>
             <th scope="col">Titolo</th>
-            <th scope="col">Categoria</th>
-            <th scope="col">Indirizzo</th>
-            <th scope="col">Stanze</th>
-            <th scope="col">Letti</th>
-            <th scope="col">Bagni</th>
-            <th scope="col">Metri quadrati</th>
-            <th scope="col">Prezzo</th>
+            <th scope="col" class="d-xsm-none">Categoria</th>
+            <th scope="col" class="d-xsm-none">Indirizzo</th>
+            <th scope="col" class="d-xsm-none">Stanze</th>
+            <th scope="col" class="d-xsm-none">Letti</th>
+            <th scope="col" class="d-xsm-none">Bagni</th>
+            <th scope="col" class="d-xsm-none">Metri quadrati</th>
+            <th scope="col" class="d-xsm-none">Prezzo</th>
             <th scope="col">Dettagli</th>
           </tr>
         </thead>
@@ -56,13 +56,13 @@ Qui sono presenti i tuoi immobili in vendita.
           @foreach ($apartments as $apartment)
             <tr>
               <td>{{$apartment->title}}</td>
-              <td>{{$apartment->category}}</td>
-              <td>{{$apartment->address}}</td>
-              <td>{{$apartment->n_rooms}}</td>
-              <td>{{$apartment->n_beds}}</td>
-              <td>{{$apartment->n_bathrooms}}</td>
-              <td>{{$apartment->square_meters}}</td>
-              <td>{{$apartment->price}}</td>
+              <td class="d-xsm-none">{{$apartment->category}}</td>
+              <td class="d-xsm-none">{{$apartment->address}}</td>
+              <td class="d-xsm-none">{{$apartment->n_rooms}}</td>
+              <td class="d-xsm-none">{{$apartment->n_beds}}</td>
+              <td class="d-xsm-none">{{$apartment->n_bathrooms}}</td>
+              <td class="d-xsm-none">{{$apartment->square_meters}}</td>
+              <td class="d-xsm-none">{{$apartment->price}}</td>
               <td>
                 <a href="{{route('admin.apartments.show', $apartment)}}" class="btn btn-primary">Vai</a>
               </td>

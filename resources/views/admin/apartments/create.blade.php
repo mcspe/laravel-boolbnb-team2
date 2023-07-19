@@ -21,7 +21,7 @@ Puoi inserire un nuovo immobile in vendita.
     <div class="card-md-description d-flex justify-content-between">
       <span>Aggiungi un nuovo immobile</span>
       <div>
-        <button type="submit" class="btn btn-primary">Invia</button>
+        <button type="submit" class="btn btn-primary d-xsm-none">Invia</button>
         <a href="{{route('admin.home')}}" class="btn heavenly">Torna alla dashboard</a>
       </div>
     </div>

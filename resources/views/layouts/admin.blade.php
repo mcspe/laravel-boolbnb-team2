@@ -32,6 +32,12 @@
 
       <main>
         <div class="jumbotron text-white">
+          <div class="logout">
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" >
+                @csrf
+                <button class="btn btn-danger" type="submit" title="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+            </form>
+          </div>
             <h1>@yield("jumbotron-title")</h1>
             <h4>@yield("jumbotron-subtitle")</h4>
         </div>
@@ -40,7 +46,7 @@
       </main>
 
     </div>
-
+    @include("admin.partials.footer")
 </body>
 
 </html>
