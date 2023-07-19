@@ -56,7 +56,9 @@
       </main>
 
     </div>
-    @include("admin.partials.footer")
+    @auth()
+      @include("admin.partials.footer")
+    @endauth
 </body>
 
 </html>
