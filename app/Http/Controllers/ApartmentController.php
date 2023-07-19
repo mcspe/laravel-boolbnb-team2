@@ -54,7 +54,7 @@ class ApartmentController extends Controller
     {
         $form_data = $request->all();
 
-        $form_data['slug'] = CustomHelper::generateSlug($form_data['title']);
+        $form_data['slug'] = CustomHelper::generateUniqueSlug($form_data['title'], new Apartment());
 
         $form_data['user_id']  = Auth::id();
 
@@ -126,7 +126,7 @@ class ApartmentController extends Controller
       $form_data = $request->all();
 
       if($form_data['title'] !== $apartment->title){
-          $form_data['slug'] = CustomHelper::generateSlug($form_data['title']);
+          $form_data['slug'] = CustomHelper::generateUniqueSlug($form_data['title'], new Apartment());
       }else{
           $form_data['slug'] = $apartment->slug;
       }

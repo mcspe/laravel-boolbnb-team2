@@ -7,15 +7,18 @@ use Illuminate\Support\Str;
 
 class CustomHelper {
 
-    public static function generateSlug($str){
+
+  public static function generateUniqueSlug($str, $model){
 
     $slug = Str::slug($str, '-');
     $original_slug = $slug;
-    $slug_exists = Apartment::where('slug', $slug)->first();
+    $slug_exists = $model::where('slug', $slug)->withTrashed()->first();
     $c = 1;
+
     while($slug_exists){
         $slug = $original_slug . '-' . $c;
-        $slug_exists = Apartment::where('slug', $slug)->first();
+        //  && ! $this->forceDeleting
+        $slug_exists = $model::where('slug', $slug)->withTrashed()->first();
         $c++;
     }
 
@@ -40,5 +43,7 @@ class CustomHelper {
 
     return $form_data;
   }
+
+
 
 }
