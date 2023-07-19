@@ -26,7 +26,7 @@ return new class extends Migration
             $table->point('latitude_longitude')->nullable();
             $table->decimal('price', $precision = 6, $scale = 2)->nullable();
             $table->text('cover_image')->nullable();
-            $table->boolean('is_visible')->default(0);
+            $table->boolean('is_visible')->default(1);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
