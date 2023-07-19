@@ -34,7 +34,7 @@ Qui sono presenti i dettagli dell'immobile selezionato.
     <div class="left-side">
 
       <div class="box-image">
-        <img src="{{$apartment->cover_image}}" alt="">
+        <img src="{{asset('storage/' . $apartment->cover_image)}}" alt="">
       </div>
 
       <div class="description-box">
@@ -42,6 +42,17 @@ Qui sono presenti i dettagli dell'immobile selezionato.
           <h4>Prezzo: {{$apartment->price}}€</h4>
           <h4>Metri quadrati: {{$apartment->square_meters}}&#13217;
           </h4>
+        </div>
+
+        <div class="services d-flex gap-3">
+          <h4>Servizi: </h4>
+          <div class="badges">
+            @forelse ($apartment->services as $service)
+              <span class="badge rounded-pill text-bg-info">{{ $service->name }}</span>
+            @empty
+              <span>Nessun servizio disponibile per questo immobile</span>
+            @endforelse
+          </div>
         </div>
 
         <div class="house-specifications">
@@ -55,6 +66,20 @@ Qui sono presenti i dettagli dell'immobile selezionato.
 
     {{-- RIGHT-SIDE --}}
     <div class="right-side">
+
+      <div class="visibility">
+        @if ($apartment->is_visible)
+          <span>
+            <i class="fa-regular fa-circle-check"></i>
+            Il tuo immobile è online
+          </span>
+        @else
+          <span>
+            <i class="fa-regular fa-circle-xmark"></i>
+            Il tuo immobile è offline
+          </span>
+        @endif
+      </div>
 
       <div class="description-box">
         <i class="fa-solid fa-location-dot"></i>
@@ -73,7 +98,7 @@ Qui sono presenti i dettagli dell'immobile selezionato.
 
 
   <script type="text/javascript">
-
+    /***** MAP SCRIPT *****/
     const lat = document.getElementById('lat').innerHTML;
     const lng = document.getElementById('lng').innerHTML;
 
@@ -88,6 +113,7 @@ Qui sono presenti i dettagli dell'immobile selezionato.
     map.on('load', () =>{
       new tt.Marker().setLngLat(center).addTo(map)
     })
+
   </script>
 @endsection
 
