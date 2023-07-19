@@ -19,61 +19,91 @@ Qui sono presenti i tuoi immobili in vendita.
 
   <div class="box-card-long mb-5">
     <div class="card-md-description d-flex justify-content-between">
-      <span>Immobili {{$n_apartments}}</span>
-      <a href="{{route('admin.apartments.create')}}" class="btn btn-primary">Aggiungi immobile</a>
+
+      {{-- If n_apartments is >= 1 i see the count of total apartments --}}
+      @if ($n_apartments >= 1)
+        <span>Totale immobili: {{$n_apartments}}</span>
+
+        {{-- Else i see a span and the button for create new apartment --}}
+      @else
+        <span>Non ci sono appartamenti. Aggiungine uno per iniziare!</span>
+        <a href="{{route('admin.apartments.create')}}" class="btn btn-primary">Aggiungi immobile</a>
+      @endif
+
+
     </div>
   </div>
 
+  {{-- If n_apartments is >= 1 i see the table with loaded apartments --}}
+  @if ($n_apartments >= 1)
+    <div class="box-card-long">
 
-  <div class="box-card-long">
+      <div class="form-button d-flex justify-content-between">
 
-    <form id="standard-3" method="get" action="" id="form2">
-      <input type="text" class="search-txt-input search-input" name="q" maxlength="100" placeholder="Inserisci il titolo...">
-      <button type="submit" form="form2"  class="search-button">
-        <i class="fa fa-search"></i>
-      </button>
-    </form>
+        <div class="form-container">
+
+          <form id="standard-3" method="get" action="" id="form2">
+            <input type="text" class="search-txt-input search-input" name="q" maxlength="100" placeholder="Inserisci il titolo...">
+            <button type="submit" form="form2"  class="search-button">
+              <i class="fa fa-search"></i>
+            </button>
+          </form>
+
+        </div>
+
+        <div class="button-container">
+          <a href="{{route('admin.apartments.create')}}" class="btn btn-primary">Aggiungi immobile</a>
+        </div>
+
+      </div>
 
 
-    <div class="size">
-      <table class="table">
+      <div class="size">
+        <table class="table">
 
-        <thead>
-          <tr>
-            <th scope="col">Titolo</th>
-            <th scope="col" class="d-xsm-none">Categoria</th>
-            <th scope="col" class="d-xsm-none">Indirizzo</th>
-            <th scope="col" class="d-xsm-none">Stanze</th>
-            <th scope="col" class="d-xsm-none">Letti</th>
-            <th scope="col" class="d-xsm-none">Bagni</th>
-            <th scope="col" class="d-xsm-none">Metri quadrati</th>
-            <th scope="col" class="d-xsm-none">Prezzo</th>
-            <th scope="col">Dettagli</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          @foreach ($apartments as $apartment)
+          <thead>
             <tr>
-              <td>{{$apartment->title}}</td>
-              <td class="d-xsm-none">{{$apartment->category}}</td>
-              <td class="d-xsm-none">{{$apartment->address}}</td>
-              <td class="d-xsm-none">{{$apartment->n_rooms}}</td>
-              <td class="d-xsm-none">{{$apartment->n_beds}}</td>
-              <td class="d-xsm-none">{{$apartment->n_bathrooms}}</td>
-              <td class="d-xsm-none">{{$apartment->square_meters}}</td>
-              <td class="d-xsm-none">{{$apartment->price}}</td>
-              <td>
-                <a href="{{route('admin.apartments.show', $apartment)}}" class="btn btn-primary">Vai</a>
-              </td>
+              <th scope="col">Titolo</th>
+              <th scope="col" class="d-xsm-none">Categoria</th>
+              <th scope="col" class="d-xsm-none">Indirizzo</th>
+              <th scope="col" class="d-xsm-none">Stanze</th>
+              <th scope="col" class="d-xsm-none">Letti</th>
+              <th scope="col" class="d-xsm-none">Bagni</th>
+              <th scope="col" class="d-xsm-none">Metri quadrati</th>
+              <th scope="col" class="d-xsm-none">Prezzo</th>
+              <th scope="col" class="text-center">Dettagli</th>
             </tr>
-          @endforeach
-        </tbody>
+          </thead>
 
-      </table>
+          <tbody>
+            @foreach ($apartments as $apartment)
+              <tr>
+                <td>{{$apartment->title}}</td>
+                <td class="d-xsm-none">{{$apartment->category}}</td>
+                <td class="d-xsm-none">{{$apartment->address}}</td>
+                <td class="d-xsm-none">{{$apartment->n_rooms}}</td>
+                <td class="d-xsm-none">{{$apartment->n_beds}}</td>
+                <td class="d-xsm-none">{{$apartment->n_bathrooms}}</td>
+                <td class="d-xsm-none">{{$apartment->square_meters}}</td>
+                <td class="d-xsm-none">{{$apartment->price}}</td>
+                <td>
+                  <a href="{{route('admin.apartments.show', $apartment)}}" class="ms-5 btn btn-primary">Vai</a>
+                  <a href="{{route('admin.apartments.edit', $apartment)}}" class="btn btn-warning">Modifica</a>
+                  @include('admin.partials.delete-form')
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+
+        </table>
+      </div>
+
     </div>
+    @else
+    {{-- Else i see nothing --}}
+    @endif
 
-  </div>
+
 
 </div>
 
