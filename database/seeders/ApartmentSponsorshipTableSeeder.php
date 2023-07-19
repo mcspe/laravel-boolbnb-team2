@@ -8,8 +8,8 @@ use Faker\Generator as Faker;
 use App\Models\Apartment;
 use App\Models\Sponsorship;
 use App\Models\ApartmentSponsorship;
-use DateTime;
-use DateInterval;
+use Illuminate\Support\Carbon;
+
 
 class ApartmentSponsorshipTableSeeder extends Seeder
 {
@@ -24,17 +24,17 @@ class ApartmentSponsorshipTableSeeder extends Seeder
         $aptSponsor = new ApartmentSponsorship();
         $aptSponsor->apartment_id = Apartment::inRandomOrder()->first()->id;
         $aptSponsor->sponsorship_id = Sponsorship::inRandomOrder()->first()->id;
-        $aptSponsor->payment_date = date('Y-m-d H:i:s');
-        $expiration = $faker->dateTime();
+        $aptSponsor->payment_date = $faker->dateTimeBetween('-3 weeks', 'now');
+        $expiration = Carbon::createFromDate($aptSponsor->payment_date);
         switch ($aptSponsor->sponsorship_id) {
           case '1':
-            $expiration->add(new DateInterval("PT24H"));
+            $expiration->addHours(24);
             break;
           case '2':
-            $expiration->add(new DateInterval("PT72H"));
+            $expiration->addHours(72);
             break;
           case '3':
-            $expiration->add(new DateInterval("PT144H"));
+            $expiration->addHours(144);
             break;
         }
         $aptSponsor->expiration_date = $expiration->format('Y-m-d H:i:s');

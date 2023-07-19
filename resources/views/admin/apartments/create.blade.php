@@ -77,17 +77,39 @@ Puoi inserire un nuovo immobile in vendita.
       </div>
 
       {{-- Address --}}
-      <div class="mb-3">
+      <div class="mb-3" id="searchbox">
           <label class="form-label">Indirizzo</label>
-          <input type="text"
-          class="form-control w-75 @error('address') is-invalid @enderror"
+          {{-- <input type="text"
+          class="form-control tt-search-box-input w-75 @error('address') is-invalid @enderror"
           id="address"
           name="address"
+          type="text"
+          autocomplete="off"
           value="{{ old('address') }}"
-          placeholder="Inserisci l'indirizzo">
+          placeholder="Inserisci l'indirizzo"> --}}
           @error('address')
             <p class="text-danger">{{ $message }}</p>
           @enderror
+      </div>
+
+      {{-- Cover Image --}}
+      <div class="mb-3">
+          <label class="form-label">Immagine di Copertina</label>
+          <input type="file"
+          class="form-control w-75 @error('cover_image') is-invalid @enderror"
+          id="cover_image"
+          name="cover_image"
+          value="{{ old('cover_image') }}"
+          placeholder="Inserisci l'indirizzo"
+          onchange="showImg(event)">
+          @error('cover_image')
+            <p class="text-danger">{{ $message }}</p>
+          @enderror
+
+        <div class="img-preview m-5 position-relative">
+          <img id="img-preview" src="{{ $src }}" alt="" width="100">
+          <div class="position-absolute" id="img-clear" onclick="clearImg()"><span>X</span></div>
+        </div>
       </div>
 
       {{-- square_meters --}}
@@ -142,10 +164,93 @@ Puoi inserire un nuovo immobile in vendita.
           @enderror
       </div>
 
+      <div class="mb-3">
+        <h5 class="form-label">Servizi</h5>
+        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+
+          <div class="d-flex flex-wrap gap-1" role="group" aria-label="Basic checkbox toggle button group">
+
+            @foreach ($services as $service)
+                <input
+                  id="service{{ $loop->iteration }}"
+                  class="btn-check"
+                  autocomplete="off"
+                  type="checkbox"
+                  value="{{ $service->id }}"
+                  name="services[]"
+
+                  @if (in_array($service->id, old('services', [])))
+                    checked
+                  @endif
+
+                >
+                <label class="btn btn-outline-secondary" for="service{{ $loop->iteration }}">{{ $service->name }}</label>
+            @endforeach
+
+          </div>
+
+        </div>
+
+      </div>
+
       <button type="submit" class="btn btn-primary">Invia</button>
 
     </form>
   </div>
 </div>
+
+<script>
+
+  // cover_image upload
+
+  const imgPreview = document.getElementById('img-preview');
+  const imgTag = document.getElementById('cover_image');
+  const imgClear = document.getElementById('img-clear');
+  imgClear.classList.add('d-none');
+
+  function showImg(e) {
+    imgPreview.src = URL.createObjectURL(e.target.files[0]);
+    imgClear.classList.remove('d-none');
+  }
+
+  function clearImg() {
+    imgPreview.src = "http://127.0.0.1:8000/storage/uploads/img-placeholder.png";
+    imgTag.value = '';
+    imgClear.classList.add('d-none');
+  }
+
+  // autocomplete searchbox
+
+  const options = {
+
+	autocompleteOptions : {
+	key: 'jMP7C6DHaaq8PNVgJUg740ueeMPlH0xY',
+	language: 'it-IT',
+	},
+
+	searchOptions : {
+	key: 'jMP7C6DHaaq8PNVgJUg740ueeMPlH0xY',
+	language: 'it-IT',
+	limit: 10,
+	// idxSet: 'Str'
+	}
+
+}
+
+  const ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
+  const searchBoxHTML = ttSearchBox.getSearchBoxHTML()
+
+  const searchBoxContainer = document.getElementById('searchbox');
+
+  searchBoxContainer.append(searchBoxHTML)
+
+  const inputBox = searchBoxHTML.firstChild.children[2]
+
+  inputBox.setAttribute('name', 'address')
+  inputBox.setAttribute('autocomplete', 'off')
+  inputBox.setAttribute('placeholder', 'Inserisci l\'indirizzo')
+  inputBox.setAttribute('value', '{{ old("address") }}')
+
+</script>
 
 @endsection

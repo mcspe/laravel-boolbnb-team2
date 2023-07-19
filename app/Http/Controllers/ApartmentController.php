@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ApartmentRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+
 
 class ApartmentController extends Controller
 {
@@ -34,10 +36,12 @@ class ApartmentController extends Controller
     public function create()
     {
 
-      $apartment_service = Service::all();
-      $apartment_sponsorship = Sponsorship::all();
+      $services = Service::all();
+      $src = asset('storage/uploads/img-placeholder.png');
 
-        return view('admin.apartments.create', compact('apartment_service', 'apartment_sponsorship'));
+
+      return view('admin.apartments.create', compact('services', 'src'));
+
     }
 
     /**
@@ -54,9 +58,11 @@ class ApartmentController extends Controller
 
         $form_data['user_id']  = Auth::id();
 
-        if ($request->hasFile('coverImagePreview')) {
+        $form_data['latitude_longitude'] = DB::raw(Apartment::getCoordinates($form_data['address']));
 
-          $form_data = CustomHelper::saveCoverImage('coverImagePreview', $request, $form_data, new Apartment());
+        if ($request->hasFile('cover_image')) {
+
+          $form_data = CustomHelper::saveImage('cover_image', $request, $form_data, new Apartment());
 
         }
 
@@ -66,13 +72,10 @@ class ApartmentController extends Controller
 
         $new_apartment->save();
 
-        // if (array_key_exists('services', $form_data)) {
-        //   $new_apartment->services()->attach($form_data['services']);
-        // }
 
-        // if (array_key_exists('sponsorships', $form_data)) {
-        //   $new_apartment->sponsorships()->attach($form_data['sponsorships']);
-        // }
+        if (array_key_exists('services', $form_data)) {
+          $new_apartment->services()->attach($form_data['services']);
+        }
 
         return redirect()->route('admin.apartments.show', $new_apartment);
     }
@@ -85,7 +88,14 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        return view('admin.apartments.show', compact('apartment'));
+        $latitude = DB::select(DB::raw("SELECT ST_X(`latitude_longitude`) FROM `apartments` WHERE (`id` = $apartment->id)"));
+        $longitude = DB::select(DB::raw("SELECT ST_Y(`latitude_longitude`) FROM `apartments` WHERE (`id` = $apartment->id)"));
+        $lat = json_decode(json_encode($latitude), true);
+        $lat = $lat[0]['ST_X(`latitude_longitude`)'];
+        $lng = json_decode(json_encode($longitude), true);
+        $lng = $lng[0]['ST_Y(`latitude_longitude`)'];
+
+        return view('admin.apartments.show', compact('apartment', 'lat', 'lng'));
     }
 
     /**
@@ -96,11 +106,11 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        $apartment_service = Service::all();
-        $apartment_message = Message::all();
-        $apartment_sponsorship = Sponsorship::all();
+        $services = Service::all();
+        $src = asset('storage/' . $apartment->cover_image);
 
-        return view('admin.apartments.edit', compact('apartment', 'apartment_service', 'apartment_message', 'apartment_sponsorship'));
+
+        return view('admin.apartments.edit', compact('apartment', 'services', 'src'));
     }
 
     /**
@@ -121,7 +131,10 @@ class ApartmentController extends Controller
           $form_data['slug'] = $apartment->slug;
       }
 
-      if ($request->hasFile('coverImagePreview')) {
+      $form_data['latitude_longitude'] = DB::raw(Apartment::getCoordinates($form_data['address']));
+
+
+      if ($request->hasFile('cover_image')) {
 
         if($apartment->cover_image) {
 
@@ -129,7 +142,7 @@ class ApartmentController extends Controller
 
         }
 
-        $form_data = CustomHelper::saveCoverImage('coverImagePreview', $request, $form_data, new Apartment());
+        $form_data = CustomHelper::saveImage('cover_image', $request, $form_data, new Apartment());
 
       }
 
@@ -147,6 +160,12 @@ class ApartmentController extends Controller
       }
 
       $apartment->update($form_data);
+
+      if(array_key_exists('services', $form_data)){
+        $apartment->services()->sync($form_data['services']);
+      }else{
+        $apartment->services()->detach();
+      }
 
       return redirect()->route('admin.apartments.show', $apartment);
 

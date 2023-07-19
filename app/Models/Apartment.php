@@ -20,6 +20,7 @@ class Apartment extends Model
       'slug',
       'category',
       'address',
+      'latitude_longitude',
       'n_rooms',
       'n_bathrooms',
       'n_beds',
