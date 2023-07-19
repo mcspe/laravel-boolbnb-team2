@@ -48,6 +48,33 @@
 
 
 // MEEDIA QUERIES
+// MEDIA X-SMALL
+@media (min-width: 0 ) and (max-width: 575px){
+
+.block{
+  display: block !important;
+}
+
+.left-side{
+  margin-right: 50px;
+  width: 100%;
+  .box-image{
+    width: 100%;
+  }
+}
+
+#map{
+  width: 100% !important;
+  height: 200px !important;
+}
+
+.box-card-long-show{
+  .card-md-description{
+    display: block !important;
+  }
+}
+}
+
 
 // MEDIA XL
 @media (min-width: 1200px ) and (max-width: 1399px){

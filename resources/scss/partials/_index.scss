@@ -75,3 +75,30 @@
 :focus-visible{
   outline:#6c757d auto 1px;
 }
+
+// MEDIA QUERIES
+
+// MEDIA X-SMALL
+@media (min-width: 0 ) and (max-width: 575px){
+
+  .d-xsm-none{
+    display: none;
+  }
+
+  .box-card-long{
+    .card-md-description{
+      span{
+        font-size: 1.3rem;
+        color: #00162f;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .search-input{
+    width: 150px;
+    &:focus{
+      width: 180px;
+    }
+  }
+}

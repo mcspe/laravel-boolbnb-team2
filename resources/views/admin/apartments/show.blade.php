@@ -23,12 +23,12 @@ Qui sono presenti i dettagli dell'immobile selezionato.
       <div>
         <a href="{{route('admin.apartments.edit', $apartment)}}" class="btn btn-warning">Modifica</a>
         @include('admin.partials.delete-form')
-        <a href="{{route('admin.apartments.index')}}" class="btn btn-primary">Torna alla dashboard</a>
+        <a href="{{route('admin.apartments.index')}}" class="btn btn-primary d-xsm-none">Torna alla dashboard</a>
       </div>
     </div>
   </div>
 
-  <div class="d-flex">
+  <div class="d-flex block">
 
     {{-- LEFT-SIDE --}}
     <div class="left-side">

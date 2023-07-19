@@ -9,6 +9,7 @@
 @import "./partials/create";
 @import "./partials/show";
 @import "./partials/sponsorships";
+@import "./partials/footer";
 
 
 
@@ -29,6 +30,13 @@ main{
 
 .main-wrapper{
   height: 100vh;
+}
+// MEDIA X-SMALL
+@media (min-width: 0 ) and (max-width: 575px){
+
+  .main-wrapper{
+    height: calc(100vh - 60px);
+  }
 }
 
 // SCROLLBAR CUSTOMIZATION

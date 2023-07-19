@@ -29,8 +29,13 @@ Controlla i messaggi ricevuti
           <thead>
             <tr>
               <th scope="col">Mittente</th>
+
+              <th scope="col" class="d-xsm-none">Email</th>
+              <th scope="col" class="d-xsm-none">Messaggio</th>
+
               <th scope="col">Email</th>
               <th scope="col">Appartamento</th>
+
               <th scope="col">Azioni</th>
             </tr>
           </thead>
@@ -40,8 +45,13 @@ Controlla i messaggi ricevuti
               @foreach ($apartment->messages as $message)
                 <tr>
                   <td>{{$message->sender_name . ' ' . $message->sender_lastname}}</td>
+
+                  <td class="d-xsm-none">{{$message->sender_email}}</td>
+                  <td class="d-xsm-none">{{$message->text}}</td>
+
                   <td>{{$message->sender_email}}</td>
                   <td>{{$apartment->title}}</td>
+
                   <td>
                     <a href="{{route('admin.messages.show', $message)}}" class="btn btn-primary">Vai</a>
                   </td>
