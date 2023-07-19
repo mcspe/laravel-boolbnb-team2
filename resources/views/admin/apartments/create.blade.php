@@ -21,7 +21,7 @@ Puoi inserire un nuovo immobile in vendita.
     <div class="card-md-description d-flex justify-content-between">
       <span>Aggiungi un nuovo immobile</span>
       <div>
-        <button type="submit" class="btn btn-primary d-xsm-none">Invia</button>
+        <a href="{{route('admin.apartments.index')}}" class="btn btn-primary d-xsm-none">Vai all'elenco appartamenti</button>
         <a href="{{route('admin.home')}}" class="btn heavenly">Torna alla dashboard</a>
       </div>
     </div>
@@ -29,7 +29,7 @@ Puoi inserire un nuovo immobile in vendita.
 
 
   <div class="box-card-long">
-    <form action="{{route('admin.apartments.store')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('admin.apartments.store')}}" method="POST" enctype="multipart/form-data" class="form-boolbnb">
 
       @csrf
 
@@ -94,7 +94,7 @@ Puoi inserire un nuovo immobile in vendita.
       </div>
 
       {{-- Cover Image --}}
-      <div class="mb-3">
+      <div class="mb-3 input-boolbnb">
           <label>Immagine di Copertina</label>
           <input type="file"
           class="form-control w-75 @error('cover_image') is-invalid @enderror"
@@ -282,7 +282,7 @@ Puoi inserire un nuovo immobile in vendita.
 
   function validateTitle(){
     const title = document.getElementById('title').value;
-    if(title.lenght == 0){
+    if(title.length == 0){
       titleError.innerHTML = 'Titolo non valido';
       return false;
     }
@@ -297,7 +297,7 @@ Puoi inserire un nuovo immobile in vendita.
   function validatePrice(){
     const price = document.getElementById('price').value;
     console.log(parseInt(price));
-    if(price.lenght == 0){
+    if(price.length == 0){
       priceError.innerHTML = 'Prezzo non valido';
       return false;
     }
@@ -317,7 +317,7 @@ Puoi inserire un nuovo immobile in vendita.
 
   function validateCategory(){
     const category = document.getElementById('category').value;
-    if(category.lenght == 0){
+    if(category.length == 0){
       categoryError.innerHTML = 'Categoria non valida';
       return false;
     }
@@ -331,7 +331,7 @@ Puoi inserire un nuovo immobile in vendita.
 
   function validateAddress(){
     const address = document.getElementById('address').value;
-    if(address.lenght === 0){
+    if(address.length === 0){
       addressError.innerHTML = 'L\'indirizzo non esiste';
       return false;
     }
@@ -342,7 +342,7 @@ Puoi inserire un nuovo immobile in vendita.
 
   function validateImg(){
     const img = document.getElementById('cover_image').value;
-    if(img.lenght === 0){
+    if(img.length == 0){
       imgError.innerHTML = 'Immagine non valida';
       return false;
     }

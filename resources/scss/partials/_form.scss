@@ -1,4 +1,4 @@
-form{
+.form-boolbnb{
   padding: 50px 30px 20px;
   border-radius: 5px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
@@ -18,9 +18,7 @@ form{
 
 .input-boolbnb input{
   background: transparent;
-  border: 0;
   outline: 0;
-  padding: 10px 0;
   border-bottom: 1px solid #999;
   color: #333;
   font-size: 16px;
@@ -29,10 +27,10 @@ form{
 
 .input-boolbnb span{
   position: absolute;
-  bottom: 12px;
-  right: 60px;
-  font-size: 14px;
-  color: red;
+  bottom: 6px;
+  right: 20px;
+  font-size: 18px;
+  color: $danger;
   i{
     color: seagreen;
   }
