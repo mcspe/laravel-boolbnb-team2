@@ -89,7 +89,6 @@ Qui sono presenti i tuoi immobili in vendita.
                 <td>
                   <a href="{{route('admin.apartments.show', $apartment)}}" class="ms-5 btn btn-primary">Vai</a>
                   <a href="{{route('admin.apartments.edit', $apartment)}}" class="btn btn-warning">Modifica</a>
-                  @include('admin.partials.delete-form')
                 </td>
               </tr>
             @endforeach
