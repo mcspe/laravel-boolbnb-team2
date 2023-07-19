@@ -26,7 +26,7 @@ class ApartmentsTableSeeder extends Seeder
             $new_apartment->user_id = User::inRandomOrder()->first()->id;
             $new_apartment->title = $apartment['title'];
             // $new_apartment->slug = $apartment['slug'];
-            $new_apartment->slug = CustomHelper::generateSlug($apartment['title'], new Apartment());
+            $new_apartment->slug = CustomHelper::generateUniqueSlug($apartment['title'], new Apartment());
             $new_apartment->category = $apartment['category'];
             $new_apartment->address = $apartment['address'];
             $new_apartment->n_rooms = $apartment['n_rooms'];
