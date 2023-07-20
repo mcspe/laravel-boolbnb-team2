@@ -87,7 +87,6 @@ Qui sono presenti i dettagli dell'immobile selezionato.
       </div>
       <span id="lat" hidden>{{ $lat }}</span>
       <span id="lng" hidden>{{ $lng }}</span>
-      <span id="apiKey" hidden>{{ $apiKey }}</span>
       <div id="map" style="width: 400px; height: 300px"></div>
     </div>
 
@@ -98,11 +97,12 @@ Qui sono presenti i dettagli dell'immobile selezionato.
 
 
 
-  <script type="text/javascript">
+<script type="text/javascript">
     /***** MAP SCRIPT *****/
     const lat = document.getElementById('lat').innerHTML;
     const lng = document.getElementById('lng').innerHTML;
-    const apiKey = document.getElementById('apiKey').innerHTML;
+    const apiKey = @php echo json_encode(env('API_IT_KEY'));  @endphp;
+
 
     console.log(apiKey);
 
@@ -118,7 +118,7 @@ Qui sono presenti i dettagli dell'immobile selezionato.
       new tt.Marker().setLngLat(center).addTo(map)
     })
 
-  </script>
+    </script>
 @endsection
 
 

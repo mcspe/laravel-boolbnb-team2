@@ -236,16 +236,17 @@ Puoi inserire un nuovo immobile in vendita.
   }
 
   // autocomplete searchbox
+  const apiKey = @php echo json_encode(env('API_IT_KEY'));  @endphp;
 
   const options = {
 
 	autocompleteOptions : {
-	key: 'jMP7C6DHaaq8PNVgJUg740ueeMPlH0xY',
+	key: apiKey,
 	language: 'it-IT',
 	},
 
 	searchOptions : {
-	key: 'jMP7C6DHaaq8PNVgJUg740ueeMPlH0xY',
+	key: apiKey,
 	language: 'it-IT',
 	limit: 10,
 	// idxSet: 'Str'
@@ -397,7 +398,7 @@ Puoi inserire un nuovo immobile in vendita.
 
   function validateBath(){
     const bath = document.getElementById('n_bathrooms').value;
-    if(parseInt(bath) < 20){
+    if(parseInt(bath) < 1){
       bathError.innerHTML = 'Deve contenere almeno 1 bagno';
       return false;
     }
