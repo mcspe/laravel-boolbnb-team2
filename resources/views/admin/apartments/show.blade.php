@@ -87,6 +87,7 @@ Qui sono presenti i dettagli dell'immobile selezionato.
       </div>
       <span id="lat" hidden>{{ $lat }}</span>
       <span id="lng" hidden>{{ $lng }}</span>
+      <span id="apiKey" hidden>{{ $apiKey }}</span>
       <div id="map" style="width: 400px; height: 300px"></div>
     </div>
 
@@ -101,11 +102,14 @@ Qui sono presenti i dettagli dell'immobile selezionato.
     /***** MAP SCRIPT *****/
     const lat = document.getElementById('lat').innerHTML;
     const lng = document.getElementById('lng').innerHTML;
+    const apiKey = document.getElementById('apiKey').innerHTML;
+
+    console.log(apiKey);
 
     // INSERT LONGITUDE AND LATITUDE
     let center= [lng, lat]
     const map = tt.map({
-      key:"D2uJigXaa5sTIMlRGUwMoZ5dmwOA1HlB",
+      key: apiKey,
       container: "map",
       center: center,
       zoom: 10

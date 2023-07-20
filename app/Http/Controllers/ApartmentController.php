@@ -94,12 +94,13 @@ class ApartmentController extends Controller
         $lat = $lat[0]['ST_X(`latitude_longitude`)'];
         $lng = json_decode(json_encode($longitude), true);
         $lng = $lng[0]['ST_Y(`latitude_longitude`)'];
+        $apiKey = env("API_IT_KEY");
 
         if($apartment->user_id != Auth::id()) {
           return redirect()->route('admin.apartments.index');
         }
 
-        return view('admin.apartments.show', compact('apartment', 'lat', 'lng'));
+        return view('admin.apartments.show', compact('apartment', 'lat', 'lng', 'apiKey'));
     }
 
     /**

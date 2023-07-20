@@ -67,7 +67,7 @@ class Apartment extends Model
       $query = '.json?typeahead=false&limit=1&view=Unified&key=';
 
       // Api key
-      $apiKey = env("API_IT_KEY ");
+      $apiKey = env("API_IT_KEY");
 
       // Receive contents in a json
       $addressJsonResults = file_get_contents($baseUrl . $addressToSearch . $query . $apiKey);
