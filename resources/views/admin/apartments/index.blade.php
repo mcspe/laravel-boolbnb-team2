@@ -69,9 +69,10 @@ Qui sono presenti i tuoi immobili in vendita.
               <th scope="col" class="d-xsm-none">Stanze</th>
               <th scope="col" class="d-xsm-none">Letti</th>
               <th scope="col" class="d-xsm-none">Bagni</th>
-              <th scope="col" class="d-xsm-none">Metri quadrati</th>
+              <th scope="col" class="d-xsm-none">m²</th>
               <th scope="col" class="d-xsm-none">Prezzo</th>
-              <th scope="col" class="text-center">Dettagli</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
             </tr>
           </thead>
 
@@ -87,8 +88,10 @@ Qui sono presenti i tuoi immobili in vendita.
                 <td class="d-xsm-none">{{$apartment->square_meters}}</td>
                 <td class="d-xsm-none">{{$apartment->price}}</td>
                 <td>
-                  <a href="{{route('admin.apartments.show', $apartment)}}" class="ms-5 btn btn-primary">Vai</a>
-                  <a href="{{route('admin.apartments.edit', $apartment)}}" class="btn btn-warning">Modifica</a>
+                  <a href="{{route('admin.apartments.show', $apartment)}}" class="ms-5 btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                </td>
+                <td>
+                  <a href="{{route('admin.apartments.edit', $apartment)}}" class="btn btn-warning"><i class="fa-solid fa-pencil"></i></a>
                 </td>
               </tr>
             @endforeach
