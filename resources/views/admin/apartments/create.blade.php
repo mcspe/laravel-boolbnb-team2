@@ -58,7 +58,7 @@ Puoi inserire un nuovo immobile in vendita.
           id="price"
           name="price"
           value="{{ old('price') }}"
-          placeholder="Inserisci un titolo"
+          placeholder="Inserisci un prezzo"
           onkeyup="validatePrice()"
           onclick="validatePrice()">
           <span id="price-error"></span>
