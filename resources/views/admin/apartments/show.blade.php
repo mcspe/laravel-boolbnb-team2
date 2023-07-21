@@ -40,7 +40,7 @@ Qui sono presenti i dettagli dell'immobile selezionato.
       <div class="description-box">
         <div class="price">
           <h4>Prezzo: {{$apartment->price}}€</h4>
-          <h4>Metri quadrati: {{$apartment->square_meters}}m²;
+          <h4>Metri quadrati: {{$apartment->square_meters}}m²
           </h4>
         </div>
 
