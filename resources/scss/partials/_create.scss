@@ -22,11 +22,41 @@
   background-color: #f5f7fa;
 }
 
+/* IMAGE PREVIEW */
+.img-preview {
+  cursor: pointer;
+  border-radius: 1rem 1rem 0 0;
+  background: gray;
+  overflow: hidden;
+  max-height: 300px;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  div {
+    cursor: pointer;
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    padding: 0 .5rem;
+    color: red;
+    transition: all .3s linear;
+  }
+  div:hover{
+    background: red;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.1rem;
+    transition: all .3s linear;
+  }
+}
+
+
 
 // MEEDIA QUERIES
 // MEDIA X-SMALL
 @media (min-width: 0 ) and (max-width: 575px){
-
 
 }
 

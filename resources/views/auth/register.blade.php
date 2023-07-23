@@ -178,7 +178,7 @@
 
     const inputValue = document.getElementById(id).value;
 
-    const regex = /^[a-zA-Z]{2,}$/;
+    const regex = /^[a-zA-Z\s]{2,}$/;
 
     if (regex.test(inputValue)) {
       document.getElementById(id).classList.add('is-valid');

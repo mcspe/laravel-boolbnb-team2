@@ -35,15 +35,14 @@ Puoi inserire un nuovo immobile in vendita.
 
       {{-- Title --}}
       <div class="mb-3 input-boolbnb">
-          <label class="">Titolo</label>
+          <label class="form-label" for="title">Titolo</label>
           <input type="text"
           class="form-control w-75 @error('title') is-invalid @enderror"
           id="title"
           name="title"
           value="{{ old('title') }}"
           placeholder="Inserisci un titolo"
-          onkeyup="validateTitle()"
-          onclick="validateTitle()">
+          onblur="validateTitle()">
           <span id="title-error"></span>
           @error('title')
             <p class="text-danger">{{ $message }}</p>
@@ -52,15 +51,14 @@ Puoi inserire un nuovo immobile in vendita.
 
       {{-- Price --}}
       <div class="mb-3 input-boolbnb">
-          <label>Prezzo</label>
+          <label class="form-label" for="price">Prezzo</label>
           <input type="text"
           class="form-control w-75 @error('price') is-invalid @enderror"
           id="price"
           name="price"
           value="{{ old('price') }}"
           placeholder="Inserisci un prezzo"
-          onkeyup="validatePrice()"
-          onclick="validatePrice()">
+          onblur="validatePrice()">
           <span id="price-error"></span>
           @error('price')
             <p class="text-danger">{{ $message }}</p>
@@ -69,15 +67,14 @@ Puoi inserire un nuovo immobile in vendita.
 
       {{-- Category --}}
       <div class="mb-3 input-boolbnb ">
-          <label>Categoria</label>
+          <label class="form-label" for="category">Categoria</label>
           <input type="text"
           class="form-control w-75 @error('category') is-invalid @enderror"
           id="category"
           name="category"
           value="{{ old('category') }}"
           placeholder="Inserisci categoria"
-          onkeyup="validateCategory()"
-          onclick="validateCategory()">
+          onblur="validateCategory()">
           <span id="category-error"></span>
           @error('category')
             <p class="text-danger">{{ $message }}</p>
@@ -86,7 +83,7 @@ Puoi inserire un nuovo immobile in vendita.
 
       {{-- Address --}}
       <div class="mb-3" id="searchbox">
-          <label>Indirizzo</label>
+          <label class="form-label" for="address">Indirizzo</label>
           <span id="address-error"></span>
           @error('address')
           <p class="text-danger">{{ $message }}</p>
@@ -95,37 +92,39 @@ Puoi inserire un nuovo immobile in vendita.
 
       {{-- Cover Image --}}
       <div class="mb-3 input-boolbnb">
-          <label>Immagine di Copertina</label>
-          <input type="file"
-          class="form-control w-75 @error('cover_image') is-invalid @enderror"
-          id="cover_image"
-          name="cover_image"
-          value="{{ old('cover_image') }}"
-          placeholder="Inserisci l'indirizzo"
-          onkeyup="validateImg()"
-          onclick="validateImg()"
-          onchange="showImg(event)">
-          <span id="img-error"></span>
-          @error('cover_image')
-            <p class="text-danger">{{ $message }}</p>
-          @enderror
 
-        <div class="img-preview m-5 position-relative">
+        <label class="form-label" for="cover_image">Immagine di Copertina</label>
+
+        <div class="img-preview position-relative d-flex justify-content-center align-items-center p-3" title="Aggiungi un immagine" onclick="openfile()">
           <img id="img-preview" src="{{ $src }}" alt="" width="100">
-          <div class="position-absolute" id="img-clear" onclick="clearImg()"><span>X</span></div>
+          <div class="position-absolute" id="img-clear" onclick="clearImg(event)">
+            <i class="fa-solid fa-xmark"></i>
+          </div>
         </div>
+
+        <input type="file"
+        class="form-control w-75 @error('cover_image') is-invalid @enderror"
+        id="cover_image"
+        name="cover_image"
+        value="{{ old('cover_image') }}"
+        placeholder="Inserisci un'immagine di copertina"
+        onchange="showImg(event)">
+        <span id="img-error"></span>
+        @error('cover_image')
+          <p class="text-danger">{{ $message }}</p>
+        @enderror
+
       </div>
 
       {{-- square_meters --}}
       <div class="mb-3 input-boolbnb ">
-        <label>Metri quadri</label>
+        <label class="form-label" for="square_meters">Metri quadri</label>
         <input type="text"
         class="form-control w-75 @error('square_meters') is-invalid @enderror"
         id="square_meters"
         name="square_meters"
         value="{{ old('square_meters') }}"
-        onkeyup="validateMeters()"
-        onclick="validateMeters()">
+        onblur="validateMeters()">
         <span id="meters-error"></span>
         @error('square_meters')
           <p class="text-danger">{{ $message }}</p>
@@ -134,14 +133,13 @@ Puoi inserire un nuovo immobile in vendita.
 
       {{-- Number of rooms --}}
       <div class="mb-3 input-boolbnb ">
-          <label>Numero stanze</label>
+          <label class="form-label" for="n_rooms">Numero stanze</label>
           <input type="text"
           class="form-control w-75 @error('n_rooms') is-invalid @enderror"
           id="n_rooms"
           name="n_rooms"
           value="{{ old('n_rooms') }}"
-          onkeyup="validateRooms()"
-          onclick="validateRooms()">
+          onblur="validateRooms()">
           <span id="n-rooms-error"></span>
           @error('n_rooms')
             <p class="text-danger">{{ $message }}</p>
@@ -150,14 +148,13 @@ Puoi inserire un nuovo immobile in vendita.
 
       {{-- Number of beds --}}
       <div class="mb-3 input-boolbnb ">
-          <label>Numero letti</label>
+          <label class="form-label" for="n_beds">Numero letti</label>
           <input type="text"
           class="form-control w-75 @error('n_beds') is-invalid @enderror"
           id="n_beds"
           name="n_beds"
           value="{{ old('n_beds') }}"
-          onkeyup="validateBed()"
-          onclick="validateBed()">
+          onblur="validateBed()">
           <span id="n-bed-error"></span>
           @error('n_beds')
             <p class="text-danger">{{ $message }}</p>
@@ -166,14 +163,13 @@ Puoi inserire un nuovo immobile in vendita.
 
       {{-- Number of bathrooms --}}
       <div class="mb-3 input-boolbnb">
-          <label>Numero bagni</label>
+          <label class="form-label" for="n_bathrooms">Numero bagni</label>
           <input type="text"
           class=" form-control w-75 @error('n_bathrooms') is-invalid @enderror"
           id="n_bathrooms"
           name="n_bathrooms"
           value="{{ old('n_bathrooms') }}"
-          onkeyup="validateBath()"
-          onclick="validateBath()">
+          onblur="validateBath()">
           <span id="n-bath-error"></span>
           @error('n_bathrooms')
             <p class="text-danger">{{ $message }}</p>
@@ -217,22 +213,46 @@ Puoi inserire un nuovo immobile in vendita.
 
 <script>
 
-  // cover_image upload
+  let formValidated = false;
+
+  function validateForm() {
+    return formValidated;
+  }
+
+  // cover_image upload & validation
 
   const imgPreview = document.getElementById('img-preview');
   const imgTag = document.getElementById('cover_image');
   const imgClear = document.getElementById('img-clear');
   imgClear.classList.add('d-none');
+  const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.webp)$/i;
+  const noImgSrc = "@php echo $src @endphp";
 
   function showImg(e) {
+    if (!allowedExtensions.exec(imgTag.value)) {
+      imgError.innerHTML = 'Immagine non valida';
+      imgTag.value = '';
+      imgPreview.src = noImgSrc;
+      imgClear.classList.add('d-none');
+      formValidated = false;
+      return false;
+    }
     imgPreview.src = URL.createObjectURL(e.target.files[0]);
     imgClear.classList.remove('d-none');
+    formValidated = true;
+    imgError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
   }
 
-  function clearImg() {
-    imgPreview.src = "http://127.0.0.1:8000/storage/uploads/img-placeholder.png";
+  function clearImg(e) {
+    e.stopPropagation();
+    imgPreview.src = noImgSrc;
     imgTag.value = '';
     imgClear.classList.add('d-none');
+    imgError.innerHTML = '';
+  }
+
+  function openfile() {
+    imgTag.click();
   }
 
   // autocomplete searchbox
@@ -282,37 +302,41 @@ Puoi inserire un nuovo immobile in vendita.
   const bathError = document.getElementById('n-bath-error')
 
   function validateTitle(){
-    const title = document.getElementById('title').value;
-    if(title.length == 0){
+    const title = document.getElementById('title').value.trim();
+
+    if(!title.match(/[A-Za-z\s]{5,}/g)){
       titleError.innerHTML = 'Titolo non valido';
+      formValidated = false;
       return false;
     }
-    if(!title.match(/[A-Za-z]/g)){
-      titleError.innerHTML = 'Titolo non valido';
-      return false;
-    }
+    formValidated = true;
     titleError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
-    return true;
   }
 
   function validatePrice(){
-    const price = document.getElementById('price').value;
-    console.log(parseInt(price));
-    if(price.length == 0){
+
+    const price = document.getElementById('price');
+    const regex = /^[1-9]\d*(((\d{3}){1})?(\.\d{0,2})?)$/;
+
+    if(parseFloat(price.value) < 1){
       priceError.innerHTML = 'Prezzo non valido';
+      formValidated = false;
       return false;
     }
-    if(parseFloat(price) > 999.99){
+    if(parseFloat(price.value) > 999.99){
       priceError.innerHTML = 'Prezzo non valido';
+      formValidated = false;
       return false;
     }
-    if(!price.match(/[0-9]/)){
+    if(!regex.test(price.value)){
       priceError.innerHTML = 'Prezzo non valido';
+      formValidated = false;
       return false;
     }
 
+    price.value = !(isNaN(parseFloat(price.value))) ? parseFloat(price.value).toFixed(2) : '';
+    formValidated = true;
     priceError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
-    return true;
 
   }
 
@@ -320,95 +344,99 @@ Puoi inserire un nuovo immobile in vendita.
     const category = document.getElementById('category').value;
     if(category.length == 0){
       categoryError.innerHTML = 'Categoria non valida';
+      formValidated = false;
       return false;
     }
     if(!category.match(/[A-Za-z]/g)){
-      categoryError.innerHTML = 'Categoria non valido';
+      categoryError.innerHTML = 'Categoria non valida';
+      formValidated = false;
       return false;
     }
+    formValidated = true;
     categoryError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
-    return true;
   }
 
-  function validateAddress(){
-    const address = document.getElementById('address').value;
-    if(address.length === 0){
-      addressError.innerHTML = 'L\'indirizzo non esiste';
-      return false;
-    }
+  // function validateAddress(){
+  //   const address = document.getElementById('address').value;
+  //   if(address.length === 0){
+  //     addressError.innerHTML = 'L\'indirizzo non esiste';
+  //     return false;
+  //   }
 
-    addressError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
-    return true;
-  }
-
-  function validateImg(){
-    const img = document.getElementById('cover_image').value;
-    if(img.length == 0){
-      imgError.innerHTML = 'Immagine non valida';
-      return false;
-    }
-
-    imgError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
-    return true;
-  }
+  //   addressError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
+  //   return true;
+  // }
 
   function validateMeters(){
     const meters = document.getElementById('square_meters').value;
+    const regex = /^\d+$/;
+
     if(parseInt(meters) < 20){
       metersError.innerHTML = 'Deve contenere minimo 20 mq';
+      formValidated = false;
       return false;
     }
-    if(!meters.match(/[0-9]/)){
+    if(!regex.test(meters)){
       metersError.innerHTML = 'Metri non validi';
+      formValidated = false;
       return false;
     }
-
+    formValidated = true;
     metersError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
-    return true;
   }
 
   function validateRooms(){
     const rooms = document.getElementById('n_rooms').value;
+    const regex = /^\d+$/;
+
     if(parseInt(rooms) < 1){
       roomsError.innerHTML = 'Deve contenere almeno 1 stanza';
+      formValidated = false;
       return false;
     }
-    if(!rooms.match(/[0-9]/)){
+    if(!regex.test(rooms)){
       roomsError.innerHTML = 'Valore non valido';
+      formValidated = false;
       return false;
     }
+    formValidated = true;
     roomsError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
-    return true;
   }
 
   function validateBed(){
     const bed = document.getElementById('n_beds').value;
+    const regex = /^\d+$/;
+
     if(parseInt(bed) < 1){
       bedError.innerHTML = 'Deve contenere almeno 1 letto';
+      formValidated = false;
       return false;
     }
-    if(!bed.match(/[0-9]/)){
+    if(!regex.test(bed)){
       bedError.innerHTML = 'Valore non valido';
+      formValidated = false;
       return false;
     }
-
+    formValidated = true;
     bedError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
-    return true;
   }
 
   function validateBath(){
     const bath = document.getElementById('n_bathrooms').value;
+    const regex = /^\d+$/;
+
     if(parseInt(bath) < 1){
       bathError.innerHTML = 'Deve contenere almeno 1 bagno';
+      formValidated = false;
       return false;
     }
-    if(!bath.match(/[0-9]/)){
+    if(!regex.test(bath)){
       bathError.innerHTML = 'Valore non valido';
+      formValidated = false;
       return false;
     }
-
+    formValidated = true;
     bathError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
-    return true;
   }
 </script>
 
