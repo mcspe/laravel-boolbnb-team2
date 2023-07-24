@@ -21,8 +21,8 @@ class PostController extends Controller {
     return $rawDistance->distance / 1000;
 }
   ///////////////////////////////////////////
-  public function advancedSearch() { //aggiungere eventualmente la REQUEST tra le tonde della funzione
-      // $data = $request->all();
+  public function advancedSearch(Request $request) { //aggiungere eventualmente la REQUEST tra le tonde della funzione
+      $data = $request->all();
 
       $apartments = Apartment::select([
           'id', 'user_id', 'title', 'slug', 'category', 'address', 'n_rooms', 'n_beds', 'n_bathrooms', 'square_meters',
@@ -31,13 +31,13 @@ class PostController extends Controller {
       ->with('services', 'sponsorships', 'messages', 'visits')
       ->get();
 
-      // $longitude = $data['longitude'];
-      // $latitude = $data['latitude'];
-      // $radius = $data['radius']; // in Km
+      $longitude = $data['longitude'];
+      $latitude = $data['latitude'];
+      $radius = $data['radius']; // in Km
 
-      $longitude = 14.198047;
-      $latitude = 40.803755;
-      $radius = 100; // in Km
+      // $longitude = 14.198047;
+      // $latitude = 40.803755;
+      // $radius = 100; // in Km
 
       $filteredApartments = $apartments->filter(function ($apartment) use ($longitude, $latitude, $radius) {
           $distanceInKm = $this->calculateDistance($apartment->longitude, $apartment->latitude, $longitude, $latitude);
