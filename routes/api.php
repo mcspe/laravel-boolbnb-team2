@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::namespace('Api')->prefix('apartments')->group(function(){
   Route::get('/', [PostController::class, 'index']);
-  Route::post('/apartments/search', [PostController::class, 'advancedSearch']);
+  Route::post('/search', [PostController::class, 'advancedSearch']);
 });
 
 // Route::get('/apartments/search', [PostController::class, 'advancedSearch']);
