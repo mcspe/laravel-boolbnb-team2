@@ -33,8 +33,8 @@ class SearchController extends Controller
         'id', 'user_id', 'title', 'slug', 'category', 'address',
         'address', 'n_rooms', 'n_beds', 'n_of_bed', 'n_bathrooms', 'n_of_bathroom',
         'square_meters', 'price', 'cover_image', 'is_visible',
-        DB::raw("ST_Y(coordinate) as latitude"),
-        DB::raw("ST_X(coordinate) as longitude"),
+        DB::raw("ST_X(latitude_longitude) as latitude"),
+        DB::raw("ST_Y(latitude_longitude) as longitude"),
         DB::raw("ST_Distance_Sphere(point(ST_X(latitude_longitude), ST_Y(latitude_longitude)), point($latitude, $longitude)) / 1000 as distance")
     ])
     ->with('services', 'sponsorships', 'messages', 'visits')
