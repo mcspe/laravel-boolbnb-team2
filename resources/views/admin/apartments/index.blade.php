@@ -34,6 +34,22 @@ Qui sono presenti i tuoi immobili in vendita.
     </div>
   </div>
 
+  <div class="box-card-long mb-5 d-none" id="sessionMessage">
+
+      @if (session('deleted'))
+        <span class="text-success">
+            {{ session('deleted') }}
+        </span>
+      @endif
+
+      @if (session('not_authorized'))
+        <span class="text-danger">
+            {{ session('not_authorized') }}
+        </span>
+      @endif
+
+  </div>
+
   {{-- If n_apartments is >= 1 i see the table with loaded apartments --}}
   @if ($n_apartments >= 1)
     <div class="box-card-long">
@@ -109,6 +125,17 @@ Qui sono presenti i tuoi immobili in vendita.
 
 </div>
 
+<script>
+  const sessionMessage = document.getElementById('sessionMessage');
+  if(sessionMessage.childElementCount != 0){
+    sessionMessage.classList.remove('d-none');
+    const myTimeout = setTimeout(hideMessage, 5000);
+
+    function hideMessage() {
+      sessionMessage.classList.add('d-none');
+    }
+  }
+</script>
 @endsection
 
 

@@ -97,7 +97,7 @@ class ApartmentController extends Controller
         $apiKey = env("API_IT_KEY");
 
         if($apartment->user_id != Auth::id()) {
-          return redirect()->route('admin.apartments.index');
+          return redirect()->route('admin.apartments.index')->with('not_authorized', "La pagina che stai tentando di visualizzare non esiste");
         }
 
         return view('admin.apartments.show', compact('apartment', 'lat', 'lng', 'apiKey'));
@@ -113,9 +113,14 @@ class ApartmentController extends Controller
     {
         $services = Service::all();
         $src = asset('storage/' . $apartment->cover_image);
+        $noImgSrc = asset('storage/uploads/img-placeholder.png');
 
 
-        return view('admin.apartments.edit', compact('apartment', 'services', 'src'));
+        if($apartment->user_id != Auth::id()) {
+          return redirect()->route('admin.apartments.index')->with('not_authorized', "La pagina che stai tentando di visualizzare non esiste");
+        }
+
+        return view('admin.apartments.edit', compact('apartment', 'services', 'src', 'noImgSrc'));
     }
 
     /**
@@ -191,6 +196,6 @@ class ApartmentController extends Controller
 
       $apartment->delete();
 
-      return redirect()->route('admin.apartments.index')->with('deleted', "The Apartment '$apartment->title' <- has been succesfully deleted");
+      return redirect()->route('admin.apartments.index')->with('deleted', "L'immobile '$apartment->title' è stato eliminato correttamente");
     }
 }
