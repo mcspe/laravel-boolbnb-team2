@@ -45,6 +45,7 @@ Puoi modificare i dettagli del tuo immobile.
           id="title"
           name="title"
           placeholder="Inserisci un titolo"
+          required
           onblur="validateTitle()">
           <span id="title-error"></span>
           @error('title')
@@ -240,6 +241,7 @@ Puoi modificare i dettagli del tuo immobile.
     imgPreview.src = URL.createObjectURL(e.target.files[0]);
     imgClear.classList.remove('d-none');
     imgError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
+    return true;
   }
 
   function clearImg(e) {
@@ -285,6 +287,7 @@ Puoi modificare i dettagli del tuo immobile.
 
     inputBox.setAttribute('name', 'address')
     inputBox.setAttribute('autocomplete', 'off')
+    inputBox.setAttribute('required', true)
     inputBox.setAttribute('placeholder', 'Inserisci l\'indirizzo')
     inputBox.setAttribute('value', '{{ old("address") }}')
 
@@ -309,6 +312,7 @@ Puoi modificare i dettagli del tuo immobile.
       return false;
     }
     titleError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
+    return true;
   }
 
   function validatePrice(){
@@ -331,7 +335,7 @@ Puoi modificare i dettagli del tuo immobile.
 
     price.value = !(isNaN(parseFloat(price.value))) ? parseFloat(price.value).toFixed(2) : '';
     priceError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
-
+    return true;
   }
 
   function validateCategory(){
@@ -345,6 +349,7 @@ Puoi modificare i dettagli del tuo immobile.
       return false;
     }
     categoryError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
+    return true;
   }
 
   // function validateAddress(){
@@ -372,6 +377,7 @@ Puoi modificare i dettagli del tuo immobile.
     }
 
     metersError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
+    return true;
   }
 
   function validateRooms(){
@@ -387,6 +393,7 @@ Puoi modificare i dettagli del tuo immobile.
       return false;
     }
     roomsError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
+    return true;
   }
 
   function validateBed(){
@@ -403,6 +410,7 @@ Puoi modificare i dettagli del tuo immobile.
     }
 
     bedError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
+    return true;
   }
 
   function validateBath(){
@@ -419,6 +427,7 @@ Puoi modificare i dettagli del tuo immobile.
     }
 
     bathError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
+    return true;
   }
 
   </script>

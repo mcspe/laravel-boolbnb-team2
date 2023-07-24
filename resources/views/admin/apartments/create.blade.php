@@ -33,15 +33,18 @@ Puoi inserire un nuovo immobile in vendita.
 
       @csrf
 
+      <span>I campi contrassegnati con * sono obbligatori</span>
+
       {{-- Title --}}
       <div class="mb-3 input-boolbnb">
-          <label class="form-label" for="title">Titolo</label>
+          <label class="form-label" for="title">Titolo*</label>
           <input type="text"
           class="form-control w-75 @error('title') is-invalid @enderror"
           id="title"
           name="title"
           value="{{ old('title') }}"
           placeholder="Inserisci un titolo"
+          required
           onblur="validateTitle()">
           <span id="title-error"></span>
           @error('title')
@@ -83,7 +86,7 @@ Puoi inserire un nuovo immobile in vendita.
 
       {{-- Address --}}
       <div class="mb-3" id="searchbox">
-          <label class="form-label" for="address">Indirizzo</label>
+          <label class="form-label" for="address">Indirizzo*</label>
           <span id="address-error"></span>
           @error('address')
           <p class="text-danger">{{ $message }}</p>
@@ -213,12 +216,6 @@ Puoi inserire un nuovo immobile in vendita.
 
 <script>
 
-  let formValidated = false;
-
-  function validateForm() {
-    return formValidated;
-  }
-
   // cover_image upload & validation
 
   const imgPreview = document.getElementById('img-preview');
@@ -234,13 +231,12 @@ Puoi inserire un nuovo immobile in vendita.
       imgTag.value = '';
       imgPreview.src = noImgSrc;
       imgClear.classList.add('d-none');
-      formValidated = false;
       return false;
     }
     imgPreview.src = URL.createObjectURL(e.target.files[0]);
     imgClear.classList.remove('d-none');
-    formValidated = true;
     imgError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
+    return true;
   }
 
   function clearImg(e) {
@@ -285,6 +281,7 @@ Puoi inserire un nuovo immobile in vendita.
 
   inputBox.setAttribute('name', 'address')
   inputBox.setAttribute('autocomplete', 'off')
+  inputBox.setAttribute('required', true)
   inputBox.setAttribute('placeholder', 'Inserisci l\'indirizzo')
   inputBox.setAttribute('value', '{{ old("address") }}')
 
@@ -305,12 +302,10 @@ Puoi inserire un nuovo immobile in vendita.
     const title = document.getElementById('title').value.trim();
 
     if(!title.match(/[A-Za-z\s]{5,}/g)){
-      titleError.innerHTML = 'Titolo non valido';
-      formValidated = false;
-      return false;
+      titleError.innerHTML = 'Titolo non valido';      return false;
     }
-    formValidated = true;
     titleError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
+    return true;
   }
 
   function validatePrice(){
@@ -320,40 +315,34 @@ Puoi inserire un nuovo immobile in vendita.
 
     if(parseFloat(price.value) < 1){
       priceError.innerHTML = 'Prezzo non valido';
-      formValidated = false;
       return false;
     }
     if(parseFloat(price.value) > 999.99){
       priceError.innerHTML = 'Prezzo non valido';
-      formValidated = false;
       return false;
     }
     if(!regex.test(price.value)){
       priceError.innerHTML = 'Prezzo non valido';
-      formValidated = false;
       return false;
     }
 
     price.value = !(isNaN(parseFloat(price.value))) ? parseFloat(price.value).toFixed(2) : '';
-    formValidated = true;
     priceError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
-
+    return true;
   }
 
   function validateCategory(){
     const category = document.getElementById('category').value;
     if(category.length == 0){
       categoryError.innerHTML = 'Categoria non valida';
-      formValidated = false;
       return false;
     }
     if(!category.match(/[A-Za-z]/g)){
       categoryError.innerHTML = 'Categoria non valida';
-      formValidated = false;
       return false;
     }
-    formValidated = true;
     categoryError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
+    return true;
   }
 
   // function validateAddress(){
@@ -373,16 +362,14 @@ Puoi inserire un nuovo immobile in vendita.
 
     if(parseInt(meters) < 20){
       metersError.innerHTML = 'Deve contenere minimo 20 mq';
-      formValidated = false;
       return false;
     }
     if(!regex.test(meters)){
       metersError.innerHTML = 'Metri non validi';
-      formValidated = false;
       return false;
     }
-    formValidated = true;
     metersError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
+    return true;
   }
 
   function validateRooms(){
@@ -391,16 +378,15 @@ Puoi inserire un nuovo immobile in vendita.
 
     if(parseInt(rooms) < 1){
       roomsError.innerHTML = 'Deve contenere almeno 1 stanza';
-      formValidated = false;
       return false;
     }
     if(!regex.test(rooms)){
       roomsError.innerHTML = 'Valore non valido';
-      formValidated = false;
       return false;
     }
     formValidated = true;
     roomsError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
+    return true;
   }
 
   function validateBed(){
@@ -409,16 +395,14 @@ Puoi inserire un nuovo immobile in vendita.
 
     if(parseInt(bed) < 1){
       bedError.innerHTML = 'Deve contenere almeno 1 letto';
-      formValidated = false;
       return false;
     }
     if(!regex.test(bed)){
       bedError.innerHTML = 'Valore non valido';
-      formValidated = false;
       return false;
     }
-    formValidated = true;
     bedError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
+    return true;
   }
 
   function validateBath(){
@@ -427,16 +411,14 @@ Puoi inserire un nuovo immobile in vendita.
 
     if(parseInt(bath) < 1){
       bathError.innerHTML = 'Deve contenere almeno 1 bagno';
-      formValidated = false;
       return false;
     }
     if(!regex.test(bath)){
       bathError.innerHTML = 'Valore non valido';
-      formValidated = false;
       return false;
     }
-    formValidated = true;
     bathError.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
+    return true;
   }
 </script>
 
