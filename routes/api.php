@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\SearchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,10 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::namespace('Api')->prefix('apartments')->group(function(){
+Route::namespace('Api')
+  ->prefix('apartments')
+  ->group(function(){
   Route::get('/', [PostController::class, 'index']);
-  Route::post('/search', [PostController::class, 'advancedSearch']);
 });
 
-// Route::get('/apartments/search', [PostController::class, 'advancedSearch']);
+Route::namespace('Api')
+  ->prefix('search')
+  ->group(function(){
+    Route::post('/', [SearchController::class, 'advancedSearch']);
+});
+
+// Route::get('/apartments/search', [SearchController::class, 'advancedSearch']);
 
