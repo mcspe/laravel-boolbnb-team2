@@ -84,36 +84,4 @@ class Apartment extends Model
 
       return $coordinates;
     }
-
-    public static function getRadius($category){
-
-      $baseUrl = 'https://api.tomtom.com/search/2/search/';
-
-      $category_search = Str::slug($category, '%20');
-
-      $query = '.json?key=';
-
-      $apiKey = env("API_IT_KEY");
-
-      $radius = 'radius=';
-
-      $radius_search = $radius . '1000';
-
-
-      $categoryJsonResult = file_get_contents($baseUrl . $category_search . $query . $apiKey .  $radius_search);
-
-      $decodingCategory = json_decode($categoryJsonResult, JSON_PRETTY_PRINT);
-
-      $latitude = $decodingCategory['results'][0]['position']['lat'];
-      $longitude = $decodingCategory['results'][0]['position']['lon'];
-
-
-
-      // Get coordinates with DB syntax
-      $coordinates = "ST_GeomFromText('POINT($latitude $longitude)')";
-
-      return $coordinates;
-
-
-    }
 }
