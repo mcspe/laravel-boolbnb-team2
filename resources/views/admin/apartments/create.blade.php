@@ -204,7 +204,23 @@ Puoi inserire un nuovo immobile in vendita.
 
           </div>
 
+
         </div>
+
+      </div>
+
+      {{-- Toggle visible --}}
+      <div class="is-visible-check mb-3 form-check form-switch">
+        <label class="form-label" for="is_visible">Rendi visibile il tuo appartamento</label>
+        <input type="checkbox"
+        class="form-control form-check-input"
+        role="switch"
+        id="is_visible"
+        name="is_visible"
+        value="1"
+        @if ( old('is_visible'))
+          checked
+        @endif>
 
       </div>
 

@@ -213,6 +213,19 @@ Puoi modificare i dettagli del tuo immobile.
 
       </div>
 
+      {{-- Toggle visible --}}
+      <div class="is-visible-check mb-3 form-check form-switch">
+        <label class="form-label" for="is_visible">Rendi visibile il tuo appartamento</label>
+        <input type="checkbox"
+        class="form-control form-check-input"
+        role="switch"
+        id="is_visible"
+        name="is_visible"
+        value="1"
+        @if ( old('is_visible', $apartment->is_visible))
+          checked
+        @endif>
+      </div>
 
       <button type="submit" class="btn btn-primary">Conferma modifica</button>
     </form>
@@ -289,7 +302,7 @@ Puoi modificare i dettagli del tuo immobile.
     inputBox.setAttribute('autocomplete', 'off')
     inputBox.setAttribute('required', true)
     inputBox.setAttribute('placeholder', 'Inserisci l\'indirizzo')
-    inputBox.setAttribute('value', '{{ old("address") }}')
+    inputBox.setAttribute('value', '{{ old("address", $apartment->address) }}')
 
 
 

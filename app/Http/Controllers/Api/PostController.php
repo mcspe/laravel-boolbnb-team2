@@ -13,14 +13,20 @@ class PostController extends Controller {
     //$apartments = Apartment::all();
 
     // query per prendere tutti gli appartamenti
-    $apartments = Apartment::select(['id','user_id','title','slug','category','address','n_rooms','n_beds','n_bathrooms','square_meters',
-    DB::raw('ST_X(latitude_longitude) as latitude'), DB::raw('ST_Y(latitude_longitude) as longitude'),'price','cover_image','is_visible'])->with('services','visits', 'user')->get();
+    $apartments = Apartment::select([
+      'id','user_id','title','slug','category','address','n_rooms','n_beds','n_bathrooms','square_meters',
+      DB::raw('ST_X(latitude_longitude) as latitude'),
+      DB::raw('ST_Y(latitude_longitude) as longitude'),
+      'price','cover_image','is_visible'])
+      ->where('is_visible', '=', 1)
+      ->with('services','visits', 'user')->get();
 
     // query per prendere solo appartamenti sponsorizzati
 
     $sponsoredApt = Apartment::select([
       'id','user_id','title','slug','category','address','n_rooms','n_beds','n_bathrooms','square_meters', DB::raw('ST_X(latitude_longitude) as latitude'), DB::raw('ST_Y(latitude_longitude) as longitude'),'price','cover_image','is_visible'
       ])
+      ->where('is_visible', '=', 1)
       ->with('services','visits')
       ->whereHas('sponsorships', function($q){
       $today = '2023-07-18 11:06:00';

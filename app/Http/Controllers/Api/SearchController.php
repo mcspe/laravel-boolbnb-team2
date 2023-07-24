@@ -62,15 +62,15 @@ class SearchController extends Controller
           DB::raw("ST_Y(latitude_longitude) as longitude"),
           DB::raw("ST_Distance_Sphere(point(ST_X(latitude_longitude), ST_Y(latitude_longitude)), point($latitude, $longitude)) / 1000 as distance")
         ])
-    ->with('services', 'visits')
-    ->having('distance', '<=', $radius)
-    ->when(count($services) > 0, function ($query) use ($services) {
-      return $query->whereHas('services', function (Builder $query) use ($services) {
-          $query->whereIn('service_id', $services);
-      });
-    })
-    ->orderBy('distance')
-    ->get();
+        ->with('services', 'visits')
+        ->having('distance', '<=', $radius)
+        ->when(count($services) > 0, function ($query) use ($services) {
+          return $query->whereHas('services', function (Builder $query) use ($services) {
+              $query->whereIn('service_id', $services);
+          });
+        })
+        ->orderBy('distance')
+        ->get();
 
     // if (count($services) > 0) {
     //   $query->whereHas('services', function (Builder $query) use ($services) {

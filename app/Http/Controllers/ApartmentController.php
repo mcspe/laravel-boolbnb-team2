@@ -77,6 +77,10 @@ class ApartmentController extends Controller
           $new_apartment->services()->attach($form_data['services']);
         }
 
+        if (!(array_key_exists('is_visible', $form_data))) {
+          $form_data['is_visible'] = 0;
+        }
+
         return redirect()->route('admin.apartments.show', $new_apartment);
     }
 
@@ -169,6 +173,9 @@ class ApartmentController extends Controller
           $apartment->sponsorships()->detach();
       }
 
+      if(!array_key_exists('is_visible', $form_data)) {
+        $form_data['is_visible'] = 0;
+      }
       $apartment->update($form_data);
 
       if(array_key_exists('services', $form_data)){
@@ -176,6 +183,7 @@ class ApartmentController extends Controller
       }else{
         $apartment->services()->detach();
       }
+
 
       return redirect()->route('admin.apartments.show', $apartment);
 
