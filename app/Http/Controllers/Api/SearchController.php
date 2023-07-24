@@ -21,25 +21,35 @@ class SearchController extends Controller
 
       $data = $request->all();
 
+      // $longitude = 14.198047;
+      // $latitude = 40.803755;
+      // $radius = 100; // in Km
+
       $longitude = $data['longitude'];
       $latitude = $data['latitude'];
       $radius = $data['radius']; // in Km
 
       $apartments = Apartment::select([
-          'id', 'user_id', 'title', 'slug', 'category', 'address', 'n_rooms', 'n_beds', 'n_bathrooms', 'square_meters',
-          DB::raw('ST_X(latitude_longitude) as latitude'), DB::raw('ST_Y(latitude_longitude) as longitude'), 'price', 'cover_image', 'is_visible'
-      ])
-      ->whereRaw("ST_Distance_Sphere(point(longitude, latitude), point(?, ?)) <= ?", [$longitude, $latitude, $radius * 1000])
-      ->with('services', 'sponsorships', 'messages', 'visits')
-      ->get();
+        'id', 'user_id', 'title', 'slug', 'category', 'address',
+        'address', 'n_rooms', 'n_beds', 'n_of_bed', 'n_bathrooms', 'n_of_bathroom',
+        'square_meters', 'price', 'cover_image', 'is_visible',
+        DB::raw("ST_X(latitude_longitude) as latitude"),
+        DB::raw("ST_Y(latitude_longitude) as longitude"),
+        DB::raw("ST_Distance_Sphere(point(ST_X(latitude_longitude), ST_Y(latitude_longitude)), point($latitude, $longitude)) / 1000 as distance")
+    ])
+    ->with('services', 'sponsorships', 'messages', 'visits')
+    ->having('distance', '<=', $radius)
+    ->orderBy('distance');
 
-
-      $filteredApartments = $apartments->filter(function ($apartment) use ($longitude, $latitude, $radius) {
-          $distanceInKm = $this->calculateDistance($apartment->longitude, $apartment->latitude, $longitude, $latitude);
-          return $distanceInKm <= $radius;
-      })->values()->toArray();
-
-
-      return response()->json(compact('filteredApartments'));
+    return response()->json(compact('apartments'));
   }
+
+      // $filteredApartments = $apartments->filter(function ($apartment) use ($longitude, $latitude, $radius) {
+      //     $distanceInKm = $this->calculateDistance($apartment->longitude, $apartment->latitude, $longitude, $latitude);
+      //     return $distanceInKm <= $radius;
+      // })->values()->toArray();
+
+
+      // return response()->json(compact('filteredApartments'));
+
 }
