@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Apartment;
+use App\Models\Service;
 use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller {
@@ -34,9 +35,12 @@ class PostController extends Controller {
       $q->where('expiration_date', '>=', $today);
     })->get();
 
+    $availableServices = Service::all();
+
     $results = [
       'sponsored_apartments' => $sponsoredApt,
-      'total_apartments' => $apartments
+      'total_apartments' => $apartments,
+      "availableServices" => $availableServices
     ];
 
     return response()->json($results);
