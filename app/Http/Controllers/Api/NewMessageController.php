@@ -14,5 +14,7 @@ class NewMessageController extends Controller
     $new_message = new Message();
     $new_message->fill($form_data);
     $new_message->save();
+
+    return response()->json('Il tuo messaggio è stato inviato correttamente');
   }
 }
