@@ -45,4 +45,8 @@ class PostController extends Controller {
 
     return response()->json($results);
   }
+
+  public function getKey() {
+    return response()->json(env('API_IT_KEY'));
+  }
 }
