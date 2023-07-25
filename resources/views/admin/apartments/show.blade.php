@@ -103,9 +103,6 @@ Qui sono presenti i dettagli dell'immobile selezionato.
     const lng = document.getElementById('lng').innerHTML;
     const apiKey = @php echo json_encode(env('API_IT_KEY'));  @endphp;
 
-
-    console.log(apiKey);
-
     // INSERT LONGITUDE AND LATITUDE
     let center= [lng, lat]
     const map = tt.map({
