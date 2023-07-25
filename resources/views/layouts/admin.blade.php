@@ -19,6 +19,13 @@
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox-web.js"></script>
 
 
+    <!-- BRAINTREE -->
+    <script src="https://js.braintreegateway.com/web/dropin/1.39.0/js/dropin.min.js"></script>
+
+
+
+
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

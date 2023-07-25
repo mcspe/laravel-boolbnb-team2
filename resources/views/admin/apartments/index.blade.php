@@ -93,7 +93,7 @@ Qui sono presenti i tuoi immobili in vendita.
           </thead>
 
           <tbody>
-            @foreach ($apartments as $apartment)
+            @foreach ($apartments as $index => $apartment)
               <tr>
                 <td>{{$apartment->title}}</td>
                 <td class="d-xsm-none">{{$apartment->category}}</td>
@@ -108,6 +108,9 @@ Qui sono presenti i tuoi immobili in vendita.
                 </td>
                 <td>
                   <a href="{{route('admin.apartments.edit', $apartment)}}" class="btn btn-warning"><i class="fa-solid fa-pencil"></i></a>
+                </td>
+                <td>
+                  @include('admin.partials.delete-form')
                 </td>
               </tr>
             @endforeach
