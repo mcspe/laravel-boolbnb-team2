@@ -1,9 +1,9 @@
-<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal">
+<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal{{$index}}">
   Elimina
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+<div class="modal fade" id="modal{{$index}}" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">

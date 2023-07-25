@@ -22,7 +22,7 @@ Qui sono presenti i dettagli dell'immobile selezionato.
       <span>{{$apartment->category}}: {{$apartment->title}}</span>
       <div>
         <a href="{{route('admin.apartments.edit', $apartment)}}" class="btn btn-warning">Modifica</a>
-        @include('admin.partials.delete-form')
+        @include('admin.partials.delete-form', ['index' => $apartment->id])
         <a href="{{route('admin.apartments.index')}}" class="btn btn-primary d-xsm-none">Torna alla dashboard</a>
       </div>
     </div>
