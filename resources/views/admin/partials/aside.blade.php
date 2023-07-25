@@ -6,7 +6,7 @@
           <li><a href="{{route("admin.apartments.create")}}" class="{{Route::currentRouteName()=== "admin.apartments.create" ? "active" : ""}}"><i class="fa-solid fa-square-plus"></i> Aggiungi Appartamento</a></li>
           <li><a href="{{route("admin.apartments.index")}}" class="{{Route::currentRouteName()=== "admin.apartments.index" ? "active" : ""}}"><i class="fa-solid fa-list"></i> Elenco Appartamenti</a></li>
           <li><a href="{{route('admin.messages.index')}}" class="{{Route::currentRouteName()=== "admin.messages.index" ? "active" : ""}}"><i class="fa-solid fa-inbox"></i> Inbox</a></li>
-          <li><a href="#"><i class="fa-solid fa-globe"></i>Visita il sito pubblico</a></li>
+          <li><a href="http://localhost:5173/"><i class="fa-solid fa-globe"></i>Visita il sito pubblico</a></li>
 
           <div class="line"></div>
 
