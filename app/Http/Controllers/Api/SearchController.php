@@ -67,20 +67,25 @@ class SearchController extends Controller
         ->when(count($services) > 0, function ($query) use ($services) {
           return $query->whereHas('services', function (Builder $query) use ($services) {
               $query->whereIn('service_id', $services);
-          });
+          }, '=', count($services));
         })
         ->orderBy('distance')
         ->get();
 
-    // if (count($services) > 0) {
-    //   $query->whereHas('services', function (Builder $query) use ($services) {
-    //       $query->whereIn('service_id', $services);
-    //   });
-    // }
+        return response()->json(compact('apartments'));
+      }
+
+    }
 
 
-    return response()->json(compact('apartments'));
-  }
+      // if (count($services) > 0) {
+      //   $query->whereHas('services', function (Builder $query) use ($services) {
+      //       $query->whereIn('service_id', $services);
+      //   });
+      // }
+
+
+
 
       // $filteredApartments = $apartments->filter(function ($apartment) use ($longitude, $latitude, $radius) {
       //     $distanceInKm = $this->calculateDistance($apartment->longitude, $apartment->latitude, $longitude, $latitude);
@@ -88,6 +93,8 @@ class SearchController extends Controller
       // })->values()->toArray();
 
 
+
+
+
       // return response()->json(compact('filteredApartments'));
 
-}
