@@ -12,8 +12,16 @@
                     {{-- email --}}
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                            name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <input
+                          id="email"
+                          type="email"
+                          class="form-control @error('email') is-invalid @enderror"
+                          name="email"
+                          value="{{ old('email') }}"
+                          required
+                          autocomplete="email"
+                          autofocus
+                          placeholder="Email">
 
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -24,8 +32,14 @@
                     {{-- password --}}
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                            name="password" required autocomplete="current-password">
+                        <input
+                          id="password"
+                          type="password"
+                          class="form-control @error('password') is-invalid @enderror"
+                          name="password"
+                          required
+                          autocomplete="current-password"
+                          placeholder="Password">
 
                         @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -47,9 +61,17 @@
                     {{-- nome --}}
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input oninput="validateUserInput('name')" id="name" type="text"
-                            class="form-control @error('name') is-invalid @enderror" name="name"
-                            value="{{ old('name') }}" required autocomplete="name" autofocus>
+                        <input
+                          oninput="validateUserInput('name')"
+                          id="name"
+                          type="text"
+                          class="form-control @error('name') is-invalid @enderror"
+                          name="name"
+                          value="{{ old('name') }}"
+                          required
+                          autocomplete="name"
+                          autofocus
+                          placeholder="Nome">
 
                         @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -60,9 +82,17 @@
                     {{-- cognome --}}
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input oninput="validateUserInput('lastname')" id="lastname" type="text"
-                            class="form-control @error('lastname') is-invalid @enderror" name="lastname"
-                            value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+                        <input
+                          oninput="validateUserInput('lastname')"
+                          id="lastname"
+                          type="text"
+                          class="form-control @error('lastname') is-invalid @enderror"
+                          name="lastname"
+                          value="{{ old('lastname') }}"
+                          required
+                          autocomplete="lastname"
+                          autofocus
+                          placeholder="Cognome">
 
                         @error('lastname')
                             <span class="invalid-feedback" role="alert">
@@ -73,9 +103,16 @@
                     {{-- data di nascita --}}
                     <div class="input-field">
                         <i class="fas fa-calendar"></i>
-                        <input onchange="validateDateOfBirth()" id="date_of_birth" type="date"
-                            class="form-control @error('date_of_birth') is-invalid @enderror" name="date_of_birth"
-                            value="{{ old('date_of_birth') }}" required autocomplete="date_of_birth" autofocus>
+                        <input
+                          onchange="validateDateOfBirth()"
+                          id="date_of_birth"
+                          type="date"
+                          class="form-control @error('date_of_birth') is-invalid @enderror"
+                          name="date_of_birth"
+                          value="{{ old('date_of_birth') }}"
+                          required
+                          autocomplete="date_of_birth"
+                          autofocus>
 
                         <div class="error-container">
                           <span class="text-danger mt-2" id="dateErrorMsg"></span>
@@ -90,8 +127,15 @@
                     {{-- email --}}
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                            name="email" value="{{ old('email') }}" required autocomplete="email">
+                        <input
+                          id="email"
+                          type="email"
+                          class="form-control @error('email') is-invalid @enderror"
+                          name="email"
+                          value="{{ old('email') }}"
+                          required
+                          autocomplete="email"
+                          placeholder="Email">
 
                         <span class="text-danger mt-2" id="dateErrorMsg"></span>
 
@@ -111,7 +155,8 @@
                           class="form-control @error('password') is-invalid @enderror"
                           name="password"
                           required
-                          autocomplete="new-password">
+                          autocomplete="new-password"
+                          placeholder="Password">
 
                         {{-- <div class="input-group-append">
                             <span class="input-group-text" onclick="showPw('password')">
@@ -138,7 +183,8 @@
                           class="form-control"
                           name="password_confirmation"
                           required
-                          autocomplete="new-password">
+                          autocomplete="new-password"
+                          placeholder="Conferma Password">
 
                         {{-- <div class="input-group-append">
                             <span class="input-group-text" onclick="showPw('password-confirm')">
