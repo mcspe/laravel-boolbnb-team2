@@ -31,9 +31,6 @@
                     <span class="d-block py-1">
                         <strong class="text-grey pt-1">{{$sponsorship->price}}&euro;</strong>
                     </span>
-                    <em class="d-block py-1">
-                        /mese
-                    </em>
                     <p class="py-1">
                         <i class="fa-regular fa-clock me-1"></i>
                         <strong>{{$sponsorship->duration}} ore</strong>
@@ -53,7 +50,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <span class="me-5">Prezzo : <strong>{{$sponsorship->price}}&euro; </strong><em>/mese</em></span>
+                        <span class="me-5">Prezzo : <strong>{{$sponsorship->price}}&euro; </strong></span>
                         <span>Durata : <i class="fa-regular fa-clock me-1"></i><strong>{{$sponsorship->duration}} ore</strong></span>
 
                         <div id="dropin-container{{$index}}"></div>
@@ -70,7 +67,7 @@
 
 <script>
     @foreach ($sponsorships as $index => $sponsorship)
-    var button{{$index}} = document.querySelector('#submit-button{{$index}}');
+    const button{{$index}} = document.querySelector('#submit-button{{$index}}');
 
     braintree.dropin.create({
         authorization: 'sandbox_6mwgnxhd_9p8qk2vxsp79grrb',
@@ -99,6 +96,7 @@
 
                     if (result.success) {
                         $('#checkout-message{{$index}}').html('<h1>Success</h1><p>Your Drop-in UI is working! Check your <a href="https://sandbox.braintreegateway.com/login">sandbox Control Panel</a> for your test transactions.</p><p>Refresh to try another transaction.</p>');
+                        console.log('ok');
                     } else {
                         console.log(result);
                         $('#checkout-message{{$index}}').html('<h1>Error</h1><p>Check your console.</p>');
