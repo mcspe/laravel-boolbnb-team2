@@ -6,6 +6,7 @@ use App\Http\Controllers\ApartmentController;
 use App\Http\Controllers\SponsorshipController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,9 @@ Route::middleware(['auth','verified'])
         Route::resource('apartments', ApartmentController::class);
         Route::resource('sponsorships', SponsorshipController::class);
         Route::resource('messages', MessageController::class);
+        Route::post('checkout', [PaymentController::class, 'checkout'])->name('checkout');
 });
+
 
 
 require __DIR__.'/auth.php';
