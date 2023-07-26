@@ -48,7 +48,7 @@
                         @enderror
                     </div>
                     {{-- fine del form di accesso --}}
-                    <button type="submit" class="btn">
+                    <button type="submit" class="btn-logreg">
                       Accedi
                     </button>
                 </form>
@@ -203,7 +203,7 @@
                         @enderror
                     </div>
                     {{-- fine form registrazione segue bottone --}}
-                    <button onclick="submitRegisterForm()" class="btn">
+                    <button onclick="submitRegisterForm()" class="btn-logreg">
                       Registrati
                   </button>
                 </form>
@@ -215,7 +215,7 @@
                 <div class="content">
                     <h3>Prima volta qui?</h3>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, ex ratione. Aliquid!</p>
-                    <button class="btn transparent" id="sign-up-btn">Registrati</button>
+                    <button class="btn-logreg transparent" id="sign-up-btn">Registrati</button>
                 </div>
                 <!-- Add your login form image here -->
                 <img src="img/log.svg" class="image" alt="" />
@@ -224,7 +224,7 @@
                 <div class="content">
                     <h3>Sei già dei nostri?</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum laboriosam ad deleniti.</p>
-                    <button class="btn transparent" id="sign-in-btn">Accedi</button>
+                    <button class="btn-logreg transparent" id="sign-in-btn">Accedi</button>
                 </div>
             </div>
         </div>
