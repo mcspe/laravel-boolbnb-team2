@@ -14,9 +14,12 @@
   Qui sono presenti le sponsorizzazioni disponibili
 @endsection
 <style>
+  .custom-loader {
+    width: 100%;
+  }
   .loader {
-    width: 48px;
-    height: 48px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     position: relative;
     animation: rotate 1s linear infinite
@@ -29,12 +32,12 @@
     position: absolute;
     inset: 0px;
     border-radius: 50%;
-    border: 5px solid #FFF;
+    border: 5px solid #2F2F2F;
     animation: prixClipFix 2s linear infinite;
   }
 
   .loader::after {
-    border-color: #FF3D00;
+    border-color: #22B14C;
     animation: prixClipFix 2s linear infinite, rotate 0.5s linear infinite reverse;
     inset: 6px;
   }
@@ -119,9 +122,13 @@
                 aria-label="Close"></button>
             </div>
             <div class="modal-body">
+              <div id="custom-loader{{ $index }}" class="custom-loader d-none justify-content-center align-items-center p-5">
+                <span class="loader"></span>
+              </div>
               <span class="me-5">Prezzo : <strong>{{ $sponsorship->price }}&euro; </strong></span>
               <span>Durata : <i class="fa-regular fa-clock me-1"></i><strong>{{ $sponsorship->duration }}
                   ore</strong></span>
+
 
               <div id="dropin-container{{ $index }}"></div>
               <div id="checkout-message{{ $index }}"></div>
@@ -134,19 +141,56 @@
     @endforeach
   </div>
 </div>
-{{-- <span class="loader"></span> --}}
 
 <script>
   const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   @foreach ($sponsorships as $index => $sponsorship)
     const button{{ $index }} = document.querySelector('#submit-button{{ $index }}');
+    const customLoader{{ $index }} = document.getElementById('custom-loader{{ $index }}');
+    const modalBody{{ $index }} = document.getElementById('exampleModal{{ $index }}').children[0].children[0].children[1];
+
+    function showCustomLoader{{ $index }}() {
+      for (let i = 1; i < modalBody{{$index}}.children.length; i++) {
+        modalBody{{$index}}.children[i].setAttribute("hidden", true);
+      }
+      customLoader{{$index}}.classList.add('d-flex');
+      customLoader{{$index}}.classList.remove('d-none');
+    }
+
+    function hideCustomLoader{{$index}}() {
+      customLoader{{$index}}.classList.remove('d-flex');
+      customLoader{{$index}}.classList.add('d-none');
+      for (let i = 1; i < modalBody{{$index}}.children.length; i++) {
+        modalBody{{$index}}.children[i].setAttribute("hidden", false);
+      }
+    }
 
     braintree.dropin.create({
       authorization: 'sandbox_s95rsm2d_64mms2kchj3rp5zs',
       container: '#dropin-container{{ $index }}',
-      locale: 'it_IT'
+      locale: 'it_IT',
+      card: {
+        cardholderName: {
+          required: true
+        },
+        overrides: {
+          fields: {
+            cardholderName: {
+              prefill: "{{ Auth::user()->name }} {{ Auth::user()->lastname }}"
+            },
+            number: {
+              prefill: '4111 1111 1111 1111',
+              formatInput: false // Turn off automatic formatting
+            },
+            expirationDate: {
+              prefill: '09/25'
+            }
+          }
+        }
+      }
     }, function(createErr, instance) {
       button{{ $index }}.addEventListener('click', function() {
+        showCustomLoader{{ $index }}();
         instance.requestPaymentMethod(function(requestPaymentMethodErr, payload) {
           if (!requestPaymentMethodErr) {
             // Quando l'utente fa clic sul pulsante 'Procedi al pagamento', questo codice invierà le
@@ -166,6 +210,7 @@
               instance.teardown(function(teardownErr) {
 
                 if (teardownErr) {
+                  hideCustomLoader{{$index}}();
                   console.error('Could not tear down Drop-in UI!');
                 } else {
                   console.info('Drop-in UI has been torn down!');
@@ -178,11 +223,11 @@
                 $('#checkout-message{{ $index }}').html(
                   '<h1>Success</h1><p>Your Drop-in UI is working! Check your <a href="https://sandbox.braintreegateway.com/login">sandbox Control Panel</a> for your test transactions.</p><p>Refresh to try another transaction.</p>'
                 );
-                console.log('ok');
-              } else {
                 console.log(result);
+              } else {
+                hideCustomLoader{{$index}}();
                 $('#checkout-message{{ $index }}').html(
-                  '<h1>Error</h1><p>Check your console.</p>');
+                  result.message);
               }
             });
           }
