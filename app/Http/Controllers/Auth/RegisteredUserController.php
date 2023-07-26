@@ -15,6 +15,9 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
+    public function landingPage() {
+      return view('auth.login-register');
+    }
     /**
      * Display the registration view.
      */
