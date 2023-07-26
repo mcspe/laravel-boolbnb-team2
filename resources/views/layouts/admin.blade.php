@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    {{-- Favicon --}}
+    <link rel="shortcut icon" href="boolbnb_favicon.png" type="png">
+
     <!-- MAP -->
     <link rel="stylesheet" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.18.0/maps/maps.css">
     <script type="text/javascript" src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.18.0/maps/maps-web.min.js"></script>
@@ -21,9 +24,6 @@
 
     <!-- BRAINTREE -->
     <script src="https://js.braintreegateway.com/web/dropin/1.39.0/js/dropin.min.js"></script>
-
-
-
 
 
     <!-- CSRF Token -->
