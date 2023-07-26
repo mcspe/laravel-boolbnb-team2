@@ -62,6 +62,7 @@ class SearchController extends Controller
           DB::raw("ST_Y(latitude_longitude) as longitude"),
           DB::raw("ST_Distance_Sphere(point(ST_X(latitude_longitude), ST_Y(latitude_longitude)), point($latitude, $longitude)) / 1000 as distance")
         ])
+        ->where('is_visible', '=', 1)
         ->with('services', 'visits')
         ->having('distance', '<=', $radius)
         ->when(count($services) > 0, function ($query) use ($services) {

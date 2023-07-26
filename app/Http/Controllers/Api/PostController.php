@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Apartment;
 use App\Models\Service;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
+
 
 class PostController extends Controller {
   ///////////////////////////////////////////
@@ -30,8 +32,8 @@ class PostController extends Controller {
       ->where('is_visible', '=', 1)
       ->with('services','visits')
       ->whereHas('sponsorships', function($q){
-      $today = '2023-07-18 11:06:00';
-      // $today = Carbon::now()->format('Y-m-d H:i:s');
+      // $today = '2023-07-18 11:06:00';
+      $today = Carbon::now()->format('Y-m-d H:i:s');
       $q->where('expiration_date', '>=', $today);
     })->get();
 
