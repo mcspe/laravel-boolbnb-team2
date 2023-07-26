@@ -82,6 +82,12 @@
     </div>
   </div>
 
+  @if(session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+  @endif
+
   {{-- Cards container --}}
   <div class="d-flex">
     @foreach ($sponsorships as $index => $sponsorship)
@@ -203,7 +209,8 @@
               url: '{{ route('admin.checkout') }}',
               data: {
                 'paymentMethodNonce': payload.nonce,
-                'sponsorshipPrice': {{ $sponsorship->price }}
+                'apartmentId': {{$apartment->id}},
+                'sponsorshipId': {{$sponsorship->id}}
               }
             }).done(function(result) {
               // Smonta l'interfaccia utente di Drop-in

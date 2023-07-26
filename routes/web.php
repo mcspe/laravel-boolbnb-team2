@@ -30,7 +30,7 @@ Route::middleware(['auth','verified'])
     ->group(function(){
         Route::get('/', [DashboardController::class, 'index'])->name('home');
         Route::resource('apartments', ApartmentController::class);
-        Route::resource('sponsorships', SponsorshipController::class);
+        Route::get('sponsorships/{apartment}', [SponsorshipController::class, 'index'])->name('sponsorship');
         Route::resource('messages', MessageController::class);
         Route::post('checkout', [PaymentController::class, 'checkout'])->name('checkout');
 });

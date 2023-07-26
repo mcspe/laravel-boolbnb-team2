@@ -92,7 +92,7 @@ Qui sono presenti i dettagli dell'immobile selezionato.
 
   </div>
 
-  <a href="{{route('admin.sponsorships.index')}}" class="btn btn-primary my-3">Sponsorizza appartamento</a>
+  <a href="{{route('admin.sponsorship', $apartment)}}" class="btn btn-primary my-3">Sponsorizza appartamento</a>
 </div>
 
 

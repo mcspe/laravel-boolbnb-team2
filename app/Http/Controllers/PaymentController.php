@@ -7,13 +7,36 @@ use Illuminate\Support\Facades\Log;
 use Braintree\Transaction;
 use Braintree\Gateway;
 use App\Models\Sponsorship;
+use App\Models\Apartment;
+use App\Models\ApartmentSponsorship;
+use Illuminate\Support\Carbon;
+
 
 class PaymentController extends Controller
 {
   public function checkout(Request $request){
     try {
       $nonce = $request->input('paymentMethodNonce');
-      $price = $request->input('sponsorshipPrice');
+
+      $apartmentId = $request->input('apartmentId');
+      $apartment = Apartment::where('id', $apartmentId)->first();
+
+      $sponsorshipId = $request->input('sponsorshipId');
+      $sponsorship = Sponsorship::where('id', $sponsorshipId)->first();
+
+      $expiration_date = Carbon::now();
+      switch ($sponsorshipId) {
+        case '1':
+          $expiration_date->addHours(24);
+          break;
+        case '2':
+          $expiration_date->addHours(72);
+          break;
+        case '3':
+          $expiration_date->addHours(144);
+          break;
+      }
+      $payment_date = Carbon::now();
 
       // Crea un'istanza di Gateway con i parametri di configurazione
       $gateway = new Gateway([
@@ -25,7 +48,7 @@ class PaymentController extends Controller
 
       // Esegui il pagamento tramite Braintree
       $result = $gateway->transaction()->sale([
-        'amount' => $price, // Importo della sponsorizzazione
+        'amount' => $sponsorship->price, // Importo della sponsorizzazione
         'paymentMethodNonce' => $nonce,
         'options' => [
           'submitForSettlement' => true
@@ -34,7 +57,14 @@ class PaymentController extends Controller
 
       // Gestisci il risultato della transazione e invia una risposta al frontend
       if ($result->success) {
-        return response()->json(['success' => true]);
+        $sponsorship->apartments()->save($apartment, [
+          'payment_date' => $payment_date,
+          'expiration_date' => $expiration_date,
+          'created_at' => Carbon::now(),
+          'updated_at' => Carbon::now()
+        ]);
+        return redirect()->route('admin.sponsorship', $apartment)->with('sponsorship_flag', true)->with('message', 'Complimenti! Il tuo acquisto è andato a buon fine!');
+        // return response()->json(['success' => true]);
       } else {
         // visualizzo in console il messaggio
         Log::error($result->message);
