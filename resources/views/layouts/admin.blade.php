@@ -26,6 +26,10 @@
     <script src="https://js.braintreegateway.com/web/dropin/1.39.0/js/dropin.min.js"></script>
 
 
+    <!-- CHART -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

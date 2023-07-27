@@ -58,7 +58,41 @@ Qui sono presenti tutte le statistiche della tua attività.
 
   </div>
 
+  <div class="container mb-5 mt-5 d-flex justify-content-center">
+   <div style="width: 700px; height: 500px"><canvas id="myChart"></canvas></div>
+  </div>
 
+</div>
+
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow',],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3,],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      plugins:{
+        title:{
+          display : true,
+          align: 'center',
+          text : "Grafico Appartamenti",
+          font: {
+            size:20
+          }
+        }
+
+      }
+    },
+  });
+</script>
   @endsection
 
 
