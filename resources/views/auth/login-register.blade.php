@@ -213,16 +213,18 @@
         <div class="panels-container">
             <div class="panel left-panel">
                 <div class="content">
-                    <h3>Prima volta qui?</h3>
+                    <img class="logo-bnb ms-3 w-25" src="logo-standard.png" alt="logo_boolbnb">
+                    <h2>Prima volta qui?</h2>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, ex ratione. Aliquid!</p>
                     <button class="btn-logreg transparent" id="sign-up-btn">Registrati</button>
+                  </div>
+                  <!-- Add your login form image here -->
+                  <img src="img/log.svg" class="image" alt="" />
                 </div>
-                <!-- Add your login form image here -->
-                <img src="img/log.svg" class="image" alt="" />
-            </div>
-            <div class="panel right-panel">
-                <div class="content">
-                    <h3>Sei già dei nostri?</h3>
+                <div class="panel right-panel">
+                  <div class="content">
+                    <img class="logo-bnb ms-3 w-25" src="logo-standard.png" alt="logo_boolbnb">
+                    <h2>Sei già dei nostri?</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum laboriosam ad deleniti.</p>
                     <button class="btn-logreg transparent" id="sign-in-btn">Accedi</button>
                 </div>
