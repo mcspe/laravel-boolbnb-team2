@@ -3,84 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Apartment;
 use App\Models\Sponsorship;
+use App\Models\ApartmentSponsorship;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
+
 
 class SponsorshipController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $sponsorships = Sponsorship::all();
-        return view('admin.sponsorships.index', compact('sponsorships'));
-    }
+  public function index(Apartment $apartment) {
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    if($apartment->user_id != Auth::id()) {
+      return redirect()->route('admin.apartments.index')->with('not_authorized', "La pagina che stai tentando di visualizzare non esiste");
     }
+    $today = Carbon::now()->format('Y-m-d H:i:s');
+    $sponsored_flag = 0;
+    $sponsoredApt = Apartment::whereHas('sponsorships', function($q){
+      $today = Carbon::now()->format('Y-m-d H:i:s');
+      $q->where('expiration_date', '>=', $today);
+    })->pluck('id')->all();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    if (in_array($apartment->id, $sponsoredApt)) {
+        $sponsored_flag = 1;
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    $activeSponsorshipQuery = ApartmentSponsorship::where('expiration_date', '>=', $today)->orderBy('expiration_date', 'desc')->first();
+    $sponsorship = Sponsorship::select('name')->where('id', $activeSponsorshipQuery->sponsorship_id)->first();
+    $startDate = Carbon::createFromFormat('Y-m-d H:i:s', $activeSponsorshipQuery->payment_date)->format('d/m/Y');
+    $startTime = Carbon::createFromFormat('Y-m-d H:i:s', $activeSponsorshipQuery->payment_date)->format('H.i');
+    $endDate = Carbon::createFromFormat('Y-m-d H:i:s', $activeSponsorshipQuery->expiration_date)->format('d/m/Y');
+    $endTime = Carbon::createFromFormat('Y-m-d H:i:s', $activeSponsorshipQuery->expiration_date)->format('H.i');
+    $activeSponsorship = [
+      'id' => $activeSponsorshipQuery->sponsorship_id,
+      'name' => $sponsorship->name,
+      'startDate' => $startDate,
+      'startTime' => $startTime,
+      'endDate' => $endDate,
+      'endTime' => $endTime
+    ];
+    $sponsorships = Sponsorship::all();
+    return view('admin.sponsorships.index', compact('sponsorships', 'apartment', 'sponsored_flag', 'activeSponsorship'));
+  }
 }
