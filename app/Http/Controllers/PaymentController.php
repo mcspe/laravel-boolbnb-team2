@@ -63,8 +63,11 @@ class PaymentController extends Controller
           'created_at' => Carbon::now(),
           'updated_at' => Carbon::now()
         ]);
-        return redirect()->route('admin.sponsorship', $apartment)->with('sponsorship_flag', true)->with('message', 'Complimenti! Il tuo acquisto è andato a buon fine!');
-        // return response()->json(['success' => true]);
+        // return redirect()->route('admin.sponsorship', $apartment)->with('sponsorship_flag', true)->with('message', 'Complimenti! Il tuo acquisto è andato a buon fine!');
+        // return response()->json(['success' => true, 'message' => 'Complimenti! Il tuo acquisto è andato a buon fine!', 'redirect_url' => "route('admin.sponsorship', $apartmentId)"]);
+        $response = response()->json(['success' => true, 'message' => 'Complimenti! Il tuo acquisto è andato a buon fine!']);
+        $response->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+        return $response;
       } else {
         // visualizzo in console il messaggio
         Log::error($result->message);
