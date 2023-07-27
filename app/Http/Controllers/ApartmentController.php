@@ -99,12 +99,14 @@ class ApartmentController extends Controller
         $lng = json_decode(json_encode($longitude), true);
         $lng = $lng[0]['ST_Y(`latitude_longitude`)'];
         $apiKey = env("API_IT_KEY");
+        $sponsored_flag = Apartment::sponsoredAptFlag($apartment);
+
 
         if($apartment->user_id != Auth::id()) {
           return redirect()->route('admin.apartments.index')->with('not_authorized', "La pagina che stai tentando di visualizzare non esiste");
         }
 
-        return view('admin.apartments.show', compact('apartment', 'lat', 'lng', 'apiKey'));
+        return view('admin.apartments.show', compact('apartment', 'lat', 'lng', 'apiKey', 'sponsored_flag'));
     }
 
     /**

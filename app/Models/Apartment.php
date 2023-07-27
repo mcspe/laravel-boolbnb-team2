@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 class Apartment extends Model
 {
@@ -83,5 +84,18 @@ class Apartment extends Model
       $coordinates = "ST_GeomFromText('POINT($latitude $longitude)')";
 
       return $coordinates;
+    }
+
+    public static function sponsoredAptFlag($apartment) {
+      $sponsoredApt = Apartment::whereHas('sponsorships', function($q){
+        $today = Carbon::now()->format('Y-m-d H:i:s');
+        $q->where('expiration_date', '>=', $today);
+      })->pluck('id')->all();
+
+      if (in_array($apartment->id, $sponsoredApt)) {
+        return 1;
+      } else {
+        return 0;
+      }
     }
 }

@@ -18,15 +18,7 @@ class SponsorshipController extends Controller
       return redirect()->route('admin.apartments.index')->with('not_authorized', "La pagina che stai tentando di visualizzare non esiste");
     }
     $today = Carbon::now()->format('Y-m-d H:i:s');
-    $sponsored_flag = 0;
-    $sponsoredApt = Apartment::whereHas('sponsorships', function($q){
-      $today = Carbon::now()->format('Y-m-d H:i:s');
-      $q->where('expiration_date', '>=', $today);
-    })->pluck('id')->all();
-
-    if (in_array($apartment->id, $sponsoredApt)) {
-        $sponsored_flag = 1;
-    }
+    $sponsored_flag = Apartment::sponsoredAptFlag($apartment);
     $activeSponsorshipQuery = ApartmentSponsorship::where('expiration_date', '>=', $today)->orderBy('expiration_date', 'desc')->first();
     $sponsorship = Sponsorship::select('name')->where('id', $activeSponsorshipQuery->sponsorship_id)->first();
     $startDate = Carbon::createFromFormat('Y-m-d H:i:s', $activeSponsorshipQuery->payment_date)->format('d/m/Y');
