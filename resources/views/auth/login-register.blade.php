@@ -6,7 +6,7 @@
             <div class="signin-signup">
                 {{-- ///////////////////////////////////////////////////////////////////////////////////////////////// --}}
                 <!-- Login form -->
-                <form method="POST" action="{{ route('login') }}" class="sign-in-form">
+                <form method="POST" action="{{ route('login') }}" class="login-register sign-in-form">
                     @csrf
                     <h2 class="title">Accedi</h2>
                     {{-- email --}}
@@ -54,7 +54,7 @@
                 </form>
                 {{-- ///////////////////////////////////////////////////////////////////////////////////////////////// --}}
                 <!-- Register form -->
-                <form method="POST" action="{{ route('register') }}" class="sign-up-form">
+                <form method="POST" action="{{ route('register') }}" class="login-register sign-up-form">
                     @csrf
                     <h2 class="title">Registrati</h2>
 
