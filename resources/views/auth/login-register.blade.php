@@ -10,7 +10,7 @@
                     @csrf
                     <h2 class="title">Accedi</h2>
                     {{-- email --}}
-                    <div class="input-field">
+                    <div class="input-field mb-4">
                         <i class="fas fa-user"></i>
                         <input
                           id="email"
@@ -23,10 +23,10 @@
                           autofocus
                           placeholder="Email">
 
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                          @error('email')
+                          <span class="mt-1 invalid-feedback" style="width: 280px; margin-left:5.5rem" role="alert">
+                              <strong>{{$message}}</strong>
+                          </span>
                         @enderror
                     </div>
                     {{-- password --}}
@@ -42,13 +42,13 @@
                           placeholder="Password">
 
                         @error('password')
-                            <span class="invalid-feedback" role="alert">
+                            <span class="invalid-feedback mb-3" style="width: 280px; margin-left:5.5rem" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
                     {{-- fine del form di accesso --}}
-                    <button type="submit" class="btn-logreg">
+                    <button type="submit" class="btn-logreg mt-3">
                       Accedi
                     </button>
                 </form>
@@ -59,7 +59,7 @@
                     <h2 class="title">Registrati</h2>
 
                     {{-- nome --}}
-                    <div class="input-field">
+                    <div class="input-field mb-3">
                         <i class="fas fa-user"></i>
                         <input
                           oninput="validateUserInput('name')"
@@ -74,13 +74,13 @@
                           placeholder="Nome">
 
                         @error('name')
-                            <span class="invalid-feedback" role="alert">
+                            <span class="mt-1 invalid-feedback" style="width: 280px; margin-left:52px" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
                     {{-- cognome --}}
-                    <div class="input-field">
+                    <div class="input-field mb-3">
                         <i class="fas fa-user"></i>
                         <input
                           oninput="validateUserInput('lastname')"
@@ -95,13 +95,13 @@
                           placeholder="Cognome">
 
                         @error('lastname')
-                            <span class="invalid-feedback" role="alert">
+                            <span class="mt-1 invalid-feedback" style="width: 280px; margin-left: 52px" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
                     {{-- data di nascita --}}
-                    <div class="input-field">
+                    <div class="input-field mb-3">
                         <i class="fas fa-calendar"></i>
                         <input
                           onchange="validateDateOfBirth()"
@@ -119,13 +119,13 @@
                         </div>
 
                         @error('date_of_birth')
-                            <span class="invalid-feedback" role="alert">
+                            <span class="invalid-feedback"  role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
                     {{-- email --}}
-                    <div class="input-field">
+                    <div class="input-field mb-3">
                         <i class="fas fa-envelope"></i>
                         <input
                           id="email"
@@ -146,7 +146,7 @@
                         @enderror
                     </div>
                     {{-- password --}}
-                    <div class="input-field">
+                    <div class="input-field mb-3">
                         <i class="fas fa-lock"></i>
                         <input
                           onkeyup="validatePw()"
@@ -174,7 +174,7 @@
                         @enderror
                     </div>
                     {{-- conferma password --}}
-                    <div class="input-field">
+                    <div class="input-field mb-3">
                         <i class="fas fa-lock"></i>
                         <input
                           onkeyup="passwordValidation()"

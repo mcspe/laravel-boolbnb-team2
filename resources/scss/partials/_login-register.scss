@@ -369,8 +369,22 @@ form.sign-in-form {
 }
 
 @media (max-width: 570px) {
+  .forms-container{
+    top: -50px;
+    .title{
+      margin-top: 8px;
+      margin-bottom: 0px;
+    }
+  }
   form {
     padding: 0 1.5rem;
+  }
+  .left-panel{
+    padding-top: 0;
+  }
+  .right-panel{
+    padding-bottom: 0;
+    padding-top: 0;
   }
 
   .image {
