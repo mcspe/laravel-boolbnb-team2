@@ -369,8 +369,24 @@
 }
 
 @media (max-width: 570px) {
-  .login-register {
+ 173-fix-error-messages-responsive-in-loginregister-file
+  .forms-container{
+    top: -50px;
+    .title{
+      margin-top: 8px;
+      margin-bottom: 0px;
+    }
+  }
+  form {
+  .login-register {main
     padding: 0 1.5rem;
+  }
+  .left-panel{
+    padding-top: 0;
+  }
+  .right-panel{
+    padding-bottom: 0;
+    padding-top: 0;
   }
 
   .image {
