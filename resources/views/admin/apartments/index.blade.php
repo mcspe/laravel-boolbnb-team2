@@ -56,7 +56,10 @@ Qui sono presenti i tuoi immobili in vendita.
 
       <div class="form-button d-flex justify-content-between">
 
-        <div class="form-container">
+
+        {{-- RIMOSSA LA BARRA DI RICERCA PERCHÈ NON FUNZIONA --}}
+
+        {{-- <div class="form-container">
 
           <form id="standard-3" method="get" action="" id="form2">
             <input type="text" class="search-txt-input search-input" name="q" maxlength="100" placeholder="Inserisci il titolo...">
@@ -65,7 +68,7 @@ Qui sono presenti i tuoi immobili in vendita.
             </button>
           </form>
 
-        </div>
+        </div> --}}
 
         <div class="button-container">
           <a href="{{route('admin.apartments.create')}}" class="btn btn-primary">Aggiungi immobile</a>
@@ -79,16 +82,19 @@ Qui sono presenti i tuoi immobili in vendita.
 
           <thead>
             <tr>
-              <th scope="col">Titolo</th>
-              <th scope="col" class="d-xsm-none">Categoria</th>
+              <th scope="col">Nome</th>
+              {{-- <th scope="col" class="d-xsm-none">Categoria</th> --}}
               <th scope="col" class="d-xsm-none">Indirizzo</th>
-              <th scope="col" class="d-xsm-none">Stanze</th>
-              <th scope="col" class="d-xsm-none">Letti</th>
-              <th scope="col" class="d-xsm-none">Bagni</th>
-              <th scope="col" class="d-xsm-none">m²</th>
-              <th scope="col" class="d-xsm-none">Prezzo</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
+              {{-- <th scope="col" class="d-xsm-none">Stanze</th> --}}
+              {{-- <th scope="col" class="d-xsm-none">Letti</th> --}}
+              {{-- <th scope="col" class="d-xsm-none">Bagni</th> --}}
+              {{-- <th scope="col" class="d-xsm-none">m²</th> --}}
+              {{-- <th scope="col" class="d-xsm-none">Prezzo</th> --}}
+              <th scope="col" class="d-xsm-none text-center">Visibile</th>
+              <th scope="col" class="d-xsm-none text-center">Sponsorizzato</th>
+              <th scope="col" class="text-center w-25">Azioni</th>
+              {{-- <th scope="col"></th>
+              <th scope="col"></th> --}}
             </tr>
           </thead>
 
@@ -96,22 +102,37 @@ Qui sono presenti i tuoi immobili in vendita.
             @foreach ($apartments as $index => $apartment)
               <tr>
                 <td>{{$apartment->title}}</td>
-                <td class="d-xsm-none">{{$apartment->category}}</td>
+                {{-- <td class="d-xsm-none">{{$apartment->category}}</td> --}}
                 <td class="d-xsm-none">{{$apartment->address}}</td>
-                <td class="d-xsm-none">{{$apartment->n_rooms}}</td>
-                <td class="d-xsm-none">{{$apartment->n_beds}}</td>
-                <td class="d-xsm-none">{{$apartment->n_bathrooms}}</td>
-                <td class="d-xsm-none">{{$apartment->square_meters}}</td>
-                <td class="d-xsm-none">{{$apartment->price}}</td>
-                <td>
-                  <a href="{{route('admin.apartments.show', $apartment)}}" class="ms-5 btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                {{-- <td class="d-xsm-none">{{$apartment->n_rooms}}</td> --}}
+                {{-- <td class="d-xsm-none">{{$apartment->n_beds}}</td> --}}
+                {{-- <td class="d-xsm-none">{{$apartment->n_bathrooms}}</td> --}}
+                {{-- <td class="d-xsm-none">{{$apartment->square_meters}}</td> --}}
+                {{-- <td class="d-xsm-none">{{$apartment->price}}</td> --}}
+                {{-- <td class="d-xsm-none">{{$apartment->is_visible}}</td> --}}
+                <td class="d-xsm-none text-center">
+                  @if ($apartment->is_visible > 0)
+                    <span class="text-success"><i class="fa-solid fa-check fa-lg" style="color: #1ED760;"></i></span>
+                  @else
+                    <span class="text-danger"><i class="fa-solid fa-xmark fa-xl" style="color: #DC3545;"></i></span>
+                  @endif
                 </td>
-                <td>
-                  <a href="{{route('admin.apartments.edit', $apartment)}}" class="btn btn-warning"><i class="fa-solid fa-pencil"></i></a>
+                <td class="d-xsm-none text-center">
+                  @if ($apartment->sponsorships->count() > 0)
+                    <span class="text-success"><i class="fa-solid fa-check fa-lg" style="color: #1ED760;"></i></span>
+                  @else
+                    <span class="text-danger"><i class="fa-solid fa-xmark fa-xl" style="color: #DC3545;"></i></span>
+                  @endif
                 </td>
-                <td>
+                <td class="d-flex flex-nowrap sm-justify-content-center">
+                  <a href="{{route('admin.apartments.show', $apartment)}}" class="btn btn-primary me-1"><i class="fa-solid fa-eye"></i></a>
+                  <a href="{{route('admin.apartments.edit', $apartment)}}" class="btn btn-warning ms-1 me-2"><i class="fa-solid fa-pencil"></i></a>
                   @include('admin.partials.delete-form')
                 </td>
+                {{-- <td>
+                </td>
+                <td>
+                </td> --}}
               </tr>
             @endforeach
           </tbody>

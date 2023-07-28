@@ -22,7 +22,7 @@ Puoi modificare i dettagli del tuo immobile.
     <div class="card-md-description d-flex justify-content-between">
       <span>Modifica: {{$apartment->title}}</span>
       <div>
-        <a href="{{route('admin.apartments.index')}}" class="btn btn-primary">Torna all'elenco appartamenti</button>
+        <a href="{{route('admin.apartments.index')}}" class="btn btn-primary me-2">Torna all'elenco appartamenti</button>
         <a href="{{route('admin.home')}}" class="btn heavenly">Torna alla dashboard</a>
       </div>
     </div>
@@ -204,7 +204,7 @@ Puoi modificare i dettagli del tuo immobile.
                     checked
                   @endif
                 >
-                <label class="btn btn-outline-secondary" for="service{{ $loop->iteration }}">{{ $service->name }}</label>
+                <label class="btn btn-outline-primary" for="service{{ $loop->iteration }}">{{ $service->name }}</label>
             @endforeach
 
           </div>

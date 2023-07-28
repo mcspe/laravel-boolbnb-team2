@@ -1,5 +1,5 @@
 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal{{$index}}">
-  Elimina
+  <i class="fa-solid fa-trash"></i>
 </button>
 
 <!-- Modal -->
