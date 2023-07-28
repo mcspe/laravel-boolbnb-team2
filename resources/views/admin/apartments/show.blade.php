@@ -115,7 +115,7 @@ Qui sono presenti i dettagli dell'immobile selezionato.
       key: apiKey,
       container: "map",
       center: center,
-      zoom: 10
+      zoom: 16
     })
     map.on('load', () =>{
       new tt.Marker().setLngLat(center).addTo(map)
