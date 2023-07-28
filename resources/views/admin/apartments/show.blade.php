@@ -21,9 +21,9 @@ Qui sono presenti i dettagli dell'immobile selezionato.
     <div class="card-md-description d-flex justify-content-between">
       <span>{{$apartment->category}}: {{$apartment->title}}</span>
       <div>
-        <a href="{{route('admin.apartments.edit', $apartment)}}" class="btn btn-warning">Modifica</a>
+        <a href="{{route('admin.apartments.edit', $apartment)}}" class="btn btn-warning"><i class="fa-solid fa-pencil"></i></a>
         @include('admin.partials.delete-form', ['index' => $apartment->id])
-        <a href="{{route('admin.apartments.index')}}" class="btn btn-primary d-xsm-none">Torna alla dashboard</a>
+        <a href="{{route('admin.apartments.index')}}" class="btn btn-primary d-xsm-none"><i class="fa-solid fa-list"></i></a>
       </div>
     </div>
   </div>
@@ -70,12 +70,12 @@ Qui sono presenti i dettagli dell'immobile selezionato.
       <div class="visibility">
         @if ($apartment->is_visible)
           <span>
-            <i class="fa-regular fa-circle-check"></i>
+            <i class="fa-regular fa-circle-check" style="color: #1ED760;"></i>
             Il tuo immobile è online
           </span>
         @else
           <span>
-            <i class="fa-regular fa-circle-xmark"></i>
+            <i class="fa-regular fa-circle-xmark" style="color: #DC3545;"></i>
             Il tuo immobile è offline
           </span>
         @endif
