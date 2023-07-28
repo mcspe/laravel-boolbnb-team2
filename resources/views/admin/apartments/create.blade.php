@@ -21,7 +21,7 @@ Puoi inserire un nuovo immobile in vendita.
     <div class="card-md-description d-flex justify-content-between">
       <span>Aggiungi un nuovo immobile</span>
       <div>
-        <a href="{{route('admin.apartments.index')}}" class="btn btn-primary d-xsm-none">Vai all'elenco appartamenti</button>
+        <a href="{{route('admin.apartments.index')}}" class="btn btn-primary d-xsm-none me-2">Vai all'elenco appartamenti</button>
         <a href="{{route('admin.home')}}" class="btn heavenly">Torna alla dashboard</a>
       </div>
     </div>
@@ -29,7 +29,7 @@ Puoi inserire un nuovo immobile in vendita.
 
 
   <div class="box-card-long">
-    <form action="{{route('admin.apartments.store')}}" method="POST" enctype="multipart/form-data" class="form-boolbnb">
+    <form action="{{route('admin.apartments.store')}}" method="POST" enctype="multipart/form-data">
 
       @csrf
 
@@ -199,7 +199,7 @@ Puoi inserire un nuovo immobile in vendita.
                   @endif
 
                 >
-                <label class="btn btn-outline-secondary" for="service{{ $loop->iteration }}">{{ $service->name }}</label>
+                <label class="btn btn-outline-primary" for="service{{ $loop->iteration }}">{{ $service->name }}</label>
             @endforeach
 
           </div>
