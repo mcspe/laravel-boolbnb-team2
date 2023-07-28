@@ -375,13 +375,17 @@
       margin-top: 8px;
       margin-bottom: 0px;
     }
+    form {
+      .login-register {
+        padding: 0 1.5rem;
+      }
+    }
+
   }
-  form {
-  .login-register {
-    padding: 0 1.5rem;
-  }
-  .left-panel{
+  .panel{
     padding-top: 0;
+    display: flex;
+    justify-content: center;
   }
   .right-panel{
     padding-bottom: 0;
@@ -412,9 +416,6 @@
     width: 30px;
   }
 
-  .content h2 {
-    font-size: 1.3rem;
-  }
 
   .sign-up-form {
     margin: 0 15px 0 15px;
@@ -453,4 +454,4 @@
   // background-color: lightblue;
 }
 
-}
+
