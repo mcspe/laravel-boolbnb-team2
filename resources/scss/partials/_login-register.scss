@@ -369,7 +369,6 @@
 }
 
 @media (max-width: 570px) {
- 173-fix-error-messages-responsive-in-loginregister-file
   .forms-container{
     top: -50px;
     .title{
@@ -378,7 +377,7 @@
     }
   }
   form {
-  .login-register {main
+  .login-register {
     padding: 0 1.5rem;
   }
   .left-panel{
@@ -454,4 +453,4 @@
   // background-color: lightblue;
 }
 
-
+}
