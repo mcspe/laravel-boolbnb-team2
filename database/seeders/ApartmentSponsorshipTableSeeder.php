@@ -24,7 +24,7 @@ class ApartmentSponsorshipTableSeeder extends Seeder
         $aptSponsor = new ApartmentSponsorship();
         $aptSponsor->apartment_id = Apartment::inRandomOrder()->first()->id;
         $aptSponsor->sponsorship_id = Sponsorship::inRandomOrder()->first()->id;
-        $aptSponsor->payment_date = $faker->dateTimeBetween('-3 weeks', 'now');
+        $aptSponsor->payment_date = $faker->dateTimeBetween('-3 days', 'now');
         $expiration = Carbon::createFromDate($aptSponsor->payment_date);
         switch ($aptSponsor->sponsorship_id) {
           case '1':
