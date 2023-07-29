@@ -108,11 +108,11 @@ class PaymentController extends Controller
 
         } else {
           $success = false;
-          $message = "Purtroppo la transazione è stata negata. Ti consigliamo di contattare il tuo gestore per verificare il metodo di pagamento inserito";
+          $message = "Purtroppo la transazione è stata negata. Ti consigliamo di contattare il tuo gestore per verificare il metodo di pagamento inserito.";
         }
       } else {
         $success = false;
-        $message = "Purtroppo il metodo di pagamento da te inserito non può essere verificato. Ti consigliamo di contattare il tuo gestore per verificare quale potrebbe essere il problema";
+        $message = "Purtroppo il metodo di pagamento da te inserito non può essere verificato. Ti consigliamo di contattare il tuo gestore per verificare quale potrebbe essere il problema.";
       }
 
       $response = response()->json(['success' => $success, 'message' => $message]);

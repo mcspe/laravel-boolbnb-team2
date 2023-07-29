@@ -123,7 +123,7 @@
       function paymentCompleted() {
         setTimeout(() => {
           location.reload(true);
-        }, 2500);
+        }, 3000);
       }
 
       braintree.dropin.create({
@@ -193,13 +193,23 @@
                         <div class="icon-fix"></div>
                       </div>
                     </div>
-                    <h1>${result.message}</h1>`
+                    <h1>${result.message}</h1>
+                    <p>Attendi il ricaricamento della pagina per verificare lo stato della tua sponsorizzazione.</p>`
                   );
-                  // paymentCompleted();
                 } else {
                   hideCustomLoader{{$index}}();
-                  $('#checkout-message{{ $index }}').html(result.message);
+                  $('#checkout-message{{ $index }}').html(
+                    `<div class="denied-checkmark">
+                      <div class="circle-border"></div>
+                      <div class="circle">
+                        <div class="error"></div>
+                      </div>
+                    </div>
+                    <h5>${result.message}</h5>
+                    <p>Attendi il ricaricamento della pagina per eseguire una nuova operazione.</p>``
+                  );
                 }
+                paymentCompleted();
               });
             }
           });
