@@ -77,6 +77,7 @@ class ApartmentController extends Controller
           $new_apartment->services()->attach($form_data['services']);
         }
 
+        // TODO: Controllare che questo comando non vada prima di save!!!!
         if (!(array_key_exists('is_visible', $form_data))) {
           $form_data['is_visible'] = 0;
         }
@@ -92,12 +93,12 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        $latitude = DB::select(DB::raw("SELECT ST_X(`latitude_longitude`) FROM `apartments` WHERE (`id` = $apartment->id)"));
-        $longitude = DB::select(DB::raw("SELECT ST_Y(`latitude_longitude`) FROM `apartments` WHERE (`id` = $apartment->id)"));
+        $latitude = DB::select(DB::raw("SELECT ST_Y(`latitude_longitude`) FROM `apartments` WHERE (`id` = $apartment->id)"));
+        $longitude = DB::select(DB::raw("SELECT ST_X(`latitude_longitude`) FROM `apartments` WHERE (`id` = $apartment->id)"));
         $lat = json_decode(json_encode($latitude), true);
-        $lat = $lat[0]['ST_X(`latitude_longitude`)'];
+        $lat = $lat[0]['ST_Y(`latitude_longitude`)'];
         $lng = json_decode(json_encode($longitude), true);
-        $lng = $lng[0]['ST_Y(`latitude_longitude`)'];
+        $lng = $lng[0]['ST_X(`latitude_longitude`)'];
         $apiKey = env("API_IT_KEY");
         $sponsored_flag = Apartment::sponsoredAptFlag($apartment);
 
@@ -169,23 +170,17 @@ class ApartmentController extends Controller
           $apartment->services()->detach();
       }
 
-      if (array_key_exists('sponsorships', $form_data)) {
-          $apartment->sponsorships()->sync($form_data['sponsorships']);
-      }else{
-          $apartment->sponsorships()->detach();
-      }
-
       if(!array_key_exists('is_visible', $form_data)) {
         $form_data['is_visible'] = 0;
       }
       $apartment->update($form_data);
 
+      // TODO: Controllare che non sia una ripetizione
       if(array_key_exists('services', $form_data)){
         $apartment->services()->sync($form_data['services']);
       }else{
         $apartment->services()->detach();
       }
-
 
       return redirect()->route('admin.apartments.show', $apartment);
 
@@ -202,7 +197,7 @@ class ApartmentController extends Controller
 
       if($apartment->cover_image) {
         Storage::disk('public')->delete($apartment->cover_image);
-    }
+      }
 
       $apartment->delete();
 

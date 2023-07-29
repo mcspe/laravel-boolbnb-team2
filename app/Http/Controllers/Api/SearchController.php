@@ -15,17 +15,17 @@ use Illuminate\Support\Carbon;
 
 class SearchController extends Controller
 {
-    ////////////////////////////////////////////
+    //////////////////////////////////////////// Controllare se viene utilizzata se no commentare
   private function calculateDistance($longitude1, $latitude1, $longitude2, $latitude2) {
 
     $rawDistance = DB::selectOne("SELECT ST_Distance_Sphere(point($longitude1, $latitude1), point($longitude2, $latitude2)) as distance");
 
     return $rawDistance->distance / 1000;
-}
+  }
   ///////////////////////////////////////////
   public function advancedSearch(Request $request) {
   try {
-    //code...
+
 
       $data = $request->all();
 
@@ -39,8 +39,8 @@ class SearchController extends Controller
       if(!$input){
         $apartments = Apartment::select([
           'id', 'user_id', 'title', 'slug', 'category', 'address', 'n_rooms', 'n_beds', 'n_bathrooms','square_meters', 'price', 'cover_image', 'is_visible',
-          DB::raw("ST_X(latitude_longitude) as latitude"),
-          DB::raw("ST_Y(latitude_longitude) as longitude"),
+          DB::raw("ST_Y(latitude_longitude) as latitude"),
+          DB::raw("ST_X(latitude_longitude) as longitude"),
           DB::raw("CASE WHEN apartment_sponsorship.apartment_id IS NOT NULL THEN 1 ELSE 0 END as sponsored"), 'apartment_sponsorship.expiration_date'
         ])
         ->where('is_visible', '=', 1)
@@ -94,9 +94,9 @@ class SearchController extends Controller
 
           $apartments = Apartment::select([
               'id', 'user_id', 'title', 'slug', 'category', 'address', 'n_rooms', 'n_beds', 'n_bathrooms','square_meters', 'price', 'cover_image', 'is_visible',
-              DB::raw("ST_X(latitude_longitude) as latitude"),
-              DB::raw("ST_Y(latitude_longitude) as longitude"),
-              DB::raw("ST_Distance_Sphere(point(ST_X(latitude_longitude), ST_Y(latitude_longitude)), point($latitude, $longitude)) / 1000 as distance"),
+              DB::raw("ST_Y(latitude_longitude) as latitude"),
+              DB::raw("ST_X(latitude_longitude) as longitude"),
+              DB::raw("ST_Distance_Sphere(point(ST_X(latitude_longitude), ST_Y(latitude_longitude)), point($longitude, $latitude)) / 1000 as distance"),
               DB::raw("CASE WHEN apartment_sponsorship.apartment_id IS NOT NULL THEN 1 ELSE 0 END as sponsored"), 'apartment_sponsorship.expiration_date'
             ])
             ->where('is_visible', '=', 1)

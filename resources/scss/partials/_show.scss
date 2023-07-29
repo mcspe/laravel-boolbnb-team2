@@ -46,6 +46,14 @@
 .right-side{
   width: 40%;
   width: 100%;
+  .visibility {
+    .fa-circle-check{
+      color: green;
+    }
+    .fa-circle-xmark{
+      color: red;
+    }
+  }
 }
 
 

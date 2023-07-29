@@ -81,7 +81,7 @@ class Apartment extends Model
       $longitude = $decodingAddress['results'][0]['position']['lon'];
 
       // Get coordinates with DB syntax
-      $coordinates = "ST_GeomFromText('POINT($latitude $longitude)')";
+      $coordinates = "ST_GeomFromText('POINT($longitude $latitude)')";
 
       return $coordinates;
     }
