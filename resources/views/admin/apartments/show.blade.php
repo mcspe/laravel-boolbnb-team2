@@ -19,10 +19,10 @@
     <div class="box-card-long-show ">
       <div class="card-md-description d-flex justify-content-between">
         <span>{{$apartment->category}}: {{$apartment->title}}</span>
-        <div>
-          <a href="{{route('admin.apartments.edit', $apartment)}}" class="btn btn-warning">Modifica</a>
+        <div>      
+          <a href="{{route('admin.apartments.edit', $apartment)}}" class="btn btn-warning"><i class="fa-solid fa-pencil"></i></a>
           @include('admin.partials.delete-form', ['index' => $apartment->id])
-          <a href="{{route('admin.apartments.index')}}" class="btn btn-primary d-xsm-none">Torna alla dashboard</a>
+          <a href="{{route('admin.apartments.index')}}" class="btn btn-primary d-xsm-none"><i class="fa-solid fa-list"></i></a>          
         </div>
       </div>
     </div>
@@ -66,20 +66,6 @@
       {{-- RIGHT-SIDE --}}
       <div class="right-side">
 
-        <div class="visibility">
-          @if ($apartment->is_visible)
-            <h4>
-              <i class="fa-regular fa-circle-check"></i>
-              Il tuo immobile è online
-            </h4>
-          @else
-            <h4>
-              <i class="fa-regular fa-circle-xmark"></i>
-              Il tuo immobile è offline
-            </h4>
-          @endif
-        </div>
-
         <div class="description-box">
           <i class="fa-solid fa-location-dot"></i>
           <span>{{$apartment->address}}</span>
@@ -88,7 +74,19 @@
         <span id="lng" hidden>{{ $lng }}</span>
         <div id="map" style="width: 400px; height: 300px"></div>
 
-      </div>
+        <div class="visibility">
+          @if ($apartment->is_visible)
+            <h4>
+              <i class="fa-regular fa-circle-check" style="color: #1ED760;"></i>
+              Il tuo immobile è online
+            </h4>
+          @else
+            <h4>
+              <i class="fa-regular fa-circle-xmark" style="color: #DC3545;"></i>
+              Il tuo immobile è offline
+            </h4>
+          @endif
+        </div>
 
     </div>
 

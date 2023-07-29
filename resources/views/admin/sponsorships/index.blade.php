@@ -19,7 +19,7 @@
   <div class="box-card-long-show mb-5">
     <div class="card-md-description d-flex justify-content-between">
       @if ($sponsored_flag)
-        <span>Controlla lo stato della tua sponsorizzazione</span>
+        <span>Congratulazioni! Hai sponsorizzato l'appartamento <strong>{{ $apartment->title }}</strong>! Sarà ora <strong>in evidenza</strong> nella nostra sezione dedicata.</span>
       @else
         <span>Scegli il piano per spostare il tuo appartamento in evidenza</span>
       @endif
@@ -98,7 +98,7 @@
 <script>
   let sponsoredFlag = document.getElementById('sponsoredFlag').innerHTML;
   sponsoredFlag = parseInt(sponsoredFlag);
-  console.log(sponsoredFlag);
+  console.log('sponsoredflag',sponsoredFlag);
   if(!sponsoredFlag){
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     @foreach ($sponsorships as $index => $sponsorship)
@@ -123,7 +123,7 @@
       function paymentCompleted() {
         setTimeout(() => {
           location.reload(true);
-        }, 2500);
+        }, 3000);
       }
 
       braintree.dropin.create({
@@ -141,7 +141,7 @@
               },
               number: {
                 prefill: '4111 1111 1111 1111',
-                formatInput: false // Turn off automatic formatting
+                formatInput: true // Turn off automatic formatting
               },
               expirationDate: {
                 prefill: '09/25'
@@ -175,6 +175,7 @@
                     hideCustomLoader{{$index}}();
                     console.error('Could not tear down Drop-in UI!');
                   } else {
+                    console.log('risposta di successo', result);
                     console.info('Drop-in UI has been torn down!');
                     // Rimuovi il pulsante 'Procedi al pagamento'
                     $('#submit-button{{ $index }}').remove();
@@ -192,13 +193,23 @@
                         <div class="icon-fix"></div>
                       </div>
                     </div>
-                    <h1>${result.message}</h1>`
+                    <h1>${result.message}</h1>
+                    <p>Attendi il ricaricamento della pagina per verificare lo stato della tua sponsorizzazione.</p>`
                   );
-                  paymentCompleted();
                 } else {
                   hideCustomLoader{{$index}}();
-                  $('#checkout-message{{ $index }}').html(result.message);
+                  $('#checkout-message{{ $index }}').html(
+                    `<div class="denied-checkmark">
+                      <div class="circle-border"></div>
+                      <div class="circle">
+                        <div class="error"></div>
+                      </div>
+                    </div>
+                    <h5>${result.message}</h5>
+                    <p>Attendi il ricaricamento della pagina per eseguire una nuova operazione.</p>``
+                  );
                 }
+                paymentCompleted();
               });
             }
           });
