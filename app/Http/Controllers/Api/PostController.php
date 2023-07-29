@@ -18,8 +18,8 @@ class PostController extends Controller {
     // query per prendere tutti gli appartamenti
     $apartments = Apartment::select([
       'id','user_id','title','slug','category','address','n_rooms','n_beds','n_bathrooms','square_meters',
-      DB::raw('ST_X(latitude_longitude) as latitude'),
-      DB::raw('ST_Y(latitude_longitude) as longitude'),
+      DB::raw('ST_Y(latitude_longitude) as latitude'),
+      DB::raw('ST_X(latitude_longitude) as longitude'),
       'price','cover_image','is_visible'])
       ->where('is_visible', '=', 1)
       ->with('services','visits', 'user')->get();
@@ -27,7 +27,7 @@ class PostController extends Controller {
     // query per prendere solo appartamenti sponsorizzati
 
     $sponsoredApt = Apartment::select([
-      'id','user_id','title','slug','category','address','n_rooms','n_beds','n_bathrooms','square_meters', DB::raw('ST_X(latitude_longitude) as latitude'), DB::raw('ST_Y(latitude_longitude) as longitude'),'price','cover_image','is_visible'
+      'id','user_id','title','slug','category','address','n_rooms','n_beds','n_bathrooms','square_meters', DB::raw('ST_Y(latitude_longitude) as latitude'), DB::raw('ST_X(latitude_longitude) as longitude'),'price','cover_image','is_visible'
       ])
       ->where('is_visible', '=', 1)
       ->with('services','visits')

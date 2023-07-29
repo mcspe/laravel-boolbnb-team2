@@ -21,11 +21,23 @@ class ApartmentSponsorshipTableSeeder extends Seeder
     public function run(Faker $faker)
     {
       for($i=0; $i<20; $i++) {
+        $apartment = Apartment::whereDoesntHave('sponsorships', function ($query) {
+          $query->where('expiration_date', '>=', Carbon::now());
+        })->inRandomOrder()->first();
+
+        if (!$apartment) {
+          continue; // Skip if all apartments already have active sponsorships
+        }
+
+        $sponsorship = Sponsorship::inRandomOrder()->first();
+
         $aptSponsor = new ApartmentSponsorship();
-        $aptSponsor->apartment_id = Apartment::inRandomOrder()->first()->id;
-        $aptSponsor->sponsorship_id = Sponsorship::inRandomOrder()->first()->id;
+        $aptSponsor->apartment_id = $apartment->id;
+        $aptSponsor->sponsorship_id = $sponsorship->id;
         $aptSponsor->payment_date = $faker->dateTimeBetween('-3 days', 'now');
+
         $expiration = Carbon::createFromDate($aptSponsor->payment_date);
+
         switch ($aptSponsor->sponsorship_id) {
           case '1':
             $expiration->addHours(24);
@@ -37,10 +49,10 @@ class ApartmentSponsorshipTableSeeder extends Seeder
             $expiration->addHours(144);
             break;
         }
+
         $aptSponsor->expiration_date = $expiration->format('Y-m-d H:i:s');
         $aptSponsor->save();
       }
-
     }
 }
 
