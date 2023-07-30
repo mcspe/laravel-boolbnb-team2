@@ -299,3 +299,23 @@
   }
 }
 
+@media (min-width: 0 ) and (max-width: 575px){
+.sponsorships-container{
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+  //debug
+  // border: 1px solid red;
+  .mc {
+    width: 80%;
+    .card-desc{
+      .card-function {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
+}
