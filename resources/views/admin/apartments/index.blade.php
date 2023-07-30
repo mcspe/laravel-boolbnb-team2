@@ -17,20 +17,31 @@ Qui sono presenti i tuoi immobili in vendita.
 
 <div class="container">
 
-  <div class="box-card-long mb-5">
+  {{-- VERSIONE DESKTOP --}}
+  <div class="box-card-long mb-5 d-none d-sm-block">
     <div class="card-md-description d-flex justify-content-between">
-
       {{-- If n_apartments is >= 1 i see the count of total apartments --}}
       @if ($n_apartments >= 1)
         <span>Totale immobili: {{$n_apartments}}</span>
-
         {{-- Else i see a span and the button for create new apartment --}}
       @else
-        <span>Non ci sono appartamenti. Aggiungine uno per iniziare!</span>
+        <span>Non ci sono appartamenti.<br>Aggiungine uno per iniziare!</span>
         <a href="{{route('admin.apartments.create')}}" class="btn btn-primary">Aggiungi immobile</a>
       @endif
+    </div>
+  </div>
 
-
+  {{-- VERSIONE MOBILE --}}
+  <div class="box-card-long mb-5 d-block d-sm-none">
+    <div class="card-md-description d-flex align-items-center justify-content-between">
+      {{-- If n_apartments is >= 1 i see the count of total apartments --}}
+      @if ($n_apartments >= 1)
+        <span class="fs-6">Totale immobili: {{$n_apartments}}</span>
+        {{-- Else i see a span and the button for create new apartment --}}
+      @else
+        <span class="fs-6">Non ci sono appartamenti.<br>Aggiungine uno per iniziare!</span>
+        <a href="{{route('admin.apartments.create')}}" class="btn btn-primary"><i class="fa-solid fa-plus"></i></a>
+      @endif
     </div>
   </div>
 
@@ -70,8 +81,13 @@ Qui sono presenti i tuoi immobili in vendita.
 
         </div> --}}
 
-        <div class="button-container">
+        {{-- VERSIONE DESKTOP --}}
+        <div class="button-container d-none d-sm-block">
           <a href="{{route('admin.apartments.create')}}" class="btn btn-primary m-3">Aggiungi immobile</a>
+        </div>
+        {{-- VERSIONE MOBILE --}}
+        <div class="button-container d-block d-sm-none">
+          <a href="{{route('admin.apartments.create')}}" class="btn btn-primary m-3"><i class="fa-solid fa-plus fa-lg"></i></a>
         </div>
 
       </div>

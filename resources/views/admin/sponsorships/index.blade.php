@@ -19,24 +19,24 @@
   <div class="box-card-long-show mb-5">
     <div class="card-md-description d-flex justify-content-between">
       @if ($sponsored_flag)
-        <span>Congratulazioni! Hai sponsorizzato l'appartamento <strong>{{ $apartment->title }}</strong>! Sarà ora <strong>in evidenza</strong> nella nostra sezione dedicata.</span>
+        <span class="fs-6">Congratulazioni! Hai sponsorizzato l'appartamento <strong>{{ $apartment->title }}</strong>! Sarà ora <strong>in evidenza</strong> nella nostra sezione dedicata.</span>
       @else
-        <span>Scegli il piano per spostare il tuo appartamento in evidenza</span>
+        <span class="fs-6">Scegli il piano per spostare il tuo appartamento in evidenza</span>
       @endif
     </div>
   </div>
 
   @if ($sponsored_flag)
     {{-- Active Sponsorship --}}
-    <div class="box-card-long mb-5">
+    <div class="box-card-long mb-3">
       <p>Hai acquistato il pacchetto di sponsorizzazione <strong>{{ $activeSponsorship['name'] }}</strong> per <strong>{{ $apartment->title }}</strong> in data <strong>{{ $activeSponsorship['startDate'] }}</strong>, attivo fino al <strong>{{ $activeSponsorship['endDate'] }}</strong> alle ore <strong>{{ $activeSponsorship['endTime'] }}</strong>.</p>
       <p>Potrai acquistare un nuovo pacchetto al termine della Sponsorizzazione attiva.</p>
     </div>
   @else
-    {{-- Cards container --}}
-    <div class="d-flex">
+    {{-- Cards container VERSIONE DESKTOP --}}
+    <div class="sponsorships-container d-flex mb-5">
       @foreach ($sponsorships as $index => $sponsorship)
-        <div class="mc card p-3">
+        <div class="mc card p-3 mb-3">
           <div class="card-desc">
             <div class="card-function">
               <h3>{{ $sponsorship->name }}</h3>

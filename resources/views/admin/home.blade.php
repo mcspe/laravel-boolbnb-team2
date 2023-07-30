@@ -62,14 +62,14 @@ Qui sono presenti tutte le statistiche della tua attività.
 
   </div>
 
-  <div class="container mb-5 mt-5 d-flex justify-content-center">
-   <div style="width: 700px; height: 500px"><canvas id="myChart"></canvas></div>
-  </div>
+  {{-- <div class="container mb-5 mt-5 d-flex justify-content-center">
+    <div style="width: 700px; height: 500px"><canvas id="myChart"></canvas></div>
+  </div> --}}
 
 </div>
 
 
-<script>
+{{-- <script>
   const ctx = document.getElementById('myChart');
 
   new Chart(ctx, {
@@ -96,7 +96,7 @@ Qui sono presenti tutte le statistiche della tua attività.
       }
     },
   });
-</script>
+</script> --}}
   @endsection
 
 
