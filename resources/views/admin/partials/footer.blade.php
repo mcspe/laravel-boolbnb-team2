@@ -16,11 +16,7 @@
     </div>
 
     <div class="link">
-      <a href="{{route('admin.messages.index')}}" class="{{Route::currentRouteName()=== "admin.messages.index" ? "active" : ""}}"><i class="fa-solid fa-inbox"></i>Inbox</a>
-    </div>
-
-    <div class="link">
-      <a href="" class="{{Route::currentRouteName()=== "admin.messages.index" ? "active" : ""}}"><i class="fa-solid fa-ellipsis-vertical"></i>Altro</a>
+      <a href="{{route('admin.messages.index')}}" class="{{Route::currentRouteName()=== "admin.messages.index" ? "active" : ""}}"><i class="fa-solid fa-inbox"></i>Messaggi</a>
     </div>
   </div>
 </footer>

@@ -16,7 +16,8 @@
 
   <div class="container">
 
-    <div class="box-card-long-show">
+    {{-- VERSIONE DESKTOP --}}
+    <div class="box-card-long-show d-none d-sm-block">
       <div class="card-md-description d-flex justify-content-between">
         <span>
           @if ($apartment->category)
@@ -31,13 +32,63 @@
         </div>
       </div>
     </div>
+    {{-- VERSIONE MOBILE --}}
+    <div class="box-card-long-show d-flex align-items-center justify-content-between d-block d-sm-none">
+      <div class="card-md-description d-flex justify-content-between">
+        <span class="fs-5">
+          @if ($apartment->category)
+            {{$apartment->category}}:
+          @endif
+          {{$apartment->title}}
+        </span>
+      </div>
+        <div class="d-flex justify-content-between">
+          <a href="{{route('admin.apartments.edit', $apartment)}}" class="btn btn-warning me-1"><i class="fa-solid fa-pencil"></i></a>
+          @include('admin.partials.delete-form', ['index' => $apartment->id])
+          <a href="{{route('admin.apartments.index')}}" class="btn btn-primary d-xsm-none"><i class="fa-solid fa-list"></i></a>
+        </div>
+    </div>
 
 
 
     <div class="d-flex block pb-5">
 
       {{-- LEFT-SIDE --}}
-      <div class="left-side box-card-long-show smaller">
+
+      {{-- BOX DELLA SPONSORIZZAZIONE VERSIONE MOBILE --}}
+      <div class="box-card-long-show smaller mb-3 d-block d-sm-none">
+        <div class="card-md-description d-flex justify-content-between align-items-center">
+          <div class="visibility">
+            @if ($apartment->is_visible)
+              <h5>
+                <i class="fa-regular fa-circle-check" style="color: #1ED760;"></i>
+                Il tuo immobile è online
+              </h5>
+            @else
+              <h5>
+                <i class="fa-regular fa-circle-xmark" style="color: #DC3545;"></i>
+                Il tuo immobile è offline
+              </h5>
+            @endif
+          </div>
+          {{-- STATO SPONSORIZZAZIONE --}}
+          <div class="d-flex align-items-center justify-content-center">
+            @if (!$apartment->is_visible)
+              <h4>Pubblica il tuo annuncio per accedere alle Sponsorizzazioni</h4>
+            @else
+              <a href="{{route('admin.sponsorship', $apartment)}}" class="btn btn-primary my-3">
+                @if ($sponsored_flag)
+                  <span class="fs-6 text-light">Visualizza lo stato della tua sponsorizzazione</span>
+                @else
+                  <span class="fs-6 text-light">Sponsorizza il tuo appartamento</span>
+                @endif
+              </a>
+            @endif
+          </div>
+        </div>
+      </div>
+      {{-- //////////////////// --}}
+      <div class="left-side box-card-long-show smaller mb-3">
 
         <div class="box-image">
           <img src="{{asset('storage/' . $apartment->cover_image)}}" alt="">
@@ -72,31 +123,32 @@
 
       {{-- RIGHT-SIDE --}}
       <div class="right-side">
-
-        <div class="box-card-long-show smaller mb-5">
-          <div class="card-md-description d-flex justify-content-between align-items-center">
+        {{-- BOX DELLA SPONSORIZZAZIONE VERSIONE DESKTOP --}}
+        <div class="box-card-long-show smaller d-none d-sm-block mb-5">
+          <div class="card-md-description d-flex flex-column align-items-center justify-content-between align-items-center">
             <div class="visibility">
               @if ($apartment->is_visible)
-                <h4>
+                <h5>
                   <i class="fa-regular fa-circle-check" style="color: #1ED760;"></i>
                   Il tuo immobile è online
-                </h4>
+                </h5>
               @else
-                <h4>
+                <h5>
                   <i class="fa-regular fa-circle-xmark" style="color: #DC3545;"></i>
                   Il tuo immobile è offline
-                </h4>
+                </h5>
               @endif
             </div>
+            {{-- STATO SPONSORIZZAZIONE --}}
             <div>
               @if (!$apartment->is_visible)
                 <h4>Pubblica il tuo annuncio per accedere alle Sponsorizzazioni</h4>
               @else
                 <a href="{{route('admin.sponsorship', $apartment)}}" class="btn btn-primary my-3">
                   @if ($sponsored_flag)
-                    <span>Visualizza lo stato della tua sponsorizzazione</span>
+                    <span class="fs-6 text-light">Visualizza lo stato della tua sponsorizzazione</span>
                   @else
-                    <span>Sponsorizza il tuo appartamento</span>
+                    <span class="fs-6 text-light">Sponsorizza il tuo appartamento</span>
                   @endif
                 </a>
               @endif
