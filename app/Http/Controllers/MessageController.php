@@ -19,7 +19,11 @@ class MessageController extends Controller
 
         $apartments = Apartment::where("user_id", Auth::id())->get();
         $messages = Message::orderBy("apartment_id")->get();
-        return view('admin.messages.index', compact('apartments', 'messages'));
+        $n_messages = Message::join('apartments', 'messages.apartment_id', '=', 'apartments.id')
+          ->join('users', 'apartments.user_id', '=', 'users.id')
+          ->where('users.id', Auth::id())
+          ->count();
+        return view('admin.messages.index', compact('apartments', 'messages', 'n_messages'));
 
     }
 

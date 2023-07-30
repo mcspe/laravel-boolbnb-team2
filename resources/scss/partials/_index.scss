@@ -29,6 +29,9 @@
         color: #627183;
         font-weight: 400;
       }
+      td.action{
+        width: 25%;
+      }
     }
   }
 }
@@ -82,18 +85,29 @@
 // MEDIA QUERIES
 
 // MEDIA X-SMALL
-@media (min-width: 0 ) and (max-width: 575px){
+@media (min-width: 0 ) and (max-width: 1000px){
 
   .d-xsm-none{
     display: none;
   }
 
   .box-card-long{
+    padding: 10px;
     .card-md-description{
       span{
         font-size: 1.3rem;
         color: #00162f;
         font-weight: 600;
+      }
+    }
+  }
+
+  .size{
+    .table{
+      tr{
+        td.action{
+          width: 50%;
+        }
       }
     }
   }
