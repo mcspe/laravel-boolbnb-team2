@@ -206,7 +206,7 @@
                       </div>
                     </div>
                     <h5>${result.message}</h5>
-                    <p>Attendi il ricaricamento della pagina per eseguire una nuova operazione.</p>``
+                    <p>Attendi il ricaricamento della pagina per eseguire una nuova operazione.</p>`
                   );
                 }
                 paymentCompleted();
