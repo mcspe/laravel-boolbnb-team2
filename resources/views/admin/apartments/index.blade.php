@@ -71,7 +71,7 @@ Qui sono presenti i tuoi immobili in vendita.
         </div> --}}
 
         <div class="button-container">
-          <a href="{{route('admin.apartments.create')}}" class="btn btn-primary">Aggiungi immobile</a>
+          <a href="{{route('admin.apartments.create')}}" class="btn btn-primary m-3">Aggiungi immobile</a>
         </div>
 
       </div>
@@ -92,7 +92,7 @@ Qui sono presenti i tuoi immobili in vendita.
               {{-- <th scope="col" class="d-xsm-none">Prezzo</th> --}}
               <th scope="col" class="d-xsm-none text-center">Visibile</th>
               <th scope="col" class="d-xsm-none text-center">Sponsorizzato</th>
-              <th scope="col" class="text-center w-25">Azioni</th>
+              <th scope="col" class="text-center action">Azioni</th>
               {{-- <th scope="col"></th>
               <th scope="col"></th> --}}
             </tr>
@@ -124,7 +124,7 @@ Qui sono presenti i tuoi immobili in vendita.
                     <span class="text-danger"><i class="fa-solid fa-xmark fa-xl" style="color: #DC3545;"></i></span>
                   @endif
                 </td>
-                <td class="d-flex flex-nowrap sm-justify-content-center">
+                <td class="text-center action">
                   <a href="{{route('admin.apartments.show', $apartment)}}" class="btn btn-primary me-1"><i class="fa-solid fa-eye"></i></a>
                   <a href="{{route('admin.apartments.edit', $apartment)}}" class="btn btn-warning ms-1 me-2"><i class="fa-solid fa-pencil"></i></a>
                   @include('admin.partials.delete-form')

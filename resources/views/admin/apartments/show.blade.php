@@ -7,30 +7,37 @@
 @section('content')
 
   @section("jumbotron-title")
-    Dettagli {{$apartment->category}}!
+    Dettagli {{$apartment->category}}
   @endsection
 
   @section("jumbotron-subtitle")
     Qui sono presenti i dettagli dell'immobile selezionato.
   @endsection
 
-  <div class="container ">
+  <div class="container">
 
-    <div class="box-card-long-show ">
+    <div class="box-card-long-show">
       <div class="card-md-description d-flex justify-content-between">
-        <span>{{$apartment->category}}: {{$apartment->title}}</span>
-        <div>      
+        <span>
+          @if ($apartment->category)
+            {{$apartment->category}}:
+          @endif
+          {{$apartment->title}}
+        </span>
+        <div>
           <a href="{{route('admin.apartments.edit', $apartment)}}" class="btn btn-warning"><i class="fa-solid fa-pencil"></i></a>
           @include('admin.partials.delete-form', ['index' => $apartment->id])
-          <a href="{{route('admin.apartments.index')}}" class="btn btn-primary d-xsm-none"><i class="fa-solid fa-list"></i></a>          
+          <a href="{{route('admin.apartments.index')}}" class="btn btn-primary d-xsm-none"><i class="fa-solid fa-list"></i></a>
         </div>
       </div>
     </div>
 
-    <div class="d-flex block">
+
+
+    <div class="d-flex block pb-5">
 
       {{-- LEFT-SIDE --}}
-      <div class="left-side">
+      <div class="left-side box-card-long-show smaller">
 
         <div class="box-image">
           <img src="{{asset('storage/' . $apartment->cover_image)}}" alt="">
@@ -66,37 +73,49 @@
       {{-- RIGHT-SIDE --}}
       <div class="right-side">
 
-        <div class="description-box">
+        <div class="box-card-long-show smaller mb-5">
+          <div class="card-md-description d-flex justify-content-between align-items-center">
+            <div class="visibility">
+              @if ($apartment->is_visible)
+                <h4>
+                  <i class="fa-regular fa-circle-check" style="color: #1ED760;"></i>
+                  Il tuo immobile è online
+                </h4>
+              @else
+                <h4>
+                  <i class="fa-regular fa-circle-xmark" style="color: #DC3545;"></i>
+                  Il tuo immobile è offline
+                </h4>
+              @endif
+            </div>
+            <div>
+              @if (!$apartment->is_visible)
+                <h4>Pubblica il tuo annuncio per accedere alle Sponsorizzazioni</h4>
+              @else
+                <a href="{{route('admin.sponsorship', $apartment)}}" class="btn btn-primary my-3">
+                  @if ($sponsored_flag)
+                    <span>Visualizza lo stato della tua sponsorizzazione</span>
+                  @else
+                    <span>Sponsorizza il tuo appartamento</span>
+                  @endif
+                </a>
+              @endif
+            </div>
+          </div>
+        </div>
+
+        <div class="description-box box-card-long-show smaller">
           <i class="fa-solid fa-location-dot"></i>
           <span>{{$apartment->address}}</span>
+          <span id="lat" hidden>{{ $lat }}</span>
+          <span id="lng" hidden>{{ $lng }}</span>
+          <div id="map" class="m-auto my-4" style="width: 400px; height: 300px"></div>
         </div>
-        <span id="lat" hidden>{{ $lat }}</span>
-        <span id="lng" hidden>{{ $lng }}</span>
-        <div id="map" style="width: 400px; height: 300px"></div>
 
-        <div class="visibility">
-          @if ($apartment->is_visible)
-            <h4>
-              <i class="fa-regular fa-circle-check" style="color: #1ED760;"></i>
-              Il tuo immobile è online
-            </h4>
-          @else
-            <h4>
-              <i class="fa-regular fa-circle-xmark" style="color: #DC3545;"></i>
-              Il tuo immobile è offline
-            </h4>
-          @endif
-        </div>
+      </div>
 
     </div>
 
-    <a href="{{route('admin.sponsorship', $apartment)}}" class="btn btn-primary my-3 @if (!$apartment->is_visible) d-none @endif">
-      @if ($sponsored_flag)
-        <span>Visualizza lo stato della tua sponsorizzazione</span>
-        @else
-        <span>Sponsorizza il tuo appartamento</span>
-      @endif
-    </a>
   </div>
 
   <script type="text/javascript">
