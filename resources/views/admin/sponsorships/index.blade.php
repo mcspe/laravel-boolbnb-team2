@@ -98,7 +98,7 @@
 <script>
   let sponsoredFlag = document.getElementById('sponsoredFlag').innerHTML;
   sponsoredFlag = parseInt(sponsoredFlag);
-  console.log('sponsoredflag',sponsoredFlag);
+  // console.log('sponsoredflag',sponsoredFlag);
   if(!sponsoredFlag){
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     @foreach ($sponsorships as $index => $sponsorship)
@@ -134,26 +134,26 @@
           cardholderName: {
             required: true
           },
-          overrides: {
-            fields: {
-              cardholderName: {
-                prefill: "{{ Auth::user()->name }} {{ Auth::user()->lastname }}"
-              },
-              number: {
-                prefill: '4111 1111 1111 1111',
-                formatInput: true // Turn off automatic formatting
-              },
-              expirationDate: {
-                prefill: '09/25'
-              }
-            }
-          }
+          // overrides: {
+          //   fields: {
+          //     cardholderName: {
+          //       prefill: "{{ Auth::user()->name }} {{ Auth::user()->lastname }}"
+          //     },
+          //     number: {
+          //       prefill: '4111 1111 1111 1111',
+          //       formatInput: true // Turn off automatic formatting
+          //     },
+          //     expirationDate: {
+          //       prefill: '09/25'
+          //     }
+          //   }
+          // }
         }
       }, function(createErr, instance) {
         button{{ $index }}.addEventListener('click', function() {
-          showCustomLoader{{ $index }}();
           instance.requestPaymentMethod(function(requestPaymentMethodErr, payload) {
             if (!requestPaymentMethodErr) {
+              showCustomLoader{{ $index }}();
               // Quando l'utente fa clic sul pulsante 'Procedi al pagamento', questo codice invierà le
               // informazioni di pagamento crittografate in una variabile chiamata "payment method nonce"
               $.ajax({
