@@ -215,7 +215,7 @@
                 <div class="content">
                     <img class="logo-bnb ms-3 w-25" src="logo-standard.png" alt="logo_boolbnb">
                     <h2>Prima volta qui?</h2>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, ex ratione. Aliquid!</p>
+                    <p>Effettuando la registrazione potrai iniziare ad aggiungere e gestire gli appartamenti!<br>Cosa aspetti ?</p>
                     <button class="btn-logreg transparent" id="sign-up-btn">Registrati</button>
                   </div>
                   <!-- Add your login form image here -->
@@ -225,7 +225,7 @@
                   <div class="content">
                     <img class="logo-bnb ms-3 w-25" src="logo-standard.png" alt="logo_boolbnb">
                     <h2>Sei già dei nostri?</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum laboriosam ad deleniti.</p>
+                    <p>Entra nella tua area personale, aggiungi o gestisci i tuoi appartamenti.<br>Controlla se hai ricevuto messaggi e valuta se sponsorizzare uno dei tuoi appartamenti!</p>
                     <button class="btn-logreg transparent" id="sign-in-btn">Accedi</button>
                 </div>
             </div>
