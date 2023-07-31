@@ -20,7 +20,7 @@ Dettaglio messaggio
     <span>Hai un nuovo messaggio da <span class="fw-bold">{{ $message->sender_name }}</span></span>
 
     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal">
-      Elimina
+      <i class="fa-solid fa-trash"></i>
     </button>
 
     <!-- Modal -->

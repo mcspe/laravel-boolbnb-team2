@@ -44,10 +44,10 @@ Controlla i messaggi ricevuti
               <tr>
                 <th scope="col">Mittente</th>
 
-                <th scope="col" class="d-xsm-none">Email</th>
+                {{-- <th scope="col" class="d-xsm-none">Email</th> --}}
                 <th scope="col" class="d-xsm-none">Messaggio</th>
 
-                <th scope="col">Email</th>
+                {{-- <th scope="col">Email</th> --}}
                 <th scope="col">Appartamento</th>
 
                 <th scope="col">Azioni</th>
@@ -60,14 +60,14 @@ Controlla i messaggi ricevuti
                   <tr>
                     <td>{{$message->sender_name . ' ' . $message->sender_lastname}}</td>
 
-                    <td class="d-xsm-none">{{$message->sender_email}}</td>
+                    {{-- <td class="d-xsm-none">{{$message->sender_email}}</td> --}}
                     <td class="d-xsm-none">{{$message->text}}</td>
 
-                    <td>{{$message->sender_email}}</td>
+                    {{-- <td>{{$message->sender_email}}</td> --}}
                     <td>{{$apartment->title}}</td>
 
                     <td>
-                      <a href="{{route('admin.messages.show', $message)}}" class="btn btn-primary">Vai</a>
+                      <a href="{{route('admin.messages.show', $message)}}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                     </td>
                   </tr>
                 @endforeach
