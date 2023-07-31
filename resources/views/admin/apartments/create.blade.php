@@ -17,12 +17,23 @@ Puoi inserire un nuovo immobile in vendita.
 
 <div class="container">
 
-  <div class="box-card-long mb-5">
+  {{-- VERSIONE DESKTOP --}}
+  <div class="box-card-long mb-5 d-none d-sm-block">
     <div class="card-md-description d-flex justify-content-between">
       <span>Aggiungi un nuovo immobile</span>
       <div>
         <a href="{{route('admin.apartments.index')}}" class="btn btn-primary d-xsm-none me-2">Vai all'elenco appartamenti</button>
         <a href="{{route('admin.home')}}" class="btn heavenly">Torna alla dashboard</a>
+      </div>
+    </div>
+  </div>
+  {{-- VERSIONE MOBILE --}}
+  <div class="box-card-long mb-5 d-block d-sm-none">
+    <div class="card-md-description d-flex align-items-center justify-content-between">
+      <span class="fs-6">Aggiungi un nuovo immobile</span>
+      <div>
+        <a href="{{route('admin.apartments.index')}}" class="btn btn-primary me-2"><i class="fa-solid fa-list"></i></button>
+        <a href="{{route('admin.home')}}" class="btn btn-secondary"><i class="fa-solid fa-chart-line"></i></a>
       </div>
     </div>
   </div>
