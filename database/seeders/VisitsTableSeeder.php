@@ -18,7 +18,7 @@ class VisitsTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-      for($i=0; $i<20; $i++) {
+      for($i=0; $i<2000; $i++) {
         $new_visit = new Visit();
         $new_visit->apartment_id = Apartment::inRandomOrder()->first()->id;
         $new_visit->ip_address = long2ip(mt_rand()+mt_rand()+mt_rand(0,1));
