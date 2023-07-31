@@ -22,9 +22,9 @@ Controlla i messaggi ricevuti
           <span>
             Ciao {{ Auth::user()->name }}, hai {{ $n_messages }}
             @if ($n_messages > 1)
-              messaggio
-            @else
               messaggi
+            @else
+              messaggio
             @endif
             nella tua bacheca
           </span>

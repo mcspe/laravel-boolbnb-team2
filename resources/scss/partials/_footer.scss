@@ -13,15 +13,23 @@ footer{
       a{
         font-size: 0.6rem;
         color: gray;
+        &.active{
+          color: #35a7ff;
+        }
       }
       i{
         font-size: 34px;
-        color: gray;
+        // color: gray;
         display: block;
+        &.active{
+          color: #35a7ff;
+        }
       }
     }
   }
 }
+
+// ACTIVATE THE SELECTED LINK
 
 .logout{
   position: absolute;
